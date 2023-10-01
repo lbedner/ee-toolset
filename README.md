@@ -1,7 +1,9 @@
 # Eternity Engine Toolset (ee_toolset)
 
-![Toolset Dashboard](images/github/github_1.png)
-![Unit Modal](images/github/github_2.png)
+<p float="left">
+  <img src="images/github/github_1.png" width="45%" />
+  <img src="images/github/github_2.png" width="45%" /> 
+</p>
 
 The Eternity Engine Toolset (ee_toolset) is a suite of utilities designed to aid in the development of an isometric RPG built with Unity. This toolset operates in conjunction with the Eternity Engine to manage various game elements.
 
