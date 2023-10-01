@@ -1,0 +1,170 @@
+{
+  "name": "roe",
+  "lastUpdated": -8585060308808373188,
+  "version": "0.01",
+  "totalPlayTimeInSeconds": 67.7666245,
+  "currentScene": "combat",
+  "units": [
+    {
+      "ResRef": "aramus",
+      "FirstName": "Jonan",
+      "LastName": "",
+      "Class": "Knight of Dundalas",
+      "PortraintLocation": "Prefabs/Portraits/p-jonan",
+      "Sprite": "Prefabs/Characters/Animations/Allies/aramus/Sprite",
+      "Type": "PLAYER",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 5.0,
+        "HIT_POINTS": 17.0,
+        "ABILITY_POINTS": 10.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 4.0,
+        "MAGIC": 3.0,
+        "STRENGTH": 10.0,
+        "DEFENSE": 8.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 0,
+        "LEFT_HAND": 7,
+        "BODY": 4,
+        "HANDS": 5,
+        "FEET": 6
+      },
+      "Abilities": [
+        0,
+        1,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "ResRef": "sinteres",
+      "FirstName": "Linard",
+      "LastName": "Janson",
+      "Class": "Justice Prevails Recruit",
+      "PortraintLocation": "Prefabs/Portraits/p-linard",
+      "Sprite": "Prefabs/Characters/Animations/Allies/sinteres/Sprite",
+      "Type": "PLAYER",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 1.0,
+        "HIT_POINTS": 15.0,
+        "ABILITY_POINTS": 10.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 6.0,
+        "DEXTERITY": 14.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 6.0,
+        "DEFENSE": 6.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 1
+      },
+      "Abilities": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "ResRef": "orelle",
+      "FirstName": "Orelle",
+      "LastName": "",
+      "Class": "Knight of Dundalas",
+      "PortraintLocation": "Prefabs/Portraits/p-orelle",
+      "Sprite": "Prefabs/Characters/Animations/Allies/orelle/Sprite",
+      "Type": "PLAYER",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 4.0,
+        "HIT_POINTS": 20.0,
+        "ABILITY_POINTS": 6.0,
+        "MOVEMENT": 4.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 2.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 13.0,
+        "DEFENSE": 10.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 2
+      },
+      "Abilities": [
+        0,
+        1,
+        2,
+        8
+      ]
+    },
+    {
+      "ResRef": "jarl",
+      "FirstName": "Jarl",
+      "LastName": "Thuvik",
+      "Class": "Stramadonian Seeker",
+      "PortraintLocation": "Prefabs/Portraits/p-jarl",
+      "Sprite": "Prefabs/Characters/Animations/Allies/jarl/Sprite",
+      "Type": "PLAYER",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 3.0,
+        "HIT_POINTS": 10.0,
+        "ABILITY_POINTS": 15.0,
+        "MOVEMENT": 4.0,
+        "SPEED": 5.0,
+        "DEXTERITY": 3.0,
+        "MAGIC": 15.0,
+        "STRENGTH": 4.0,
+        "DEFENSE": 4.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 3
+      },
+      "Abilities": [
+        0,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "ResRef": "muck_petty",
+      "FirstName": "Petty Muck",
+      "LastName": "",
+      "Class": "Monster",
+      "PortraintLocation": "Prefabs/Portraits/p-muck_petty",
+      "Sprite": "Prefabs/Characters/Animations/Enemies/muck_petty/Sprite",
+      "Type": "ENEMY",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/SlimeMovement",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 4.0,
+        "HIT_POINTS": 20.0,
+        "ABILITY_POINTS": 5.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 6.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 8.0,
+        "DEFENSE": 8.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 23
+      },
+      "Abilities": [
+        0,
+        8
+      ]
+    }
+  ]
+}
