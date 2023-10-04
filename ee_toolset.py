@@ -1,30 +1,39 @@
 import flet as ft
 
-from app.controls.game_data import GameDataSwitcher
-from app.models.game_data import GameData
+from app.controls import GameDataSwitcher, SideBarControl
+import app.core.constants as constants
+from app.core.log import logger
+from app.models import GameData
 
 
 def main(page: ft.Page):
-    page.window_height = 600
-    page.window_width = 800
+    logger.info("main", page=page)
+    page.window_height = 1200
+    page.window_width = 1600
 
     page.appbar = ft.AppBar(
-        leading=ft.Icon(ft.icons.SAVE_OUTLINED),
         leading_width=40,
-        title=ft.Text("Eternal Engine Toolset"),
+        title=ft.Text(constants.PAGE_TITLE),
         center_title=False,
         bgcolor=ft.colors.SURFACE_VARIANT,
     )
-
-    page.title = "Eternal Engine Toolset"
-
-    page.scroll = ft.ScrollMode.ALWAYS
-
-    page.add(ft.Text("Save Game Editor", style=ft.TextThemeStyle.HEADLINE_SMALL))
+    page.title = constants.PAGE_TITLE
+    page.scroll = ft.ScrollMode.AUTO
 
     game_data: GameData = GameData.load()
-    game_data_switcher = GameDataSwitcher(game_data)
-    page.add(game_data_switcher)
+    page.add(
+        ft.Row(
+            controls=[
+                SideBarControl(),
+                ft.VerticalDivider(
+                    width=20,
+                    color=ft.colors.RED,
+                    thickness=3,
+                ),
+                GameDataSwitcher(game_data),
+            ]
+        )
+    )
 
     page.update()
 

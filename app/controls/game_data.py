@@ -22,11 +22,13 @@ class GameDataSwitcher(ft.UserControl):
         self.update()
 
     def build(self):
+        title = ft.Text("Save Game Editor", style=ft.TextThemeStyle.HEADLINE_SMALL)
         switch = ft.Switch(
             value=True, label="Format Game Data", on_change=self.on_switch
         )
         return ft.Column(
             controls=[
+                title,
                 switch,
                 self.game_data_app,
                 self.raw_game_data_control,
