@@ -1,0 +1,353 @@
+{
+  "Items": [
+    {
+      "Id": 0,
+      "Type": "WEAPON",
+      "Name": "Sword of Galladoran",
+      "Description": "Forged during the ancient Kilveran days, this sword has been in the Galladoran family for 4000 years.",
+      "ToolTip": "Sword of Galladoran",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Swords/sword_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_5",
+	  "SoundPath": "Prefabs/Audio/Units/Items/Weapons/Swords/sword_1",
+      "Attributes": {
+        "DAMAGE": 15.0,
+        "HIT_PERCENT": 90.0,
+        "CRITICAL_CHANCE": 10.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 1,
+      "Type": "WEAPON",
+      "Name": "Daishan Dagger",
+      "Description": "All purpose dagger given to all Daishan assassin initiates",
+      "ToolTip": "Daishan Dagger",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Daggers/dagger_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_2",
+	  "SoundPath": "Prefabs/Audio/Units/Items/Weapons/Swords/sword_1",
+      "Attributes": {
+        "DAMAGE": 5.0,
+        "HIT_PERCENT": 100.0,
+        "CRITICAL_CHANCE": 25.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 2,
+      "Type": "WEAPON",
+      "Name": "Dundalan Axe",
+      "Description": "Two sided axe from Dundalas",
+      "ToolTip": "Dundalan Axe",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Axes/axe_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_2",
+	  "SoundPath": "Prefabs/Audio/Units/Items/Weapons/Swords/sword_1",
+      "Attributes": {
+        "DAMAGE": 12.0,
+        "HIT_PERCENT": 70.0,
+        "CRITICAL_CHANCE": 20.0,
+		"RANGE": 2.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 3,
+      "Type": "WEAPON",
+      "Name": "Wand of Power",
+      "Description": "Wand discovered in Elloquince",
+      "ToolTip": "Wand of Power",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Books/book_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_2",
+	  "SoundPath": "Prefabs/Audio/Units/Items/Weapons/Wands/wand_1",
+      "Attributes": {
+        "DAMAGE": 4.0,
+        "HIT_PERCENT": 100.0,
+        "CRITICAL_CHANCE": 5.0,
+		"RANGE": 3.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 4,
+      "Type": "ARMOR",
+      "Name": "Dundalan Chest Plate",
+      "Description": "Armor given to all Knights of Dundalas, enchanted by Stramadonians to ward off magic attacks.",
+      "ToolTip": "Dundalan Armor",
+      "IconPath": "Prefabs/Icons/Items/Armor/Chest/Heavy/chest_1",
+      "SlotType": "BODY",
+      "Tier": "TIER_4",
+      "Attributes": {
+        "ARMOR": 6.0,
+        "DODGE_CHANCE": 0.0
+      }
+    },
+    {
+      "Id": 5,
+      "Type": "ARMOR",
+      "Name": "Dundalan Gauntlets",
+      "Description": "Armor given to all Knights of Dundalas, enchanted by Stramadonians to ward off magic attacks.",
+      "ToolTip": "Dundalan Gauntlets",
+      "IconPath": "Prefabs/Icons/Items/Armor/Arms/Heavy/gauntlets_1",
+      "SlotType": "HANDS",
+      "Tier": "TIER_4",
+      "Attributes": {
+        "ARMOR": 3.0,
+        "DODGE_CHANCE": 0.0
+      }
+    },
+    {
+      "Id": 6,
+      "Type": "ARMOR",
+      "Name": "Dundalan Boots",
+      "Description": "Armor given to all Knights of Dundalas, enchanted by Stramadonians to ward off magic attacks.",
+      "ToolTip": "Dundalan Boots",
+      "IconPath": "Prefabs/Icons/Items/Armor/Legs/Heavy/boots_1",
+      "SlotType": "FEET",
+      "Tier": "TIER_4",
+      "Attributes": {
+        "ARMOR": 3.0,
+        "DODGE_CHANCE": 0.0
+      }
+    },
+    {
+      "Id": 7,
+      "Type": "ARMOR",
+      "Name": "Dundalan Shield",
+      "Description": "Armor given to all Knights of Dundalas, enchanted by Stramadonians to ward off magic attacks.",
+      "ToolTip": "Dundalan Shield",
+      "IconPath": "Prefabs/Icons/Items/Armor/Shields/Heavy/shield_1",
+      "SlotType": "LEFT_HAND",
+      "Tier": "TIER_4",
+      "Attributes": {
+        "ARMOR": 3.0,
+        "DODGE_CHANCE": 10.0
+      }
+    },
+    {
+      "Id": 8,
+      "Type": "CONSUMABLE",
+      "Name": "Fleetness Tonic",
+      "Description": "Increases the speed of the unit.",
+      "ToolTip": "Fleetness Tonic",
+      "IconPath": "Prefabs/Icons/Items/Tonics/fleetness_tonic",
+      "SlotType": "CONSUMABLE",
+      "Tier": "TIER_2",
+	  "VFXPath": "Prefabs/VFX/Spells/regeneration",
+      "Attributes": {
+		"RANGE": 0.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 9,
+      "Type": "ARMOR",
+      "Name": "Justice Prevails Chest Plate",
+      "Description": "Initiate armor forged by the great Naylorz himself.",
+      "ToolTip": "Justice Prevails Chest Plate",
+      "IconPath": "Prefabs/Icons/Items/Armor/Chest/Heavy/chest_2",
+      "SlotType": "BODY",
+      "Tier": "TIER_3",
+      "Attributes": {
+        "ARMOR": 5.0,
+        "DODGE_CHANCE": 5.0
+      }
+    },
+    {
+      "Id": 10,
+      "Type": "ARMOR",
+      "Name": "Justice Prevails Gauntlets",
+      "Description": "Initiate armor forged by the great Naylorz himself.",
+      "ToolTip": "Justice Prevails Gauntlets",
+      "IconPath": "Prefabs/Icons/Items/Armor/Arms/Heavy/gauntlets_2",
+      "SlotType": "HANDS",
+      "Tier": "TIER_3",
+      "Attributes": {
+        "ARMOR": 2.0,
+        "DODGE_CHANCE": 2.0
+      }
+    },
+    {
+      "Id": 11,
+      "Type": "ARMOR",
+      "Name": "Justice Prevails Boots",
+      "Description": "Initiate armor forged by the great Naylorz himself.",
+      "ToolTip": "Justice Prevails Boots",
+      "IconPath": "Prefabs/Icons/Items/Armor/Legs/Heavy/boots_2",
+      "SlotType": "FEET",
+      "Tier": "TIER_3",
+      "Attributes": {
+        "ARMOR": 2.0,
+        "DODGE_CHANCE": 1.0
+      }
+    },
+    {
+      "Id": 12,
+      "Type": "ARMOR",
+      "Name": "Justice Prevails Shield",
+      "Description": "Initiate armor forged by the great Naylorz himself.",
+      "ToolTip": "Justice Prevails Shield",
+      "IconPath": "Prefabs/Icons/Items/Armor/Shields/Wooden/shield_1",
+      "SlotType": "LEFT_HAND",
+      "Tier": "TIER_3",
+      "Attributes": {
+        "ARMOR": 2.0,
+        "DODGE_CHANCE": 15.0
+      }
+    },
+    {
+      "Id": 13,
+      "Type": "CONSUMABLE",
+      "Name": "Tonic Of Rebirth",
+      "Description": "Drinking this tonic will bring a party member back to life.",
+      "ToolTip": "Tonic of Rebirth",
+      "IconPath": "Prefabs/Icons/Items/Tonics/tonic_of_rebirth",
+      "SlotType": "CONSUMABLE",
+      "Tier": "TIER_4",
+      "Attributes": {}
+    },
+    {
+      "Id": 14,
+      "Type": "CONSUMABLE",
+      "Name": "Minor Tonic of Robustness",
+      "Description": "Replenishes some health.",
+      "ToolTip": "Minor Tonic of Robustness",
+      "IconPath": "Prefabs/Icons/Items/Tonics/robustness_tonic_1",
+      "SlotType": "CONSUMABLE",
+      "Tier": "TIER_1",
+	  "VFXPath": "Prefabs/VFX/Spells/regeneration",
+      "Attributes": {
+		"RANGE": 0.0,
+		"AOE_RANGE": 0.0
+      }
+    },
+    {
+      "Id": 15,
+      "Type": "ARMOR",
+      "Name": "Left Ring of Galladoran",
+      "Description": "Forged during the ancient Kilveran days, this item has been in the Galladoran family for 4000 years.",
+      "ToolTip": "Left Ring of Galladoran",
+      "IconPath": "Prefabs/Icons/Items/Accessories/Rings/left_ring_of_galladoran",
+      "SlotType": "RING_1",
+      "Tier": "TIER_5",
+      "Attributes": {
+        "ARMOR": 5.0,
+        "DODGE_CHANCE": 10.0
+      }
+    },
+    {
+      "Id": 16,
+      "Type": "ARMOR",
+      "Name": "Right Ring of Galladoran",
+      "Description": "Forged during the ancient Kilveran days, this item has been in the Galladoran family for 4000 years.",
+      "ToolTip": "Right Ring of Galladoran",
+      "IconPath": "Prefabs/Icons/Items/Accessories/Rings/right_ring_of_galladoran",
+      "SlotType": "RING_2",
+      "Tier": "TIER_5",
+      "Attributes": {
+        "ARMOR": 5.0,
+        "DODGE_CHANCE": 10.0
+      }
+    },
+    {
+      "Id": 17,
+      "Type": "WEAPON",
+      "Name": "Boundary Warden Longbow",
+      "Description": "Longbow used by all new Boundary Warden recruits.",
+      "ToolTip": "Boundary Warden Longbow",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Ranged/Bows/bow_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_1",
+      "Attributes": {
+        "DAMAGE": 8.0,
+        "HIT_PERCENT": 70.0,
+        "CRITICAL_CHANCE": 35.0
+      }
+    },
+    {
+      "Id": 18,
+      "Type": "WEAPON",
+      "Name": "Iron Arrow",
+      "Description": "Shoot with bow arrow to pierce target.",
+      "ToolTip": "Iron Arrow",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Ranged/Arrows/arrows_1",
+      "SlotType": "AMMO",
+      "Tier": "TIER_1",
+      "Attributes": {}
+    },
+    {
+      "Id": 19,
+      "Type": "WEAPON",
+      "Name": "Permafrost Arrow",
+      "Description": "Shoot with bow to temporarily freeze a target.",
+      "ToolTip": "Permafrost Arrow",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Ranged/Arrows/ice_arrows_1",
+      "SlotType": "AMMO",
+      "Tier": "TIER_2",
+      "Attributes": {}
+    },
+    {
+      "Id": 20,
+      "Type": "WEAPON",
+      "Name": "Inferno Arrow",
+      "Description": "Shoot with bow to inflict fire damage over time on a target.",
+      "ToolTip": "Inferno Arrow",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Ranged/Arrows/inferno_arrows_1",
+      "SlotType": "AMMO",
+      "Tier": "TIER_2",
+      "Attributes": {}
+    },
+    {
+      "Id": 21,
+      "Type": "WEAPON",
+      "Name": "Charging Crystal",
+      "Description": "Hold while charging a spell to increase the potency of the spell.",
+      "ToolTip": "Charging Crystal",
+      "IconPath": "Prefabs/Icons/Items/Crystals/crystal_1",
+      "SlotType": "LEFT_HAND",
+      "Tier": "TIER_3",
+      "Attributes": {
+        "DAMAGE": 8.0,
+        "HIT_PERCENT": 70.0,
+        "CRITICAL_CHANCE": 35.0
+      }
+    },
+    {
+      "Id": 22,
+      "Type": "WEAPON",
+      "Name": "Summoning Crystal",
+      "Description": "Use to summon a creature from the Hollows.",
+      "ToolTip": "Summoning Crystal",
+      "IconPath": "Prefabs/Icons/Items/Crystals/crystal_2",
+      "SlotType": "LEFT_HAND",
+      "Tier": "TIER_4",
+      "Attributes": {
+        "DAMAGE": 8.0,
+        "HIT_PERCENT": 70.0,
+        "CRITICAL_CHANCE": 35.0
+      }
+    },
+    {
+      "Id": 23,
+      "Type": "MONSTER_ATTACK",
+      "Name": "Muck",
+      "Description": "Stick muck.",
+      "ToolTip": "Muck",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Monster/muck_1",
+      "SlotType": "RIGHT_HAND",
+      "Tier": "TIER_1",
+	  "SoundPath": "Prefabs/Audio/Units/Items/Weapons/Monster/muck_1",
+      "Attributes": {
+        "DAMAGE": 2.0,
+        "HIT_PERCENT": 95.0,
+        "CRITICAL_CHANCE": 8.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 1.0
+      }
+    }
+  ]
+}

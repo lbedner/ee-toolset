@@ -2,6 +2,7 @@ import logging
 
 from app.core.config import settings
 
+from icecream import ic, install as install_ic
 import structlog
 
 """
@@ -39,6 +40,10 @@ DEV_FORMATTER = structlog.stdlib.ProcessorFormatter(
 )
 
 logger: structlog.stdlib.BoundLogger = structlog.get_logger()
+
+# Install icecream globally so you don't have to import it everywhere
+ic.configureOutput(includeContext=True)
+install_ic()
 
 
 def setup_logging() -> None:

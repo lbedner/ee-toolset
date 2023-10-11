@@ -39,7 +39,7 @@ class SideBarControl(ft.UserControl):
             min_width=100,
             min_extended_width=400,
             # leading=ft.FloatingActionButton(icon=ft.icons.CREATE, text="Managers"),
-            group_alignment=-0.9,
+            group_alignment=-1.0,
             destinations=self.create_destinations(destinations),
             on_change=lambda e: ic("Selected destination:", e.control.selected_index),
         )
