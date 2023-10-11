@@ -1,45 +1,86 @@
 import flet as ft
 from icecream import ic
 
+import app.core.styles as styles
+
 
 class SideBarControl(ft.UserControl):
     def __init__(self):
         super().__init__()
 
-    def create_destination(self, icon_outlined, icon, label):
-        ic(icon_outlined, icon, label)
-        return ft.NavigationRailDestination(
-            icon_content=ft.Icon(icon_outlined, tooltip=label),
-            selected_icon_content=ft.Icon(icon, tooltip=label),
+    def create_item_container(self, icon: str, label: str) -> ft.Container:
+        def on_hover(e):
+            e.control.bgcolor = (
+                "#2a2a2a"
+                if e.data.lower() == "true"
+                else styles.ColorPalette.BG_SECONDARY
+            )
+            e.control.update()
+
+        return ft.Container(
+            height=30,
+            width=350,
+            content=ft.Row(
+                controls=[
+                    ft.Icon(
+                        icon,
+                        size=24,
+                        color=styles.ColorPalette.TEXT_PRIMARY_DEFAULT,
+                    ),
+                    ft.Text(
+                        label,
+                        **styles.SidebarLabelStyle().to_dict(),
+                    ),
+                ],
+                spacing=15,
+            ),
+            on_hover=on_hover,
         )
 
-    def create_destinations(self, destinations):
-        return [self.create_destination(*d) for d in destinations]
+    def create_subcategory_container(self, label_heading: str) -> ft.Container:
+        return ft.Container(
+            ft.Text(
+                label_heading,
+                **styles.SidebarLabelHeadingStyle().to_dict(),
+            ),
+            height=50,
+        )
+
+    def create_controls_group(self, subcategory: str, items: list) -> list:
+        controls_group = [
+            self.create_subcategory_container(subcategory),
+        ]
+        for item in items:
+            controls_group.append(self.create_item_container(*item))
+        controls_group.append(ft.Divider(height=10, thickness=2, color="#444444"))
+        return controls_group
 
     def build(self):
-        destinations = (
-            (ft.icons.SAVE_OUTLINED, ft.icons.SAVE, "Save Game Editor"),
-            (ft.icons.HANDYMAN_OUTLINED, ft.icons.HANDYMAN, "Attributes"),
-            (ft.icons.KEY_OUTLINED, ft.icons.KEY, "Items"),
-            (
-                ft.icons.LOCAL_FIRE_DEPARTMENT_OUTLINED,
-                ft.icons.LOCAL_FIRE_DEPARTMENT,
-                "Abilities",
-            ),
-            (ft.icons.MAN_OUTLINED, ft.icons.MAN, "Units"),
-            (ft.icons.LIBRARY_MUSIC_OUTLINED, ft.icons.LIBRARY_MUSIC, "Audio"),
-            (ft.icons.MAP_OUTLINED, ft.icons.MAP, "Codex"),
-            (ft.icons.CHAT_BUBBLE_OUTLINE, ft.icons.CHAT_BUBBLE, "Illiana"),
-        )
-        # destinations = sorted(destinations, key=lambda d: d.label_content.text)
-        return ft.NavigationRail(
+        items_dict = {
+            "Game Management": [(ft.icons.SAVE_OUTLINED, "Save Game Editor")],
+            "Design": [
+                (ft.icons.HANDYMAN_OUTLINED, "Attributes"),
+                (ft.icons.KEY_OUTLINED, "Items"),
+                (ft.icons.LOCAL_FIRE_DEPARTMENT_OUTLINED, "Abilities"),
+            ],
+            "Media": [(ft.icons.LIBRARY_MUSIC_OUTLINED, "Audio")],
+            "Lore": [
+                (ft.icons.MAP_OUTLINED, "Codex"),
+                (ft.icons.CHAT_BUBBLE_OUTLINE, "Illiana"),
+            ],
+        }
+        controls = []
+        for subcategory, items in items_dict.items():
+            controls += self.create_controls_group(subcategory, items)
+        return ft.Container(
             height=1300,
-            selected_index=0,
-            label_type=ft.NavigationRailLabelType.ALL,
-            min_width=100,
-            min_extended_width=400,
-            # leading=ft.FloatingActionButton(icon=ft.icons.CREATE, text="Managers"),
-            group_alignment=-1.0,
-            destinations=self.create_destinations(destinations),
-            on_change=lambda e: ic("Selected destination:", e.control.selected_index),
+            width=300,
+            # bgcolor="#282828",
+            bgcolor=styles.ColorPalette.BG_SECONDARY,
+            content=ft.Column(
+                controls=controls,
+                spacing=15,
+            ),
+            # on_hover=lambda e: ic(e),
+            # bgcolor=styles.ColorPalette.BG_SECONDARY,
         )

@@ -31,6 +31,7 @@ class FontConfig:
     SIZE_PRIMARY: int = 16
     SIZE_SECONDARY: int = 14
     HEADER_SIZE: int = 24
+    HEADING_SIZE: int = 18
 
 
 @dataclass(frozen=True)
@@ -64,6 +65,39 @@ class ModalSubtitle:
     font_family: str = FontConfig.FAMILY_PRIMARY
     size: int = FontConfig.SIZE_SECONDARY
     weight: str = ft.FontWeight.W_400
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class SidebarLabelHeadingStyle:
+    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
+    font_family: str = FontConfig.FAMILY_PRIMARY
+    size: int = FontConfig.HEADING_SIZE
+    weight: str = ft.FontWeight.W_700
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class SidebarLabelStyle:
+    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
+    font_family: str = FontConfig.FAMILY_PRIMARY
+    size: int = FontConfig.SIZE_PRIMARY
+    weight: str = ft.FontWeight.W_400
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class ViewLabellStyle:
+    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
+    font_family: str = FontConfig.FAMILY_PRIMARY
+    size: int = FontConfig.HEADER_SIZE
+    weight: str = ft.FontWeight.W_700
 
     def to_dict(self):
         return asdict(self)
