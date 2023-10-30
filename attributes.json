@@ -1,0 +1,138 @@
+{
+    "EXPERIENCE": {
+        "Type": "EXPERIENCE",
+        "Name": "Experience",
+        "ShortName": "XP",
+        "ToolTip": "Points until you reach the next level",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "LEVEL": {
+        "Type": "LEVEL",
+        "Name": "Level",
+        "ShortName": "LVL",
+        "ToolTip": "Current level",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "HIT_POINTS": {
+        "Type": "HIT_POINTS",
+        "Name": "Hit Points",
+        "ShortName": "HP",
+        "ToolTip": "Current hit points",
+        "MinimumValue": 0.0,
+        "MaximumValue": 1000.0
+    },
+    "ABILITY_POINTS": {
+        "Type": "ABILITY_POINTS",
+        "Name": "Ability Points",
+        "ShortName": "AB",
+        "ToolTip": "Current ability points",
+        "MinimumValue": 0.0,
+        "MaximumValue": 1000.0
+    },
+    "MOVEMENT": {
+        "Type": "MOVEMENT",
+        "Name": "Movement",
+        "ShortName": "MOV",
+        "ToolTip": "Number of tiles unit can move to",
+        "MinimumValue": 0.0,
+        "MaximumValue": 1000.0
+    },
+    "SPEED": {
+        "Type": "SPEED",
+        "Name": "Speed",
+        "ShortName": "SPD",
+        "ToolTip": "Determines how often unit can perform an action",
+        "MinimumValue": 3.0,
+        "MaximumValue": 100.0
+    },
+    "DEXTERITY": {
+        "Type": "DEXTERITY",
+        "Name": "Dexterity",
+        "ShortName": "DEX",
+        "ToolTip": "Dexterity Description",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "MAGIC": {
+        "Type": "MAGIC",
+        "Name": "Magic",
+        "ShortName": "MAG",
+        "ToolTip": "Magic Description",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "STRENGTH": {
+        "Type": "STRENGTH",
+        "Name": "Strength",
+        "ShortName": "STR",
+        "ToolTip": "Strength Description.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "CRITICAL_CHANCE": {
+        "Type": "CRITICAL_CHANCE",
+        "Name": "Critical Chance",
+        "ShortName": "Crit %",
+        "ToolTip": "Chance of critical attack.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "DEFENSE": {
+        "Type": "DEFENSE",
+        "Name": "Defense",
+        "ShortName": "DEF",
+        "ToolTip": "Determines how much damage is inflicted upon the unit.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "DODGE_CHANCE": {
+        "Type": "DODGE_CHANCE",
+        "Name": "Dodge Chance",
+        "ShortName": "Dodge %",
+        "ToolTip": "Chance of dodging attack.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "DAMAGE": {
+        "Type": "DAMAGE",
+        "Name": "Damage",
+        "ShortName": "DMG",
+        "ToolTip": "Damage Description.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ARMOR": {
+        "Type": "ARMOR",
+        "Name": "Armor",
+        "ShortName": "ARM",
+        "ToolTip": "Armor Description.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "HIT_PERCENT": {
+        "Type": "HIT_PERCENT",
+        "Name": "Hit %",
+        "ShortName": "HIT",
+        "ToolTip": "Hit % Description.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "RANGE": {
+        "Type": "RANGE",
+        "Name": "Range",
+        "ShortName": "RNG",
+        "ToolTip": "Range of action.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "AREA_OF_EFFECT_RANGE": {
+        "Type": "AREA_OF_EFFECT_RANGE",
+        "Name": "Area Of Effect Range",
+        "ShortName": "AOE RNG",
+        "ToolTip": "Area of Effect Range of action.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    }
+}

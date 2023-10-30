@@ -1,0 +1,165 @@
+{
+  "Units": [
+    {
+      "ResRef": "aramus",
+      "FirstName": "Jonan",
+      "LastName": "",
+      "Class": "Knight of Dundalas",
+      "PortraitLocation": "Prefabs/Portraits/p-jonan",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Sprite": "Prefabs/Characters/Animations/Allies/aramus/Sprite",
+      "UnitType": "PLAYER",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 5.0,
+        "HIT_POINTS": 17.0,
+        "ABILITY_POINTS": 10.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 4.0,
+        "MAGIC": 3.0,
+        "STRENGTH": 10.0,
+        "DEFENSE": 8.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 0,
+        "LEFT_HAND": 7,
+        "BODY": 4,
+        "HANDS": 5,
+        "FEET": 6
+      },
+      "Abilities": [
+        0,
+        1,
+        3,
+        4,
+        8,
+      ]
+    },
+    {
+      "ResRef": "sinteres",
+      "FirstName": "Linard",
+      "LastName": "Janson",
+      "Class": "Justice Prevails Recruit",
+      "PortraitLocation": "Prefabs/Portraits/p-linard",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Sprite": "Prefabs/Characters/Animations/Allies/sinteres/Sprite",
+      "UnitType": "PLAYER",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 1.0,
+        "HIT_POINTS": 15.0,
+        "ABILITY_POINTS": 10.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 6.0,
+        "DEXTERITY": 14.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 6.0,
+        "DEFENSE": 6.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 1
+      },
+      "Abilities": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+      ]
+    },
+    {
+      "ResRef": "orelle",
+      "FirstName": "Orelle",
+      "LastName": "",
+      "Class": "Knight of Dundalas",
+      "PortraitLocation": "Prefabs/Portraits/p-orelle",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Sprite": "Prefabs/Characters/Animations/Allies/orelle/Sprite",
+      "UnitType": "PLAYER",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 4.0,
+        "HIT_POINTS": 20.0,
+        "ABILITY_POINTS": 6.0,
+        "MOVEMENT": 4.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 2.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 13.0,
+        "DEFENSE": 10.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 2
+      },
+      "Abilities": [
+        0,
+        1,
+        2,
+        8,
+      ]
+    },
+    {
+      "ResRef": "jarl",
+      "FirstName": "Jarl",
+      "LastName": "Thuvik",
+      "Class": "Stramadonian Seeker",
+      "PortraitLocation": "Prefabs/Portraits/p-jarl",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/Footsteps",
+      "Sprite": "Prefabs/Characters/Animations/Allies/jarl/Sprite",
+      "UnitType": "PLAYER",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 3.0,
+        "HIT_POINTS": 10.0,
+        "ABILITY_POINTS": 15.0,
+        "MOVEMENT": 4.0,
+        "SPEED": 5.0,
+        "DEXTERITY": 3.0,
+        "MAGIC": 15.0,
+        "STRENGTH": 4.0,
+        "DEFENSE": 4.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 3
+      },
+      "Abilities": [
+        0,
+        5,
+        6,
+        7,
+        8,
+      ]
+    },
+    {
+      "ResRef": "muck_petty",
+      "FirstName": "Petty Muck",
+      "LastName": "",
+      "Class": "Monster",
+      "PortraitLocation": "Prefabs/Portraits/p-muck_petty",
+      "MovementSoundLocation": "Prefabs/Audio/Units/Movement/SlimeMovement",
+      "Sprite": "Prefabs/Characters/Animations/Enemies/muck_petty/Sprite",
+      "UnitType": "ENEMY",
+      "Attributes": {
+        "EXPERIENCE": 0.0,
+        "LEVEL": 4.0,
+        "HIT_POINTS": 20.0,
+        "ABILITY_POINTS": 5.0,
+        "MOVEMENT": 5.0,
+        "SPEED": 4.0,
+        "DEXTERITY": 6.0,
+        "MAGIC": 1.0,
+        "STRENGTH": 8.0,
+        "DEFENSE": 8.0
+      },
+      "Inventory": {
+        "RIGHT_HAND": 23
+      },
+      "Abilities": [
+        0,
+        8,
+      ]
+    }
+  ]
+}

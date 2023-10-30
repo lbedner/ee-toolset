@@ -1,0 +1,142 @@
+{
+  "Abilities": [
+    {
+      "Id": 0,
+	  "Type": "ATTACK",
+      "Name": "Attack",
+      "Description": "Attack with whatever is in your hands.",
+      "ToolTip": "Attack",
+      "IconPath": "Prefabs/Icons/Items/Weapons/Swords/sword_1",
+	  "Cost": 0,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {}
+    },
+    {
+      "Id": 1,
+	  "Type": "TALENT",
+      "Name": "Measured Strike",
+      "Description": "Concentrate before attempting an attack on a target.",
+      "ToolTip": "Measured Strike",
+      "IconPath": "Prefabs/Icons/Abilities/Talents/measured_strike",
+	  "Cost": 5,
+	  "Turns": 2,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+        "DAMAGE": 15.0,
+        "HIT_PERCENT": 90.0,
+        "CRITICAL_CHANCE": 10.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 0.0
+	  }
+    },
+    {
+      "Id": 2,
+	  "Type": "TALENT",
+      "Name": "Elicit",
+      "Description": "Get the attention of nearby units and have them focus their attacks on you.",
+      "ToolTip": "Elicit",
+      "IconPath": "Prefabs/Icons/Abilities/Talents/elicit",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+        "HIT_PERCENT": 90.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 1.0
+	  }
+    },
+    {
+      "Id": 3,
+	  "Type": "TALENT",
+      "Name": "Whirlwind Slash",
+      "Description": "Spin with your weapon 360 degrees, hitting surrounding enemies.",
+      "ToolTip": "Whirlwind Slash",
+      "IconPath": "Prefabs/Icons/Abilities/Talents/whirlwind_slash",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "SELF",
+      "Attributes": {
+        "HIT_PERCENT": 90.0,
+		"RANGE": 1.0,
+		"AOE_RANGE": 1.0
+	  }
+    },
+    {
+      "Id": 4,
+	  "Type": "TALENT",
+      "Name": "Leaping Slice",
+      "Description": "Jump and strike an enemy.",
+      "ToolTip": "Leaping Slice",
+      "IconPath": "Prefabs/Icons/Abilities/Talents/leaping_slice",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+        "HIT_PERCENT": 90.0,
+		"RANGE": 3.0,
+		"AOE_RANGE": 0.0
+	  }
+    },
+    {
+      "Id": 5,
+	  "Type": "MAGIC",
+      "Name": "Flame",
+      "Description": "Set fire to a target, which will burn over some time.",
+      "ToolTip": "Flame",
+      "IconPath": "Prefabs/Icons/Abilities/Spells/flame",
+	  "VFXPath": "Prefabs/VFX/Spells/flame",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+		"RANGE": 3.0,
+		"AOE_RANGE": 0.0
+	  }
+	},
+    {
+      "Id": 6,
+	  "Type": "MAGIC",
+      "Name": "Freeze",
+      "Description": "Chill a enemy, slowing it down, and potentially stopping it.",
+      "ToolTip": "Freeze",
+      "IconPath": "Prefabs/Icons/Abilities/Spells/freeze",
+	  "VFXPath": "Prefabs/VFX/Spells/freeze",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+		"RANGE": 5.0,
+		"AOE_RANGE": 0.0
+	  }
+    },
+    {
+      "Id": 7,
+	  "Type": "MAGIC",
+      "Name": "Lightning",
+      "Description": "Electrocute an enemy. Any nearby enemies will receive residual damage.",
+      "ToolTip": "Lightning",
+      "IconPath": "Prefabs/Icons/Abilities/Spells/lightning",
+	  "VFXPath": "Prefabs/VFX/Spells/lightning",
+	  "Cost": 3,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {
+		"RANGE": 4.0,
+		"AOE_RANGE": 1.0
+	  }
+    },
+    {
+      "Id": 8,
+	  "Type": "DEFEND",
+      "Name": "Defend",
+      "Description": "Defend against any incoming attacks.",
+      "ToolTip": "Defend",
+      "IconPath": "Prefabs/Icons/RadialMenu/defend",
+	  "Cost": 0,
+	  "Turns": 0,
+	  "TargetType": "DEFAULT",
+      "Attributes": {}
+    }
+  ]
+}
