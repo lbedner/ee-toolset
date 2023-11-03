@@ -42,6 +42,11 @@ class AttributeTable(ft.UserControl):
 
         # Update the rows list and the DataTable
         self.rows.append(new_row)
+
+        if self.table.sort_column_index is not None:
+            self.sort_rows(
+                self.columns[self.table.sort_column_index], self.table.sort_ascending
+            )
         self.table.rows = self.rows
 
         # Update the Attributes model and dump to file
@@ -297,15 +302,29 @@ class AttributeTable(ft.UserControl):
         return None  # Return None if the row was not found
 
     def build(self):
-        return ft.Column(
-            controls=[
-                ActionBar(self.page, self.attributes, self),
-                ft.Container(
-                    # border_radius=ft.border_radius.all(365),
-                    padding=100,
-                    content=self.table,
-                ),
-            ],
+        return ft.Container(
+            ft.Column(
+                controls=[
+                    ft.Text(
+                        "Attributes",
+                        **styles.ViewLabellStyle().to_dict(),
+                    ),
+                    ActionBar(self.page, self.attributes, self),
+                    ft.Container(
+                        # padding=100,
+                        content=self.table,
+                        # bgcolor="#282828",
+                        border_radius=15,
+                    ),
+                ],
+                # scroll="always",
+                # on_scroll=lambda _: ic("on_scroll"),
+                # alignment=ft.MainAxisAlignment.START,
+                # horizontal_alignment=ft.CrossAxisAlignment.,
+            ),
+            expand=True,
+            width=2000,
+            alignment=ft.alignment.center_right,
         )
 
     def show_attribute_alert_dialog(
@@ -406,6 +425,7 @@ class ActionBar(ft.UserControl):
             bgcolor=styles.ColorPalette.BG_SECONDARY,
             text_size=styles.FontConfig.SIZE_SECONDARY,
             border=ft.Border(2, "#444444"),
+            border_radius=15,
             on_change=self.on_search_change,
         )
         add_buton = ft.ElevatedButton(
