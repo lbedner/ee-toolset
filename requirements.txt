@@ -14,11 +14,8 @@ certifi==2023.7.22
     # via
     #   httpcore
     #   httpx
-click==8.1.3
-    # via flet-route
 colorama==0.4.6
     # via
-    #   -r requirements.in
     #   copier
     #   icecream
 copier==8.3.0
@@ -30,13 +27,9 @@ dunamai==1.18.1
 executing==1.2.0
     # via icecream
 flet==0.11.0
-    # via
-    #   -r requirements.in
-    #   flet-route
+    # via -r requirements.in
 flet-core==0.11.0
     # via flet-runtime
-flet-route==0.3.2
-    # via -r requirements.in
 flet-runtime==0.11.0
     # via flet
 funcy==2.0
@@ -102,9 +95,7 @@ qrcode==7.4.2
 questionary==2.0.1
     # via copier
 repath==0.9.0
-    # via
-    #   flet-core
-    #   flet-route
+    # via flet-core
 six==1.16.0
     # via
     #   asttokens
