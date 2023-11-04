@@ -1,4 +1,17 @@
+aiohttp>=3.8.6
+bs4
+chromadb
 flet==0.11.0
+GitPython
 icecream
+langchain
+langchainhub
+openai
+pdfplumber
+psycopg2-binary
 pydantic-settings
+pypandoc-included
+python-docx
 structlog
+tiktoken
+unstructured

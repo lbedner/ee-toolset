@@ -8,7 +8,9 @@ PAGE_WINDOW_HEIGHT: int = 1200
 
 # Views
 ATTRIBUTES_VIEW: str = "attributes"
+ILLIANA_VIEW: str = "illiana"
 
 # Routes
 INDEX_ROUTE: str = "/"
 ATTRIBUTES_ROUTE: str = f"{INDEX_ROUTE}{ATTRIBUTES_VIEW}"
+ILLIANA_ROUTE: str = f"{INDEX_ROUTE}{ILLIANA_VIEW}"

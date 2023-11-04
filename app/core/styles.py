@@ -11,6 +11,7 @@ class ColorPalette:
     TEXT_SECONDARY_DEFAULT: str = "#B0B0B0"
     ACCENT: str = "#4A90E2"
     ACCENT_SUCCESS: str = "#52D869"
+    ACCENT_STOP: str = "#E94E77"
 
 
 @dataclass(frozen=True)
@@ -30,6 +31,7 @@ class FontConfig:
     FAMILY_PRIMARY: str = "Roboto"
     SIZE_PRIMARY: int = 16
     SIZE_SECONDARY: int = 14
+    SIZE_TERTIARY: int = 12
     HEADER_SIZE: int = 24
     HEADING_SIZE: int = 18
 
@@ -48,59 +50,76 @@ DeleteButtonTextStyle = ButtonTextStyle()
 CancelButtonTextStyle = ButtonTextStyle()
 
 
+from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
-class ModalTitle:
-    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
-    font_family: str = FontConfig.FAMILY_PRIMARY
-    size: int = FontConfig.SIZE_PRIMARY
-    weight: str = ft.FontWeight.W_700
+class TextStyle:
+    color: str
+    font_family: str
+    size: int
+    weight: str
 
     def to_dict(self):
         return asdict(self)
 
 
 @dataclass(frozen=True)
-class ModalSubtitle:
+class PrimaryTextStyle(TextStyle):
+    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
+    font_family: str = FontConfig.FAMILY_PRIMARY
+    size: int = FontConfig.SIZE_PRIMARY
+    weight: str = ft.FontWeight.W_400
+
+
+@dataclass(frozen=True)
+class SecondaryTextStyle(TextStyle):
     color: str = ColorPalette.TEXT_SECONDARY_DEFAULT
     font_family: str = FontConfig.FAMILY_PRIMARY
     size: int = FontConfig.SIZE_SECONDARY
     weight: str = ft.FontWeight.W_400
 
-    def to_dict(self):
-        return asdict(self)
+
+@dataclass(frozen=True)
+class ModalTitle(PrimaryTextStyle):
+    weight: str = ft.FontWeight.W_700
 
 
 @dataclass(frozen=True)
-class SidebarLabelHeadingStyle:
-    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
-    font_family: str = FontConfig.FAMILY_PRIMARY
+class ModalSubtitle(SecondaryTextStyle):
+    weight: str = ft.FontWeight.W_400
+
+
+@dataclass(frozen=True)
+class SidebarLabelHeadingStyle(SecondaryTextStyle):
     size: int = FontConfig.HEADING_SIZE
     weight: str = ft.FontWeight.W_700
 
-    def to_dict(self):
-        return asdict(self)
-
 
 @dataclass(frozen=True)
-class SidebarLabelStyle:
-    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
-    font_family: str = FontConfig.FAMILY_PRIMARY
-    size: int = FontConfig.SIZE_PRIMARY
+class SidebarLabelStyle(SecondaryTextStyle):
     weight: str = ft.FontWeight.W_400
 
-    def to_dict(self):
-        return asdict(self)
-
 
 @dataclass(frozen=True)
-class ViewLabellStyle:
-    color: str = ColorPalette.TEXT_PRIMARY_DEFAULT
-    font_family: str = FontConfig.FAMILY_PRIMARY
+class ViewLabellStyle(SecondaryTextStyle):
     size: int = FontConfig.HEADER_SIZE
     weight: str = ft.FontWeight.W_700
 
-    def to_dict(self):
-        return asdict(self)
+
+@dataclass(frozen=True)
+class SliderLabelStyle(SecondaryTextStyle):
+    weight: str = ft.FontWeight.W_700
+
+
+@dataclass(frozen=True)
+class SliderValueStyle(SecondaryTextStyle):
+    pass
+
+
+@dataclass(frozen=True)
+class FilePickerFileStyle(SecondaryTextStyle):
+    size: int = FontConfig.SIZE_TERTIARY
 
 
 def create_button_style(

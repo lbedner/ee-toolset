@@ -181,7 +181,7 @@ class AttributeTable(ft.UserControl):
                         on_click=lambda _: self.show_delete_attribute_alert_dialog(
                             attribute_key,
                         ),
-                        icon_color="#E94E77",
+                        icon_color=styles.ColorPalette.ACCENT_STOP,
                         tooltip="Delete Attribute",
                     ),
                 ],
