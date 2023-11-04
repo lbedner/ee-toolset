@@ -1,15 +1,15 @@
 import flet as ft
-from flet_route import Params, Basket
 
-from ..controls.attributes.attribute_table import AttributeTable
+from app.controls.attributes.attribute_table import AttributeTable
+from app.core.constants import ATTRIBUTES_ROUTE
+
+from .view import BaseView
 
 
-def AttributesView(page: ft.Page, params: Params, basket: Basket):
-    return ft.View(
-        "/attributes",
-        controls=[
-            ft.ElevatedButton("Save Game Editor", on_click=lambda _: page.go("/")),
-            ft.Text("attributes"),
-            AttributeTable(page=page),
-        ],
-    )
+class AttributesView(BaseView):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            page=page,
+            route=ATTRIBUTES_ROUTE,
+            main_control=AttributeTable(page=page),
+        )

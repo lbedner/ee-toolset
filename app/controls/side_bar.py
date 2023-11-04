@@ -1,14 +1,21 @@
 import flet as ft
 from icecream import ic
 
+from app.core.constants import INDEX_ROUTE, ATTRIBUTES_ROUTE
 import app.core.styles as styles
 
 
 class SideBarControl(ft.UserControl):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
         super().__init__()
+        self.page = page
 
-    def create_item_container(self, icon: str, label: str) -> ft.Container:
+    def create_item_container(
+        self,
+        icon: str,
+        label: str,
+        destination_route: str = None,
+    ) -> ft.Container:
         def on_hover(e):
             e.control.bgcolor = (
                 "#2a2a2a"
@@ -35,6 +42,9 @@ class SideBarControl(ft.UserControl):
                 spacing=15,
             ),
             on_hover=on_hover,
+            on_click=lambda _: self.page.go(destination_route)
+            if destination_route
+            else None,
         )
 
     def create_subcategory_container(self, label_heading: str) -> ft.Container:
@@ -57,9 +67,11 @@ class SideBarControl(ft.UserControl):
 
     def build(self):
         items_dict = {
-            "Game Management": [(ft.icons.SAVE_OUTLINED, "Save Game Editor")],
+            "Game Management": [
+                (ft.icons.SAVE_OUTLINED, "Save Game Editor", INDEX_ROUTE)
+            ],
             "Design": [
-                (ft.icons.HANDYMAN_OUTLINED, "Attributes"),
+                (ft.icons.HANDYMAN_OUTLINED, "Attributes", ATTRIBUTES_ROUTE),
                 (ft.icons.KEY_OUTLINED, "Items"),
                 (ft.icons.LOCAL_FIRE_DEPARTMENT_OUTLINED, "Abilities"),
             ],
@@ -73,14 +85,24 @@ class SideBarControl(ft.UserControl):
         for subcategory, items in items_dict.items():
             controls += self.create_controls_group(subcategory, items)
         return ft.Container(
-            height=1300,
-            width=300,
-            # bgcolor="#282828",
-            bgcolor=styles.ColorPalette.BG_SECONDARY,
-            content=ft.Column(
-                controls=controls,
-                spacing=15,
+            # padding=ft.Padding(left=10, top=10, right=10, bottom=10),
+            padding=15,
+            # content=SideBarControl(page=page),
+            content=ft.Container(
+                height=1300,
+                width=300,
+                # bgcolor="#282828",
+                bgcolor=styles.ColorPalette.BG_SECONDARY,
+                content=ft.Column(
+                    controls=controls,
+                    spacing=15,
+                ),
             ),
             # on_hover=lambda e: ic(e),
             # bgcolor=styles.ColorPalette.BG_SECONDARY,
+            bgcolor=styles.ColorPalette.BG_SECONDARY,
+            width=250,
+            # height=800,
+            border_radius=ft.border_radius.all(15),
+            expand=False,
         )
