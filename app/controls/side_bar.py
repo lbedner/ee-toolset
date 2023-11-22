@@ -1,7 +1,7 @@
 import flet as ft
 from icecream import ic
 
-from app.core.constants import INDEX_ROUTE, ATTRIBUTES_ROUTE
+from app.core.constants import INDEX_ROUTE, ATTRIBUTES_ROUTE, ILLIANA_ROUTE
 import app.core.styles as styles
 
 
@@ -16,13 +16,13 @@ class SideBarControl(ft.UserControl):
         label: str,
         destination_route: str = None,
     ) -> ft.Container:
-        def on_hover(e):
-            e.control.bgcolor = (
+        def on_hover(on_hover_event: ft.ControlEvent):
+            on_hover_event.control.bgcolor = (
                 "#2a2a2a"
-                if e.data.lower() == "true"
+                if on_hover_event.data.lower() == "true"
                 else styles.ColorPalette.BG_SECONDARY
             )
-            e.control.update()
+            on_hover_event.control.update()
 
         return ft.Container(
             height=30,
@@ -78,7 +78,7 @@ class SideBarControl(ft.UserControl):
             "Media": [(ft.icons.LIBRARY_MUSIC_OUTLINED, "Audio")],
             "Lore": [
                 (ft.icons.MAP_OUTLINED, "Codex"),
-                (ft.icons.CHAT_BUBBLE_OUTLINE, "Illiana"),
+                (ft.icons.CHAT_BUBBLE_OUTLINE, "Illiana", ILLIANA_ROUTE),
             ],
         }
         controls = []
@@ -89,7 +89,7 @@ class SideBarControl(ft.UserControl):
             padding=15,
             # content=SideBarControl(page=page),
             content=ft.Container(
-                height=1300,
+                height=700,
                 width=300,
                 # bgcolor="#282828",
                 bgcolor=styles.ColorPalette.BG_SECONDARY,
