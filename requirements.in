@@ -10,7 +10,6 @@ openai
 pdfplumber
 psycopg2-binary
 pydantic-settings
-pypandoc-included
 python-docx
 structlog
 tiktoken
