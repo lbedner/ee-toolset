@@ -11,6 +11,8 @@ class Settings(BaseSettings):
 
     OPENAI_API_KEY: str = "OPEN_AI_API_KEY"
 
+    KNOWLEDGE_BASE_FILEPATH: str = "data/knowledge_base/knowledge_base.json"
+
     LLMS: dict[str, dict[str, str | int]] = {
         "gpt-4-1106-preview": {
             "title": "GPT-4 Turbo",
