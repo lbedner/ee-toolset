@@ -1,9 +1,8 @@
 from dataclasses import asdict
 from typing import Callable
 
-import flet as ft
-
 import app.core.styles as styles
+import flet as ft
 
 
 class BaseElevatedButton(ft.UserControl):

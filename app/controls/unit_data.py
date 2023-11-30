@@ -1,6 +1,6 @@
-import flet as ft
 from icecream import ic
 
+import flet as ft
 from app.models.game_data import Unit
 
 

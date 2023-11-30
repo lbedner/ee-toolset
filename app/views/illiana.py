@@ -1,10 +1,9 @@
 import flet as ft
-
-from app.core.constants import ILLIANA_ROUTE
-import app.core.styles as styles
-from app.controls.illiana.chat import ChatView, UserInputField, UserInputBar
+from app.controls.illiana.chat import ChatView, UserInputBar, UserInputField
 from app.controls.illiana.chat_config import ChatConfig
 from app.controls.illiana.conversation_starters import ConversationStarters
+from app.core.constants import ILLIANA_ROUTE
+
 from .view import BaseView
 
 
@@ -23,16 +22,22 @@ class IllianaView(BaseView):
                     ft.Column(
                         controls=[
                             ft.Text(
-                                "Illiana", size=28, weight="w800", font_family="Roboto"
+                                "Illiana",
+                                size=28,
+                                weight="w800",
+                                font_family="Roboto",
                             ),
                             ft.Text(
-                                "Illiana is a chatbot that uses the OpenAI API to generate responses to your messages. "
+                                "Illiana is a chatbot that uses the OpenAI API to generate responses to your messages. "  # noqa
                                 "This is a work in progress.",
                                 opacity=0.6,
                             ),
                             self.chat_view,
                             divider,
-                            ConversationStarters(self.chat_view, user_input_field),
+                            ConversationStarters(
+                                self.chat_view,
+                                user_input_field,
+                            ),
                             divider,
                             UserInputBar(user_input_field),
                             ft.Container(

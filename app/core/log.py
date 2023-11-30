@@ -1,9 +1,10 @@
 import logging
 
-from app.core.config import settings
-
-from icecream import ic, install as install_ic
 import structlog
+from icecream import ic
+from icecream import install as install_ic
+
+from app.core.config import settings
 
 """
 This is the de-facto get_logger function to use throughout the application.

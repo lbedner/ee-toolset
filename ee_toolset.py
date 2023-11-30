@@ -1,9 +1,10 @@
-import flet as ft
+from typing import Optional
 
-from app.controls import AppBar
 import app.core.constants as constants
-from app.core.log import logger
 import app.core.styles as styles
+import flet as ft
+from app.controls import AppBar
+from app.core.log import logger
 from app.core.routing import ROUTE_TO_VIEW
 from app.views import BaseView
 
@@ -26,7 +27,7 @@ def main(page: ft.Page):
     def route_change(route_change_event: ft.RouteChangeEvent):
         logger.debug(f"route_change: {route_change_event}")
         route = route_change_event.route
-        cached_view: BaseView = None
+        cached_view: Optional[BaseView] = None
         if route not in cached_views:
             logger.debug(f"route_change: {route} not cached. Caching now...")
             view_class = ROUTE_TO_VIEW.get(route)

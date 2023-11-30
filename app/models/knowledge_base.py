@@ -1,6 +1,6 @@
 import json
 
-from pydantic import BaseModel, RootModel, StrictStr, StrictInt, StrictBool
+from pydantic import BaseModel, RootModel, StrictBool, StrictInt, StrictStr
 
 from app.core.config import settings
 
@@ -16,16 +16,12 @@ class KnowledgeBase(RootModel):
     root: dict[str, KnowledgeBaseDocument]
 
     @classmethod
-    def load(cls, file_path: str = None) -> "KnowledgeBase":
-        if not file_path:
-            file_path = settings.KNOWLEDGE_BASE_FILEPATH
+    def load(cls, file_path: str = settings.KNOWLEDGE_BASE_FILEPATH) -> "KnowledgeBase":
         with open(file_path, "r") as f:
             data = json.load(f)
             return cls.model_validate(data)
 
-    def dump(self, file_path: str = None) -> str:
-        if not file_path:
-            file_path = settings.KNOWLEDGE_BASE_FILEPATH
+    def dump(self, file_path: str = settings.KNOWLEDGE_BASE_FILEPATH) -> str:
         with open(file_path, "w") as f:
             json.dump(self.model_dump(), f, indent=4)
         return json.dumps(self.model_dump(), indent=4)

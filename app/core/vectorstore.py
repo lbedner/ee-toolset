@@ -6,7 +6,7 @@ from langchain.vectorstores.base import VectorStoreRetriever
 from langchain.vectorstores.chroma import Chroma
 
 from app.core.config import settings
-from app.core.log import logger, ic
+from app.core.log import logger
 
 
 def get_vectorstore_retriever(

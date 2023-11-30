@@ -1,7 +1,7 @@
 import os
 import tempfile
+
 from langchain.document_loaders import (
-    GitLoader,
     PDFPlumberLoader,
     TextLoader,
     UnstructuredHTMLLoader,
@@ -9,7 +9,8 @@ from langchain.document_loaders import (
     UnstructuredWordDocumentLoader,
 )
 from langchain.document_loaders.base import BaseLoader
-from app.core.log import logger, ic
+
+from app.core.log import logger
 
 
 def load_file_from_bytes(file_bytes, loader_class: BaseLoader, file_suffix: str):

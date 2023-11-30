@@ -14,7 +14,7 @@ from langchain.schema.messages import SystemMessage
 
 from app.core.config import settings
 from app.core.loader import load_files
-from app.core.log import logger, ic
+from app.core.log import ic, logger
 from app.core.splitter import get_text_splits
 from app.core.vectorstore import get_vectorstore_retriever
 
@@ -41,7 +41,7 @@ def chat_with_llm(
     files_dict: dict[str, bytes] = {},
 ) -> str:
     logger.debug(
-        f"llm.chat",
+        "llm.chat",
         user_input=user_input,
         model=model,
         temperature=temperature,
@@ -107,7 +107,7 @@ def get_response(
 ) -> str:
     ic(chain, model, user_input)
     with get_openai_callback() as cb:
-        logger.debug(f"ai.send_request", model=model)
+        logger.debug("ai.send_request", model=model)
         response = chain(qa)[response_key]
-        logger.debug(f"ai.get_reponse", usage=cb, model=model, response=response)
+        logger.debug("ai.get_reponse", usage=cb, model=model, response=response)
     return response

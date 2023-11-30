@@ -1,9 +1,6 @@
-import flet as ft
-
-from app.controls.illiana.chat import ChatView, UserInputField
-from app.core.config import settings
-from app.core.log import ic
 import app.core.styles as styles
+import flet as ft
+from app.controls.illiana.chat import ChatView, UserInputField
 
 
 class ConversationStarters(ft.UserControl):
@@ -40,23 +37,17 @@ class ConversationStarters(ft.UserControl):
         first_row_starters = [
             "How can you help me?",
             'What is "Rose of Eternity"?',
+            "Summarize the document(s)",
+            "Python code snippets",
             # 'Tell me about "The Coming".',
         ]
 
-        second_row_starters = ["Summarize the document(s)", "Python code snippets"]
-
         # Create chips for each conversation starter
-        first_row_chips = [
-            self._create_chip(text) for text in first_row_starters + second_row_starters
-        ]
-        second_row_chips = [self._create_chip(text) for text in second_row_starters]
+        first_row_chips = [self._create_chip(text) for text in first_row_starters]
 
         # Create two rows for conversation starters
         first_row = ft.Row(
             controls=first_row_chips, alignment=ft.MainAxisAlignment.CENTER
-        )
-        second_row = ft.Row(
-            controls=second_row_chips, alignment=ft.MainAxisAlignment.CENTER
         )
 
         return ft.Container(

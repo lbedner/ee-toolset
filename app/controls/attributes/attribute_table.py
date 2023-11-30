@@ -1,5 +1,10 @@
-import flet as ft
+from typing import Optional
+
 from icecream import ic
+
+import app.core.styles as styles
+import app.models as models
+import flet as ft
 
 from .buttons import (
     BaseElevatedButton,
@@ -9,9 +14,6 @@ from .buttons import (
     ElevatedUpdateButton,
 )
 from .snack_bar import SuccessSnackBar
-import app.core.styles as styles
-from app.core.log import logger
-import app.models as models
 
 ic.configureOutput(includeContext=True)
 
@@ -21,14 +23,18 @@ class AttributeTable(ft.UserControl):
         super().__init__(**kwargs)
         self.page = page
         self.attributes = models.Attributes.load()
-        self.columns = self._get_columns(exclude=("MinimumValue", "MaximumValue"))
-        self.selected_rows = set()
+        self.columns = self._get_columns(
+            exclude=(
+                "MinimumValue",
+                "MaximumValue",
+            )
+        )
+        self.selected_rows: set[str] = set()
         self.rows = self._create_rows()
         self.table = self._create_table()
-        self.action_bar: ActionBar = None
+        self.action_bar: Optional[ActionBar] = None
 
     def add_row(self, attribute_key: str, attribute: models.Attribute):
-        # Create a new DataRow based on the provided attribute_key and attribute_value
         cells = [
             self._create_cell(column, attribute_key, attribute.model_dump())
             for column in self.columns
@@ -45,7 +51,8 @@ class AttributeTable(ft.UserControl):
 
         if self.table.sort_column_index is not None:
             self.sort_rows(
-                self.columns[self.table.sort_column_index], self.table.sort_ascending
+                self.columns[self.table.sort_column_index],
+                self.table.sort_ascending,
             )
         self.table.rows = self.rows
 
@@ -104,10 +111,7 @@ class AttributeTable(ft.UserControl):
         filtered_rows = [
             row
             for row in self.rows
-            if search_query
-            in row.cells[
-                0
-            ].content.value.lower()  # Assuming the search is based on the first cell's content
+            if search_query in row.cells[0].content.value.lower()
         ]
 
         # Update the DataTable's rows
@@ -134,7 +138,7 @@ class AttributeTable(ft.UserControl):
             reverse=not ascending,  # reverse is False for ascending, True for descending
         )
 
-    def _get_columns(self, exclude: tuple[str] = ()) -> list[str]:
+    def _get_columns(self, exclude: tuple[str, ...] = ()) -> list[str]:
         return [
             col for col in models.Attribute.model_fields.keys() if col not in exclude
         ] + ["Action"]
@@ -149,7 +153,7 @@ class AttributeTable(ft.UserControl):
             rows.append(
                 ft.DataRow(
                     cells=cells,
-                    on_select_changed=lambda e, key=attribute_key: self.on_row_select_changed(
+                    on_select_changed=lambda e, key=attribute_key: self.on_row_select_changed(  # noqa
                         e, key
                     ),
                 )
@@ -194,9 +198,6 @@ class AttributeTable(ft.UserControl):
                 color=styles.ColorPalette.TEXT_PRIMARY_DEFAULT,
             )
         return ft.DataCell(cell_content)
-
-    def on_select_all(self, e: ft.ControlEvent):
-        self.update()
 
     def _create_table(self):
         def on_sort_callback(e: ft.ControlEvent):
@@ -295,7 +296,7 @@ class AttributeTable(ft.UserControl):
         alert_dialog.open = True
         self.page.update()
 
-    def find_row_index(self, attribute_key: str) -> int:
+    def find_row_index(self, attribute_key: str) -> Optional[int]:
         for index, row in enumerate(self.table.rows):
             if row.cells[0].content.value == attribute_key:
                 return index
@@ -392,7 +393,9 @@ class AttributeTable(ft.UserControl):
             ),
             actions=[
                 ElevatedCancelButton(on_click_callable=on_click_close_dialog),
-                ElevatedDeleteButton(on_click_callable=on_click_delete_attribute),
+                ElevatedDeleteButton(
+                    on_click_callable=on_click_delete_attribute,
+                ),
             ],
         )
 
@@ -405,7 +408,10 @@ class AttributeTable(ft.UserControl):
 
 class ActionBar(ft.UserControl):
     def __init__(
-        self, page: ft.Page, attributes: models.Attributes, table: AttributeTable
+        self,
+        page: ft.Page,
+        attributes: models.Attributes,
+        table: AttributeTable,
     ):
         super().__init__()
         self.page = page
@@ -469,7 +475,9 @@ class BaseAttributeForm(ft.UserControl):
         self.attributes = attributes
         self.table = table
         self.attribute_key = attribute_key
-        self.attribute = attributes.root[attribute_key] if attribute_key else None
+        self.attribute = (
+            attributes.root[attribute_key] if attribute_key else None
+        )  # noqa
 
     def build(self):
         self.create_common_fields()
