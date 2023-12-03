@@ -1,3 +1,5 @@
+[![Tox](https://github.com/lbedner/ee-toolset/actions/workflows/tox.yml/badge.svg)](https://github.com/lbedner/ee-toolset/actions/workflows/tox.yml)
+
 # Eternity Engine Toolset (ee_toolset)
 
 <p float="left">

@@ -1,10 +1,9 @@
-import flet as ft
 import threading
 
-from app.core.config import settings
-from app.core.log import logger, ic
-import flet as ft
 import app.core.styles as styles
+import flet as ft
+from app.core.config import settings
+from app.core.log import ic
 
 
 class ChatConfig(ft.UserControl):
@@ -113,7 +112,7 @@ class ChatConfig(ft.UserControl):
 
     def get_llm_description(self):
         return ft.Text(
-            "The Language Model (LLM) is the model that Illiana uses to generate responses. "
+            "The Language Model (LLM) is the model that Illiana uses to generate responses. "  # noqa
             "You can select the LLM that Illiana uses to generate responses here.",
             color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
             font_family=styles.FontConfig.FAMILY_PRIMARY,
@@ -153,7 +152,7 @@ class ChatConfig(ft.UserControl):
             file_info = self.truncate_file_name(file_name)
             file_text_widget = ft.Text(
                 file_info,
-                tooltip=f"{file_name} (Size: {self.bytes_to_human_readable(len(file_bytes))} bytes)",
+                tooltip=f"{file_name} (Size: {self.bytes_to_human_readable(len(file_bytes))} bytes)",  # noqa
                 **styles.FilePickerFileStyle().to_dict(),
             )
 
@@ -198,7 +197,7 @@ class ChatConfig(ft.UserControl):
                             ft.Text(
                                 "Knowledge",
                                 **styles.SliderLabelStyle().to_dict(),
-                                tooltip="Upload files that contain knowledge that Illiana can use to generate responses.",
+                                tooltip="Upload files that contain knowledge that Illiana can use to generate responses.",  # noqa
                             ),
                             ft.IconButton(
                                 icon=ft.icons.ADD_CIRCLE_OUTLINE_OUTLINED,
@@ -268,7 +267,7 @@ class TemperatureSlider(Slider):
             label="Temperature",
             min_value=0.0,
             max_value=1.0,
-            tooltip="""Controls randomness: Lowering results in less random\ncompletions. As the temperature approaches zero, the\nmodel will become deterministic and repetitive. Higher\ntemperature nresults in more random completions.""",
+            tooltip="""Controls randomness: Lowering results in less random\ncompletions. As the temperature approaches zero, the\nmodel will become deterministic and repetitive. Higher\ntemperature nresults in more random completions.""",  # noqa
         )
 
     def slider_changed(self, event: ft.ControlEvent):
@@ -282,7 +281,7 @@ class MaximumLengthSlider(Slider):
             label="Maximum length",
             min_value=1,
             max_value=4096,
-            tooltip="""Controls the maximum number of tokens that the\ncompletion may contain. Tokens are roughly equal to\nwords.""",
+            tooltip="""Controls the maximum number of tokens that the\ncompletion may contain. Tokens are roughly equal to\nwords.""",  # noqa
         )
 
     def slider_changed(self, event: ft.ControlEvent):

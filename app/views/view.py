@@ -1,7 +1,5 @@
 import flet as ft
-
 from app.controls import SideBarControl
-
 from app.core.log import ic
 
 

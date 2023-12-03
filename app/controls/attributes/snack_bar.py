@@ -1,6 +1,5 @@
-import flet as ft
-
 import app.core.styles as styles
+import flet as ft
 
 
 class SuccessSnackBar(ft.UserControl):

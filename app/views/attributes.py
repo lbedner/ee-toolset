@@ -1,5 +1,4 @@
 import flet as ft
-
 from app.controls.attributes.attribute_table import AttributeTable
 from app.core.constants import ATTRIBUTES_ROUTE
 

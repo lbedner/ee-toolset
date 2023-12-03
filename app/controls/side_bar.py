@@ -1,8 +1,6 @@
-import flet as ft
-from icecream import ic
-
-from app.core.constants import INDEX_ROUTE, ATTRIBUTES_ROUTE, ILLIANA_ROUTE
 import app.core.styles as styles
+import flet as ft
+from app.core.constants import ATTRIBUTES_ROUTE, ILLIANA_ROUTE, INDEX_ROUTE
 
 
 class SideBarControl(ft.UserControl):

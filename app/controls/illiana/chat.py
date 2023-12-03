@@ -1,12 +1,11 @@
 import time
 
-import flet as ft
-
 import app.core.ai as ai
+import app.core.styles as styles
+import flet as ft
 from app.controls.illiana.chat_config import ChatConfig
 from app.core.config import settings
-from app.core.log import logger, ic
-import app.core.styles as styles
+from app.core.log import ic
 
 
 # Define chat window style
@@ -71,10 +70,8 @@ class ChatMessage(ft.Column):
         words = name.split()
 
         if len(words) >= 2:
-            # If there are two or more words, use the first letter of the first two words
             return words[0][0].upper() + words[1][0].upper()
         elif words:
-            # If there's only one word, use the first two letters of that word
             return words[0][:2].upper()
         else:
             return ""
@@ -114,7 +111,10 @@ class MessageHandler:
         self.chat_view = chat_view
 
     def handle_user_message(self, message: str):
-        chat_message = ChatMessage(username=settings.CHAT_USERNAME, message=message)
+        chat_message = ChatMessage(
+            username=settings.CHAT_USERNAME,
+            message=message,
+        )
         self.chat_view.add_chat_line(chat_message)
 
     def handle_bot_response(self, user_input: str):
@@ -122,7 +122,10 @@ class MessageHandler:
         progress_ring = ft.Row(
             controls=[
                 ft.ProgressRing(width=16, height=16),
-                ft.Text(value="Thinking...", **styles.ModalSubtitle().to_dict()),
+                ft.Text(
+                    value="Thinking...",
+                    **styles.ModalSubtitle().to_dict(),
+                ),
             ],
             spacing=4,
         )
@@ -142,7 +145,10 @@ class MessageHandler:
         self.chat_view.chat.update()
 
         # Display animated AI response
-        chat_message = ChatMessage(username=settings.CHAT_BOTNAME, message=response)
+        chat_message = ChatMessage(
+            username=settings.CHAT_BOTNAME,
+            message=response,
+        )
         self.chat_view.type_chat_line(chat_message)
 
 
@@ -202,7 +208,9 @@ class SubmitButton(ft.IconButton):
             icon_size=36,
             icon_color=styles.ColorPalette.ACCENT,
             tooltip="Send prompt",
-            on_click=lambda _: user_input_field.handle_input(user_input_field.value),
+            on_click=lambda _: user_input_field.handle_input(
+                user_input_field.value
+            ),  # noqa
         )
 
 
@@ -213,7 +221,9 @@ class StopButton(ft.IconButton):
             icon_size=36,
             icon_color=styles.ColorPalette.ACCENT_STOP,
             tooltip="Stop",
-            on_click=lambda _: user_input_field.handle_input(user_input_field.value),
+            on_click=lambda _: user_input_field.handle_input(
+                user_input_field.value
+            ),  # noqa
         )
 
 

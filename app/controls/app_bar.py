@@ -1,7 +1,6 @@
-import flet as ft
-
 import app.core.constants as constants
 import app.core.styles as styles
+import flet as ft
 
 
 class AppBar(ft.UserControl):
@@ -26,7 +25,10 @@ class AppBar(ft.UserControl):
             center_title=False,
             bgcolor=styles.ColorPalette.BG_PRIMARY,
             actions=[
-                ft.IconButton(ft.icons.WB_SUNNY_OUTLINED, tooltip="Light/Dark Mode"),
+                ft.IconButton(
+                    ft.icons.WB_SUNNY_OUTLINED,
+                    tooltip="Light/Dark Mode",
+                ),
                 ft.IconButton(ft.icons.PERSON_OUTLINED, tooltip="Profile"),
                 ft.PopupMenuButton(
                     icon=ft.icons.SETTINGS_OUTLINED,

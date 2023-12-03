@@ -1,8 +1,8 @@
 import json
+from typing import Dict, List
 
 from icecream import ic
 from pydantic import BaseModel
-from typing import List, Dict
 
 
 class Attributes(BaseModel):
@@ -41,15 +41,14 @@ class GameData(BaseModel):
     units: List[Unit]
 
     @classmethod
-    def load(cls, file_path: str = None) -> "GameData":
+    def load(cls, file_path: str = "roe.json") -> "GameData":
         try:
-            if not file_path:
-                file_path = "roe.json"
             with open(file_path, "r") as f:
                 data = json.load(f)
                 return cls.model_validate(data)
         except (FileNotFoundError, json.JSONDecodeError) as e:
             ic(f"Failed to load game data: {e}")
+            raise ValueError(f"Failed to load game data: {e}") from e
 
     def dump(self) -> str:
         return json.dumps(self.model_dump(), indent=4)

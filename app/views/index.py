@@ -1,7 +1,7 @@
 import flet as ft
-
 from app.core.constants import INDEX_ROUTE
 from app.models import GameData
+
 from ..controls import GameDataSwitcher
 from .view import BaseView
 

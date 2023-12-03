@@ -1,6 +1,7 @@
-from app.core.log import logger, ic
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+from app.core.log import logger
 
 AVE_TOKEN_LENGTH = 5
 

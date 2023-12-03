@@ -1,8 +1,7 @@
 import flet as ft
-from flet import ControlEvent
-
 from app.controls.unit_data import UnitDataApp
 from app.models.game_data import GameData
+from flet import ControlEvent
 
 
 class GameDataSwitcher(ft.UserControl):
@@ -22,7 +21,10 @@ class GameDataSwitcher(ft.UserControl):
         self.update()
 
     def build(self):
-        title = ft.Text("Save Game Editor", style=ft.TextThemeStyle.HEADLINE_SMALL)
+        title = ft.Text(
+            "Save Game Editor",
+            style=ft.TextThemeStyle.HEADLINE_SMALL,
+        )
         switch = ft.Switch(
             value=True, label="Format Game Data", on_change=self.on_switch
         )
@@ -55,7 +57,6 @@ class GameDataApp(ft.UserControl):
         self.visible = True
 
     def get_root_level_key_value_pairs(self, data: dict) -> dict:
-        """Returns a dictionary of all the root level key value pairs in the data."""
         key_value_pairs = {}
         for key, value in data.items():
             if isinstance(value, dict) or isinstance(value, list):
