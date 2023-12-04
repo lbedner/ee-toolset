@@ -1,9 +1,11 @@
+import os
 import threading
 
 import app.core.styles as styles
 import flet as ft
 from app.core.config import settings
-from app.core.log import ic
+from app.core.log import logger
+from app.models import KnowledgeBase, KnowledgeBaseDocument
 
 
 class ChatConfig(ft.UserControl):
@@ -41,12 +43,36 @@ class ChatConfig(ft.UserControl):
             weight=ft.FontWeight.W_400,
         )
         self.temperature_slider = TemperatureSlider()
-        self.files_dict: dict[str, bytes] = {}
-        self.files_container = ft.Container()
+        self.files_dict: dict[str, bytes] = self.load_knowledge_base_files()
+        self.files_container: ft.Container = ft.Container(
+            content=self.init_files_container()
+        )
         self.loading_indicator = ft.ProgressRing(visible=False)
         self.selected_files = ft.Text(value="No files selected.")
         self.pick_files_dialog = ft.FilePicker(on_result=self.pick_files_result)
         self.page.overlay.append(self.pick_files_dialog)
+
+    def load_knowledge_base_files(self) -> dict[str, bytes]:
+        logger.debug("knowledge.load")
+        knowledge_base = KnowledgeBase.load()
+
+        files_dict: dict[str, bytes] = {}
+        for key, document in knowledge_base.root.items():
+            try:
+                with open(document.Filepath, "rb") as file:
+                    logger.debug(
+                        "knowledge.load_file.success", key=key, document=document
+                    )
+                    files_dict[key] = file.read()
+            except FileNotFoundError:
+                logger.warning(
+                    "knowledge.load_file.failure", document=document.Filepath
+                )
+            except IOError as e:
+                logger.error(
+                    "knowledge.load_file.failure", document=document.Filepath, e=e
+                )
+        return files_dict
 
     def bytes_to_human_readable(self, num_bytes):
         """
@@ -67,6 +93,8 @@ class ChatConfig(ft.UserControl):
         :param max_length: Maximum length of the file name.
         :return: Truncated file name with ellipsis if needed.
         """
+        # get base name of file
+        file_name = os.path.basename(file_name)
         return (
             (file_name[:max_length] + "...")
             if len(file_name) > max_length
@@ -74,7 +102,6 @@ class ChatConfig(ft.UserControl):
         )
 
     def on_llm_selection_change(self, event: ft.ControlEvent):
-        ic(event.control.value)
         selected_llm = event.control.value
 
         if selected_llm:
@@ -128,10 +155,34 @@ class ChatConfig(ft.UserControl):
             self.loading_indicator.visible = True
             self.update()
 
+            knowledge_base = KnowledgeBase.load()
             for uploaded_file in e.files:
-                file_path = uploaded_file.path
-                file_bytes = open(file_path, "rb").read()
-                self.files_dict[uploaded_file.name] = file_bytes
+                uploaded_file_path = uploaded_file.path
+                uploaded_file_basename = os.path.basename(uploaded_file_path)
+                knowledge_base_file_path = f"{settings.VECTORSTORE_KNOWLEDGE_BASE_DIR}/{uploaded_file_basename}"  # noqa
+
+                logger.debug(
+                    "knowledge_base.process", uploaded_file_path=uploaded_file_path
+                )
+
+                with open(uploaded_file_path, "rb") as f:
+                    with open(knowledge_base_file_path, "wb") as f2:
+                        logger.debug(
+                            "knowledge_base.add",
+                            knowledge_base_file_path=knowledge_base_file_path,  # noqa
+                        )
+                        self.files_dict[uploaded_file_basename] = f.read()
+                        f2.write(self.files_dict[uploaded_file_basename])
+                        knowledge_base.add(
+                            uploaded_file_basename,
+                            KnowledgeBaseDocument(
+                                Type="Document",
+                                Filepath=knowledge_base_file_path,
+                                Size=len(self.files_dict[uploaded_file_basename]),
+                                Loaded=False,
+                            ),
+                        )
+                        knowledge_base.dump()
 
             self.update_files_container()
             self.loading_indicator.visible = False
@@ -141,11 +192,38 @@ class ChatConfig(ft.UserControl):
             self.update_files_container()
             self.selected_files.update()
 
+    def save_file_to_disk(self, uploaded_file):
+        file_path = "path/to/save/" + uploaded_file.name
+        with open(file_path, "wb") as f:
+            f.write(uploaded_file.content)  # Assuming the file's content is available
+        return file_path
+
+    def delete_file_from_disk(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                logger.debug("knowledge.delete_file.success", file_path=file_path)
+            else:
+                logger.warning("knowledge.delete_file.no_file", file_path=file_path)
+        except PermissionError:
+            logger.error(f"Permission denied: unable to delete {file_path}.")
+        except OSError as e:
+            logger.error(f"Error occurred: {e}")
+
     def delete_file(self, e: ft.ControlEvent, file_name: str):
+        knowledge_base = KnowledgeBase.load()
+        knowledge_base_document = knowledge_base.root[file_name]
+        logger.debug(
+            "knowledge.delete",
+            knowledge_base_document=knowledge_base_document,
+            file_name=file_name,
+        )
+        knowledge_base.remove(file_name)
+        self.delete_file_from_disk(knowledge_base_document.Filepath)
         del self.files_dict[file_name]
         self.update_files_container()
 
-    def update_files_container(self):
+    def init_files_container(self) -> ft.Column:
         files_text_widgets = []
 
         for file_name, file_bytes in self.files_dict.items():
@@ -156,22 +234,26 @@ class ChatConfig(ft.UserControl):
                 **styles.FilePickerFileStyle().to_dict(),
             )
 
+            logger.debug("knowledge_base.chip_creation", file_name=file_name)
             file_row = ft.Chip(
                 bgcolor=styles.ColorPalette.BG_SECONDARY,
                 delete_icon_color=styles.ColorPalette.ACCENT_STOP,
-                delete_icon_tooltip="Remove file",
+                delete_icon_tooltip=f"Remove file: {file_name}",
                 label=file_text_widget,
                 leading=ft.Icon(
                     ft.icons.INSERT_DRIVE_FILE_OUTLINED,
                     color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
                     size=16,
                 ),
-                on_delete=lambda e: self.delete_file(e, file_name),
+                on_delete=lambda e, fn=file_name: self.delete_file(e, fn),
             )
 
             files_text_widgets.append(file_row)
 
-        self.files_container.content = ft.Column(files_text_widgets, spacing=5)
+        return ft.Column(files_text_widgets, spacing=5)
+
+    def update_files_container(self):
+        self.files_container.content = self.init_files_container()
         self.files_container.update()
 
     def build(self):
@@ -187,9 +269,6 @@ class ChatConfig(ft.UserControl):
             content=ft.Column(
                 controls=[
                     self.llm_dropdown,
-                    # self.get_llm_description(),
-                    # self.llm_title,
-                    # self.llm_context_window,
                     self.temperature_slider,
                     MaximumLengthSlider(),
                     ft.Row(
@@ -220,7 +299,8 @@ class ChatConfig(ft.UserControl):
                     self.loading_indicator,
                     ft.Divider(),
                     self.files_container,
-                ]
+                ],
+                scroll=ft.ScrollMode.AUTO,
             ),
         )
 
