@@ -56,7 +56,9 @@ class Settings(BaseSettings):
         },
     }
 
-    VECTORSTORE_CHROMADB_DIR: str = "data/vectorstore/chromadb"
+    VECTORSTORE_ROOT_DIR: str = "data/vectorstore"
+    VECTORSTORE_KNOWLEDGE_BASE_DIR: str = f"{VECTORSTORE_ROOT_DIR}/knowledge_base"
+    VECTORSTORE_CHROMADB_DIR: str = f"{VECTORSTORE_ROOT_DIR}/chromadb"
 
     class Config:
         env_file = ".env"
