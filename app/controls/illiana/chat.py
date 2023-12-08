@@ -8,29 +8,6 @@ from app.core.config import settings
 from app.core.log import ic
 
 
-# Define chat window style
-def chat_window_style() -> dict:
-    return {
-        "width": 1100,
-        "height": 750,
-        "bgcolor": "#141518",
-        "border_radius": 10,
-        "padding": 15,
-    }
-
-
-# Define message input style
-def message_input_style() -> dict:
-    return {
-        "width": 1000,
-        "height": 540,
-        "border_color": "white",
-        "content_padding": 10,
-        "cursor_color": "white",
-        "cursor_height": 20,
-    }
-
-
 # ChatMessage class
 class ChatMessage(ft.Column):
     def __init__(self, username: str, message: str = ""):
@@ -86,11 +63,12 @@ class ChatMessage(ft.Column):
 
 # ChatView class
 class ChatView(ft.Container):
-    def __init__(self, chat_config: ChatConfig) -> None:
-        super().__init__(**chat_window_style())
+    def __init__(self, chat_config: ChatConfig, page: ft.Page) -> None:
+        super().__init__(**styles.ChatWindowStyle().to_dict())
         self.chat = ft.ListView(expand=True, height=200, spacing=15)
         self.content = self.chat
         self.chat_config = chat_config
+        self.page = page
 
     def add_chat_line(self, chat_message: ChatMessage):
         chat_message.message_display = chat_message.message
@@ -147,9 +125,32 @@ class MessageHandler:
         # Display animated AI response
         chat_message = ChatMessage(
             username=settings.CHAT_BOTNAME,
-            message=response,
+            message=response["response"],
         )
         self.chat_view.type_chat_line(chat_message)
+
+        # Display sources
+        if response.get("sources"):
+            self.chat_view.chat.controls.append(ft.Markdown("Sources:"))
+            sources = []
+            for source in response["sources"]:
+                source_control = ft.Markdown(
+                    auto_follow_links=True,
+                    code_style=ft.TextStyle(
+                        size=16,
+                        font_family="Roboto Mono",
+                        weight=ft.FontWeight.W_500,
+                    ),
+                    code_theme="atom-one-dark",
+                    extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
+                    selectable=True,
+                    value=f"- [{source.metadata['source']}](https://www.google.com)",
+                )
+                sources.append(source_control)
+            self.chat_view.chat.controls.append(
+                ft.Container(content=ft.Column(sources, spacing=4))
+            )
+        self.chat_view.chat.update()
 
 
 class UserInputField(ft.TextField):
@@ -158,7 +159,7 @@ class UserInputField(ft.TextField):
 
     def __init__(self, chat_view: ChatView) -> None:
         super().__init__(
-            **message_input_style(),
+            **styles.ChatMessageInputStyle().to_dict(),
             on_submit=self.handle_user_input,
             bgcolor=styles.ColorPalette.BG_SECONDARY,
             border=ft.border.all(2, "#444444"),

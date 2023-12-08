@@ -10,6 +10,7 @@ from langchain.prompts import (
     HumanMessagePromptTemplate,
     MessagesPlaceholder,
 )
+from langchain.schema import Document
 from langchain.schema.messages import SystemMessage
 
 from app.core.config import settings
@@ -29,8 +30,22 @@ prompt = ChatPromptTemplate(
 )
 
 # Initialize conversation history memory
-memory = ConversationBufferMemory(memory_key=CHAT_HISTORY, return_messages=True)
+memory = ConversationBufferMemory(
+    memory_key=CHAT_HISTORY,
+    return_messages=True,
+    input_key="question",
+    output_key="answer",
+)
 loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+
+
+def process_sources(sources):
+    print("\n\nSources:")
+    for source in sources:
+        print(
+            source.metadata["source"]
+            # source
+        )  # Adjust based on actual structure of the source
 
 
 def chat_with_llm(
@@ -39,7 +54,7 @@ def chat_with_llm(
     model: str = "gpt-3.5-turbo-1106",
     temperature: float = 0.0,
     files_dict: dict[str, bytes] = {},
-) -> str:
+) -> dict:
     logger.debug(
         "llm.chat",
         user_input=user_input,
@@ -53,7 +68,7 @@ def chat_with_llm(
         api_key=settings.OPENAI_API_KEY, temperature=temperature, model=model
     )
     if documents:
-        splits = get_text_splits(documents=documents)
+        splits: list[Document] = get_text_splits(documents=documents)
         retriever = get_vectorstore_retriever(
             documents=splits,
             embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
@@ -61,25 +76,27 @@ def chat_with_llm(
 
         # Create conversational retrieval chain
         logger.debug("Creating conversational retrieval chain...")
+        memory.output_key = "answer"
         conversational_retrieval_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,
             retriever=retriever,
             memory=memory,
-            verbose=True,
+            verbose=False,
+            return_source_documents=True,
         )
 
-        response = get_response(
+        llm_response = get_response(
             chain=conversational_retrieval_chain,
             qa={"question": user_input},
             model=model,
             user_input=user_input,
             response_key="answer",
+            return_sources=True,
         )
     else:
         # Get a response from the model
-        logger.debug(
-            f"Sending prompt[{user_input}] to model[{model}]...",
-        )
+        logger.debug("ai.send_request", model=model, user_input=user_input)
+        memory.output_key = "text"
         conversation_chain = LLMChain(
             llm=llm,
             prompt=prompt,
@@ -87,15 +104,17 @@ def chat_with_llm(
             memory=memory,
         )
 
-        response = get_response(
+        llm_response = get_response(
             chain=conversation_chain,
-            qa={"user_input": user_input},
+            qa={"user_input": user_input, "question": user_input},
             model=model,
             user_input=user_input,
             response_key="text",
         )
 
-    return response
+    sources = llm_response.get("sources", [])
+    process_sources(sources)  # Process the sources as needed
+    return llm_response
 
 
 def get_response(
@@ -104,10 +123,20 @@ def get_response(
     model: str,
     user_input: str,
     response_key: str,
-) -> str:
+    return_sources: bool = False,
+) -> dict:
     ic(chain, model, user_input)
     with get_openai_callback() as cb:
         logger.debug("ai.send_request", model=model)
-        response = chain(qa)[response_key]
-        logger.debug("ai.get_reponse", usage=cb, model=model, response=response)
-    return response
+        llm_response = chain(qa)
+        logger.debug(
+            "ai.get_response",
+            usage=cb,
+            model=model,
+            # response=llm_response,
+        )
+
+    result = {"response": llm_response[response_key]}
+    if return_sources and "source_documents" in llm_response:
+        result["sources"] = llm_response["source_documents"]
+    return result
