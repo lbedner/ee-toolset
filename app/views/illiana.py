@@ -10,7 +10,7 @@ from .view import BaseView
 class IllianaView(BaseView):
     def __init__(self, page: ft.Page):
         self.chat_config = ChatConfig(page=page)
-        self.chat_view = ChatView(chat_config=self.chat_config)
+        self.chat_view = ChatView(chat_config=self.chat_config, page=page)
         user_input_field = UserInputField(chat_view=self.chat_view)
         divider = ft.Divider(height=0.2, color="transparent")
         super().__init__(
@@ -23,7 +23,7 @@ class IllianaView(BaseView):
                         controls=[
                             ft.Text(
                                 "Illiana",
-                                size=28,
+                                size=24,
                                 weight="w800",
                                 font_family="Roboto",
                             ),

@@ -51,14 +51,17 @@ CancelButtonTextStyle = ButtonTextStyle()
 
 
 @dataclass(frozen=True)
-class TextStyle:
+class Style:
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class TextStyle(Style):
     color: str
     font_family: str
     size: int
     weight: str
-
-    def to_dict(self):
-        return asdict(self)
 
 
 @dataclass(frozen=True)
@@ -164,3 +167,22 @@ ELEVATED_BUTTON_CANCEL_STYLE = create_button_style(
     ButtonColors.CANCEL_DEFAULT,
     ButtonColors.CANCEL_BORDER_HOVERED,
 )
+
+
+@dataclass(frozen=True)
+class ChatWindowStyle(Style):
+    width: int = 1150
+    height: int = 750
+    bgcolor: str = "#141518"
+    border_radius: int = 10
+    padding: int = 15
+
+
+@dataclass(frozen=True)
+class ChatMessageInputStyle(Style):
+    width: int = 1050
+    height: int = 540
+    border_color: str = "white"
+    content_padding: int = 10
+    cursor_color: str = "white"
+    cursor_height: int = 20

@@ -59,5 +59,5 @@ class ConversationStarters(ft.UserControl):
                 alignment=ft.alignment.center,
             ),
             alignment=ft.alignment.center,
-            width=1100,
+            width=styles.ChatWindowStyle().width,
         )

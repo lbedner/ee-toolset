@@ -21,10 +21,9 @@ class KnowledgeBase(RootModel):
             data = json.load(f)
             return cls.model_validate(data)
 
-    def dump(self, file_path: str = settings.KNOWLEDGE_BASE_FILEPATH) -> str:
+    def dump(self, file_path: str = settings.KNOWLEDGE_BASE_FILEPATH) -> None:
         with open(file_path, "w") as f:
             json.dump(self.model_dump(), f, indent=4)
-        return json.dumps(self.model_dump(), indent=4)
 
     def add(self, key: str, attribute: KnowledgeBaseDocument):
         self.root[key] = attribute
