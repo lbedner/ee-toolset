@@ -111,11 +111,17 @@ class MessageHandler:
         self.chat_view.chat.update()
 
         # Get response from AI
+        knowledge_base_name = (
+            self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
+        )
         response = ai.chat_with_llm(
             user_input=user_input,
-            files_dict=self.chat_view.chat_config.files_dict,
-            model=self.chat_view.chat_config.llm_dropdown.value,
+            document_data=self.chat_view.chat_config.knowledge_base_helper.document_data[
+                knowledge_base_name
+            ],
+            model=self.chat_view.chat_config.llm_dropdown.dropdown.value,
             context_window=self.chat_view.chat_config.llm_context_window.value,
+            knowledge_base_name=knowledge_base_name,
         )
 
         # Remove progress ring

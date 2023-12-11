@@ -537,7 +537,7 @@ class BaseAttributeForm(ft.UserControl):
         # To be implemented by subclasses
         pass
 
-    def type_conversion(self, value):
+    def type_conversion(self, value: str):
         return value.replace(" ", "_").upper()
 
     def common_layout(self, action_button: BaseElevatedButton):

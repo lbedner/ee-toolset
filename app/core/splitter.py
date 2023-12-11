@@ -6,7 +6,7 @@ from app.core.log import logger
 AVE_TOKEN_LENGTH = 5
 
 
-def get_text_splits(
+def get_document_chunks(
     documents: list[Document],
     chunk_size: int = 1000,
     chunk_overlap: int = 200,

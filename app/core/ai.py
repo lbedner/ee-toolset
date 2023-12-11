@@ -2,7 +2,6 @@ from langchain.callbacks import get_openai_callback
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.chains.base import Chain
 from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import WebBaseLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import (
@@ -14,46 +13,31 @@ from langchain.schema import Document
 from langchain.schema.messages import SystemMessage
 
 from app.core.config import settings
-from app.core.loader import load_files
+from app.core.loader import load_documents
 from app.core.log import ic, logger
-from app.core.splitter import get_text_splits
-from app.core.vectorstore import get_vectorstore_retriever
+from app.core.splitter import get_document_chunks
+from app.core.vectorstore import get_vectorstore_retriever, vectorstore_path_exists
 
 CHAT_HISTORY = "chat_history"
 
-prompt = ChatPromptTemplate(
-    messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        MessagesPlaceholder(variable_name=CHAT_HISTORY),
-        HumanMessagePromptTemplate.from_template("{user_input}"),
-    ]
-)
 
-# Initialize conversation history memory
-memory = ConversationBufferMemory(
-    memory_key=CHAT_HISTORY,
-    return_messages=True,
-    input_key="question",
-    output_key="answer",
-)
-loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+conversation_memories: dict[str, ConversationBufferMemory] = {}
+conversation_prompts: dict[str, ChatPromptTemplate] = {}
 
 
 def process_sources(sources):
-    print("\n\nSources:")
+    logger.info("\n\nSources:")
     for source in sources:
-        print(
-            source.metadata["source"]
-            # source
-        )  # Adjust based on actual structure of the source
+        logger.info(source.metadata["source"])
 
 
 def chat_with_llm(
     user_input: str,
+    knowledge_base_name: str,
     context_window: int = 16385,
     model: str = "gpt-3.5-turbo-1106",
     temperature: float = 0.0,
-    files_dict: dict[str, bytes] = {},
+    document_data: dict[str, bytes] = {},
 ) -> dict:
     logger.debug(
         "llm.chat",
@@ -61,17 +45,46 @@ def chat_with_llm(
         model=model,
         temperature=temperature,
         context_window=context_window,
+        files=document_data.keys(),
     )
-    documents = load_files(files_dict)
 
     llm = ChatOpenAI(
         api_key=settings.OPENAI_API_KEY, temperature=temperature, model=model
     )
-    if documents:
-        splits: list[Document] = get_text_splits(documents=documents)
+
+    # Get or create the conversation memory for the given conversation ID
+    if knowledge_base_name not in conversation_memories:
+        conversation_memories[knowledge_base_name] = ConversationBufferMemory(
+            memory_key=f"{CHAT_HISTORY}",
+            return_messages=True,
+            input_key="question",
+            output_key="answer",
+        )
+    memory = conversation_memories[knowledge_base_name]
+
+    # Get or create the conversation prompt for the given conversation ID
+    if knowledge_base_name not in conversation_prompts:
+        conversation_prompts[knowledge_base_name] = ChatPromptTemplate(
+            messages=[
+                SystemMessage(content="You are a helpful assistant."),
+                MessagesPlaceholder(variable_name=f"{CHAT_HISTORY}"),
+                HumanMessagePromptTemplate.from_template("{user_input}"),
+            ]
+        )
+    prompt = conversation_prompts[knowledge_base_name]
+
+    if knowledge_base_name and document_data:
+        chunked_documents: list[Document] = []
+        # Check for the existence of the vectorstore
+        if not vectorstore_path_exists(knowledge_base_name):
+            documents: list[Document] = load_documents(document_data)
+            if documents:
+                chunked_documents = get_document_chunks(documents=documents)
+
         retriever = get_vectorstore_retriever(
-            documents=splits,
+            documents=chunked_documents,
             embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
+            knowledge_base_name=knowledge_base_name,
         )
 
         # Create conversational retrieval chain

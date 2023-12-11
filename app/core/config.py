@@ -9,6 +9,15 @@ class Settings(BaseSettings):
     CHAT_BOTNAME: str = "Illiana"
     CHAT_TEXT_ANIMATION_SPEED: float = 0.008
 
+    SUPPORTED_DOCUMENTS: list[str] = [
+        "txt",
+        "pdf",
+        "docx",
+        "doct",
+        "html",
+        "htm",
+    ]
+
     OPENAI_API_KEY: str = "OPEN_AI_API_KEY"
 
     KNOWLEDGE_BASE_FILEPATH: str = "data/knowledge_base/knowledge_base.json"
