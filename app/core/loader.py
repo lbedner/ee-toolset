@@ -49,8 +49,8 @@ def determine_loader_and_load(file_name, file_bytes):
         return []
 
 
-def load_files(files_dict: dict[str, bytes]) -> list:
-    documents = []
+def load_documents(files_dict: dict[str, bytes]) -> list[Document]:
+    documents: list[Document] = []
     for file_name, file_bytes in files_dict.items():
         logger.debug(f"Loading file[{file_name}]...")
         documents.extend(determine_loader_and_load(file_name, file_bytes))

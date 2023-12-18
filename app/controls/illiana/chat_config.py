@@ -1,104 +1,94 @@
-import os
-import threading
-
 import app.core.styles as styles
 import flet as ft
+from app.controls.attributes.buttons import ElevatedAddButton, ElevatedCancelButton
+from app.controls.attributes.snack_bar import SuccessSnackBar
+from app.controls.illiana.chip import FileChip
+from app.controls.illiana.dropdown import DropdownControl
+from app.controls.illiana.file_picker import FilePickerControl
+from app.controls.illiana.slider import MaximumLengthSlider, TemperatureSlider
 from app.core.config import settings
-from app.core.log import logger
-from app.models import KnowledgeBase, KnowledgeBaseDocument
+from app.models import KnowledgeBase, KnowledgeBaseHelper
+
+
+class AlertDialogControl(ft.AlertDialog):
+    def __init__(
+        self,
+        title: ft.Control,
+        content: ft.Control,
+        on_dismiss=None,
+        actions: list[ft.Control] = [],
+    ):
+        super().__init__()
+        self.title = title
+        self.content = content
+        self.on_dismiss = on_dismiss if on_dismiss else lambda e: None
+        self.actions = actions
+
+    def show(self, page: ft.Page):
+        page.show_dialog(self)
+        page.dialog = self
+        self.open = True
+        page.update()
 
 
 class ChatConfig(ft.UserControl):
+    """
+    Represents the configuration settings for the chat feature in the application.
+
+    Args:
+        page (ft.Page): The page where the chat configuration is used.
+
+    Attributes:
+        page (ft.Page): The page where the chat configuration is used.
+        llm_context_window (ft.TextField): The text field for the context window.
+        temperature_slider (TemperatureSlider): The temperature slider control.
+        knowledge_base (KnowledgeBase): The knowledge base object.
+        knowledge_base_helper (KnowledgeBaseHelper): The helper class for the knowledge base.
+        loading_indicator (ft.ProgressRing): The progress ring control for loading.
+        knowledge_base_dropdown (DropdownControl): The dropdown control for selecting the knowledge base.
+        file_picker_control (FilePickerControl): The file picker control for selecting files.
+        files_container_control (FilesContainerControl): The control for displaying the files container.
+
+    Methods:
+        on_llm_selection_change(event: ft.ControlEvent): Event handler for LLM selection change.
+        on_knowledge_base_selection_change(event: ft.ControlEvent): Event handler for knowledge base selection change.
+        update_llm_values(selected_llm): Updates the values for the selected LLM.
+        get_llm_dropdown() -> DropdownControl: Returns the dropdown control for LLM selection.
+        get_knowledge_base_dropdown() -> DropdownControl: Returns the dropdown control for knowledge base selection.
+        on_files_processed(document_data: dict[str, bytes]): Event handler for files processed.
+        delete_file(e: ft.ControlEvent, knowledge_base_name: str, document_name: str): Deletes a file from the knowledge base.
+        on_click_close_dialog(): Event handler for closing the dialog.
+        on_add_new_knowledge_base(): Event handler for adding a new knowledge base.
+        add_new_knowledge_base(knowledge_base_name: str): Adds a new knowledge base.
+        build() -> ft.Container: Builds and returns the chat configuration container.
+    """  # noqa
+
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.llm_title = ft.Text(
-            "",
-            color=styles.ColorPalette.TEXT_PRIMARY_DEFAULT,
-            font_family=styles.FontConfig.FAMILY_PRIMARY,
-            size=styles.FontConfig.SIZE_PRIMARY,
-            weight=ft.FontWeight.W_700,
-        )
-        self.llm_description = ft.Text(
-            "",
-            color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
-            font_family=styles.FontConfig.FAMILY_PRIMARY,
-            size=styles.FontConfig.SIZE_SECONDARY,
-            weight=ft.FontWeight.W_400,
-        )
         self.llm_context_window = ft.TextField(
             "",
             color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
-            # font_family=styles.FontConfig.FAMILY_PRIMARY,
-            # size=styles.FontConfig.SIZE_SECONDARY,
-            # weight=ft.FontWeight.W_400,
             label="Context Window",
             read_only=True,
         )
-        self.llm_training_data = ft.Text(
-            "",
-            color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
-            font_family=styles.FontConfig.FAMILY_PRIMARY,
-            size=styles.FontConfig.SIZE_SECONDARY,
-            weight=ft.FontWeight.W_400,
-        )
         self.temperature_slider = TemperatureSlider()
-        self.files_dict: dict[str, bytes] = self.load_knowledge_base_files()
-        self.files_container: ft.Container = ft.Container(
-            content=self.init_files_container()
-        )
+        self.knowledge_base = KnowledgeBase.load()
+        self.knowledge_base_helper = KnowledgeBaseHelper(self.knowledge_base)
         self.loading_indicator = ft.ProgressRing(visible=False)
-        self.selected_files = ft.Text(value="No files selected.")
-        self.pick_files_dialog = ft.FilePicker(on_result=self.pick_files_result)
-        self.page.overlay.append(self.pick_files_dialog)
-
-    def load_knowledge_base_files(self) -> dict[str, bytes]:
-        logger.debug("knowledge.load")
-        knowledge_base = KnowledgeBase.load()
-
-        files_dict: dict[str, bytes] = {}
-        for key, document in knowledge_base.root.items():
-            try:
-                with open(document.Filepath, "rb") as file:
-                    logger.debug(
-                        "knowledge.load_file.success", key=key, document=document
-                    )
-                    files_dict[key] = file.read()
-            except FileNotFoundError:
-                logger.warning(
-                    "knowledge.load_file.failure", document=document.Filepath
-                )
-            except IOError as e:
-                logger.error(
-                    "knowledge.load_file.failure", document=document.Filepath, e=e
-                )
-        return files_dict
-
-    def bytes_to_human_readable(self, num_bytes):
-        """
-        Convert bytes to a human-readable format.
-        :param num_bytes: Number of bytes.
-        :return: Human-readable string.
-        """
-        for unit in ["bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]:
-            if abs(num_bytes) < 1024.0:
-                return f"{num_bytes:3.1f} {unit}"
-            num_bytes /= 1024.0
-        return f"{num_bytes:.1f} YB"
-
-    def truncate_file_name(self, file_name, max_length=25):
-        """
-        Truncate a file name if it's longer than max_length.
-        :param file_name: The name of the file.
-        :param max_length: Maximum length of the file name.
-        :return: Truncated file name with ellipsis if needed.
-        """
-        # get base name of file
-        file_name = os.path.basename(file_name)
-        return (
-            (file_name[:max_length] + "...")
-            if len(file_name) > max_length
-            else file_name
+        self.knowledge_base_dropdown = self.get_knowledge_base_dropdown()
+        self.file_picker_control = FilePickerControl(
+            knowledge_base_dropdown=self.knowledge_base_dropdown,
+            knowledge_base_helper=self.knowledge_base_helper,
+            on_files_processed=self.on_files_processed,
+            page=self.page,
+        )
+        self.page.overlay.append(self.file_picker_control)
+        self.files_container_control = FilesContainerControl(
+            knowledge_base_dropdown=self.knowledge_base_dropdown,
+            knowledge_base_helper=self.knowledge_base_helper,
+            file_picker_control=self.file_picker_control,
+            delete_file_handler=self.delete_file,
         )
 
     def on_llm_selection_change(self, event: ft.ControlEvent):
@@ -108,153 +98,91 @@ class ChatConfig(ft.UserControl):
             self.update_llm_values(selected_llm)
             self.update()
 
+    def on_knowledge_base_selection_change(self, event: ft.ControlEvent):
+        selected_knowledge_base = event.control.value
+
+        if selected_knowledge_base:
+            self.files_container_control.update_files_container()
+            self.update()
+
     def update_llm_values(self, selected_llm):
-        self.llm_title.value = settings.LLMS[selected_llm]["title"]
-        self.llm_description.value = settings.LLMS[selected_llm]["description"]
         self.llm_context_window.value = settings.LLMS[selected_llm]["content_window"]
-        self.llm_training_data.value = settings.LLMS[selected_llm]["training_data"]
 
     def get_llm_dropdown(self):
         llm_names = list(settings.LLMS.keys())
-        llm_dropdown = ft.Dropdown(
-            options=[ft.dropdown.Option(name) for name in llm_names],
+        return DropdownControl(
+            options=llm_names,
             label="LLM Selection",
             width=260,
-            height=50,
-            hint_text="Select an LLM for Illiana to use.",
-            bgcolor=styles.ColorPalette.BG_SECONDARY,
-            border_width=1,
-            border_color="#444444",
-            border_radius=10,
-            color=styles.ColorPalette.TEXT_PRIMARY_DEFAULT,
-            # font_family=styles.FontConfig.FAMILY_PRIMARY,
-            text_size=styles.FontConfig.SIZE_SECONDARY,
             on_change=lambda event: self.on_llm_selection_change(event),
-            focused_border_color=styles.ColorPalette.ACCENT,
-            focused_border_width=2,
-        )
-        llm_dropdown.value = "gpt-3.5-turbo-1106"
-        self.update_llm_values("gpt-3.5-turbo-1106")
-        return llm_dropdown
-
-    def get_llm_description(self):
-        return ft.Text(
-            "The Language Model (LLM) is the model that Illiana uses to generate responses. "  # noqa
-            "You can select the LLM that Illiana uses to generate responses here.",
-            color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
-            font_family=styles.FontConfig.FAMILY_PRIMARY,
-            size=styles.FontConfig.SIZE_SECONDARY,
-            weight=ft.FontWeight.W_400,
+            default_value="gpt-3.5-turbo-1106",
+            hint_text="Select an LLM for Illiana to use.",
         )
 
-    def pick_files_result(self, e: ft.FilePickerResultEvent):
-        threading.Thread(target=self.process_files, args=(e,), daemon=True).start()
-
-    def process_files(self, e: ft.FilePickerResultEvent):
-        if e.files:
-            self.loading_indicator.visible = True
-            self.update()
-
-            knowledge_base = KnowledgeBase.load()
-            for uploaded_file in e.files:
-                uploaded_file_path = uploaded_file.path
-                uploaded_file_basename = os.path.basename(uploaded_file_path)
-                knowledge_base_file_path = f"{settings.VECTORSTORE_KNOWLEDGE_BASE_DIR}/{uploaded_file_basename}"  # noqa
-
-                logger.debug(
-                    "knowledge_base.process", uploaded_file_path=uploaded_file_path
-                )
-
-                with open(uploaded_file_path, "rb") as f:
-                    with open(knowledge_base_file_path, "wb") as f2:
-                        logger.debug(
-                            "knowledge_base.add",
-                            knowledge_base_file_path=knowledge_base_file_path,  # noqa
-                        )
-                        self.files_dict[uploaded_file_basename] = f.read()
-                        f2.write(self.files_dict[uploaded_file_basename])
-                        knowledge_base.add(
-                            uploaded_file_basename,
-                            KnowledgeBaseDocument(
-                                Type="Document",
-                                Filepath=knowledge_base_file_path,
-                                Size=len(self.files_dict[uploaded_file_basename]),
-                                Loaded=False,
-                            ),
-                        )
-                        knowledge_base.dump()
-
-            self.update_files_container()
-            self.loading_indicator.visible = False
-            self.update()
-        else:
-            self.selected_files.value = "No files selected or upload cancelled."
-            self.update_files_container()
-            self.selected_files.update()
-
-    def save_file_to_disk(self, uploaded_file):
-        file_path = "path/to/save/" + uploaded_file.name
-        with open(file_path, "wb") as f:
-            f.write(uploaded_file.content)  # Assuming the file's content is available
-        return file_path
-
-    def delete_file_from_disk(self, file_path):
-        try:
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                logger.debug("knowledge.delete_file.success", file_path=file_path)
-            else:
-                logger.warning("knowledge.delete_file.no_file", file_path=file_path)
-        except PermissionError:
-            logger.error(f"Permission denied: unable to delete {file_path}.")
-        except OSError as e:
-            logger.error(f"Error occurred: {e}")
-
-    def delete_file(self, e: ft.ControlEvent, file_name: str):
-        knowledge_base = KnowledgeBase.load()
-        knowledge_base_document = knowledge_base.root[file_name]
-        logger.debug(
-            "knowledge.delete",
-            knowledge_base_document=knowledge_base_document,
-            file_name=file_name,
+    def get_knowledge_base_dropdown(self) -> DropdownControl:
+        knowledge_base_names = list(self.knowledge_base.root.keys())
+        return DropdownControl(
+            options=knowledge_base_names,
+            label="Knowledge Base",
+            width=200,
+            on_change=lambda event: self.on_knowledge_base_selection_change(event),
+            default_value="No knowledge bases"
+            if not knowledge_base_names
+            else knowledge_base_names[0],
         )
-        knowledge_base.remove(file_name)
-        self.delete_file_from_disk(knowledge_base_document.Filepath)
-        del self.files_dict[file_name]
-        self.update_files_container()
 
-    def init_files_container(self) -> ft.Column:
-        files_text_widgets = []
+    def on_files_processed(self, document_data: dict[str, bytes]):
+        self.document_data = document_data
+        self.files_container_control.update_files_container()
 
-        for file_name, file_bytes in self.files_dict.items():
-            file_info = self.truncate_file_name(file_name)
-            file_text_widget = ft.Text(
-                file_info,
-                tooltip=f"{file_name} (Size: {self.bytes_to_human_readable(len(file_bytes))} bytes)",  # noqa
-                **styles.FilePickerFileStyle().to_dict(),
-            )
+    def delete_file(
+        self, e: ft.ControlEvent, knowledge_base_name: str, document_name: str
+    ):
+        self.knowledge_base_helper.delete_document(knowledge_base_name, document_name)
+        self.files_container_control.update_files_container()
 
-            logger.debug("knowledge_base.chip_creation", file_name=file_name)
-            file_row = ft.Chip(
-                bgcolor=styles.ColorPalette.BG_SECONDARY,
-                delete_icon_color=styles.ColorPalette.ACCENT_STOP,
-                delete_icon_tooltip=f"Remove file: {file_name}",
-                label=file_text_widget,
-                leading=ft.Icon(
-                    ft.icons.INSERT_DRIVE_FILE_OUTLINED,
-                    color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
-                    size=16,
-                ),
-                on_delete=lambda e, fn=file_name: self.delete_file(e, fn),
-            )
+    def on_click_close_dialog(self):
+        self.page.dialog.open = False
+        self.page.update()
 
-            files_text_widgets.append(file_row)
+    def on_add_new_knowledge_base(self):
+        knowledge_base_name_field = ft.TextField(
+            border_radius=15,
+            label="Knowledge Base Name",
+            width=480,
+            height=70,
+            bgcolor=styles.ColorPalette.BG_SECONDARY,
+            border=ft.border.all(2, "#444444"),
+            hint_text="Add a name for your new knowledge base.",
+            text_size=styles.FontConfig.SIZE_SECONDARY,
+        )
 
-        return ft.Column(files_text_widgets, spacing=5)
+        def add_button_click():
+            knowledge_base_name = knowledge_base_name_field.value
+            self.add_new_knowledge_base(knowledge_base_name)
+            self.page.dialog.open = False
+            self.page.update()
 
-    def update_files_container(self):
-        self.files_container.content = self.init_files_container()
-        self.files_container.update()
+        alert_dialog = AlertDialogControl(
+            title=ft.Text("Add New Knowledge Base", **styles.ModalTitle().to_dict()),
+            content=knowledge_base_name_field,
+            actions=[
+                ElevatedCancelButton(self.on_click_close_dialog),
+                ElevatedAddButton(add_button_click),
+            ],
+        )
+        alert_dialog.show(self.page)
+
+    def add_new_knowledge_base(self, knowledge_base_name: str):
+        self.knowledge_base_helper.add_new_knowledge_base(knowledge_base_name)
+        self.knowledge_base_dropdown.add_option(knowledge_base_name, set_selected=True)
+        self.page.snack_bar = SuccessSnackBar(
+            message=f"Successfully added knowledge base: {knowledge_base_name}",
+        ).build()
+        self.page.snack_bar.open = True
+        self.page.update()
+        self.update()
+        self.files_container_control.update_files_container()
 
     def build(self):
         self.llm_dropdown = self.get_llm_dropdown()
@@ -271,99 +199,121 @@ class ChatConfig(ft.UserControl):
                     self.llm_dropdown,
                     self.temperature_slider,
                     MaximumLengthSlider(),
+                    ft.Divider(),
                     ft.Row(
                         controls=[
-                            ft.Text(
-                                "Knowledge",
-                                **styles.SliderLabelStyle().to_dict(),
-                                tooltip="Upload files that contain knowledge that Illiana can use to generate responses.",  # noqa
-                            ),
+                            self.knowledge_base_dropdown,
                             ft.IconButton(
                                 icon=ft.icons.ADD_CIRCLE_OUTLINE_OUTLINED,
-                                on_click=lambda _: self.pick_files_dialog.pick_files(
-                                    allow_multiple=True,
-                                    allowed_extensions=[
-                                        "txt",
-                                        "pdf",
-                                        "docx",
-                                        "doct",
-                                        "html",
-                                        "htm",
-                                        "rtf",
-                                    ],
-                                ),
+                                on_click=lambda _: self.on_add_new_knowledge_base(),
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                     ),
                     self.loading_indicator,
                     ft.Divider(),
-                    self.files_container,
+                    self.files_container_control,
                 ],
                 scroll=ft.ScrollMode.AUTO,
             ),
         )
 
 
-class Slider(ft.UserControl):
-    def __init__(self, label: str, min_value: int, max_value: int, tooltip: str = None):
+class FilesContainerControl(ft.UserControl):
+    """
+    A control that displays a container of files related to a knowledge base.
+
+    Args:
+        knowledge_base_helper (KnowledgeBaseHelper): An instance of the KnowledgeBaseHelper class.
+        file_picker_control (FilePickerControl): An instance of the FilePickerControl class.
+        knowledge_base_dropdown (DropdownControl): An instance of the DropdownControl class.
+        delete_file_handler: A handler function for deleting a file.
+
+    Attributes:
+        knowledge_base_helper (KnowledgeBaseHelper): An instance of the KnowledgeBaseHelper class.
+        file_picker_control (FilePickerControl): An instance of the FilePickerControl class.
+        knowledge_base_dropdown (DropdownControl): An instance of the DropdownControl class.
+        delete_file_handler: A handler function for deleting a file.
+        container (ft.Container): The container that holds the files.
+
+    Methods:
+        get_knowledge_base_name: Returns the selected knowledge base name.
+        update_files_container: Updates the files container with the latest files.
+        build: Builds and returns the container.
+
+    """  # noqa
+
+    def __init__(
+        self,
+        knowledge_base_helper: KnowledgeBaseHelper,
+        file_picker_control: FilePickerControl,
+        knowledge_base_dropdown: DropdownControl,
+        delete_file_handler,
+    ):
         super().__init__()
-        self.text_value = ft.Text(
-            value=str(min_value), **styles.SliderValueStyle().to_dict()
+        self.knowledge_base_helper = knowledge_base_helper
+        self.file_picker_control = file_picker_control
+        self.knowledge_base_dropdown = knowledge_base_dropdown
+        self.delete_file_handler = delete_file_handler
+        self.container = ft.Container()
+
+    def get_knowledge_base_name(self):
+        """
+        Returns the selected knowledge base name.
+
+        Returns:
+            str: The selected knowledge base name.
+        """
+        return self.knowledge_base_dropdown.dropdown.value
+
+    def update_files_container(self):
+        """
+        Updates the files container with the latest files.
+        """
+        knowledge_base_name = self.get_knowledge_base_name()
+        files_text_widgets: list[FileChip] = []
+        if knowledge_base_name in self.knowledge_base_helper.document_data:
+            files_text_widgets = [
+                FileChip(
+                    file_name=file_name,
+                    file_bytes=file_bytes,
+                    delete_handler=self.delete_file_handler,
+                    knowledge_base_name=knowledge_base_name,
+                )
+                for file_name, file_bytes in self.knowledge_base_helper.document_data[
+                    knowledge_base_name
+                ].items()
+            ]
+
+        add_document_button = ft.Container(
+            content=ft.Row(
+                controls=[
+                    ft.IconButton(
+                        icon=ft.icons.ADD_CIRCLE_OUTLINE_OUTLINED,
+                        on_click=lambda _: self.file_picker_control.pick_files_dialog.pick_files(  # noqa
+                            allow_multiple=True,
+                            allowed_extensions=settings.SUPPORTED_DOCUMENTS,
+                        ),
+                    ),
+                    ft.Text(
+                        f"Documents: {len(files_text_widgets)}/20",
+                        **styles.SecondaryTextStyle().to_dict(),
+                    ),
+                ],
+                alignment=ft.alignment.top_right,
+            )
         )
-        self.slider = ft.Slider(
-            value=min_value,
-            min=min_value,
-            max=max_value,
-            divisions=max_value - min_value,
-            height=50,
-            width=300,
-            thumb_color=styles.ColorPalette.ACCENT,
-            on_change=lambda event: self.slider_changed(event),
-            tooltip=tooltip,
+
+        self.container.content = ft.Column(
+            controls=[add_document_button] + files_text_widgets, spacing=5
         )
-        self.label = label
+        self.container.update()
 
     def build(self):
-        return ft.Container(
-            content=ft.Column(
-                controls=[
-                    ft.Row(
-                        controls=[
-                            ft.Text(self.label, **styles.SliderLabelStyle().to_dict()),
-                            self.text_value,
-                        ],
-                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                    ),
-                    self.slider,
-                ],
-            ),
-        )
+        """
+        Builds and returns the container.
 
-
-class TemperatureSlider(Slider):
-    def __init__(self):
-        super().__init__(
-            label="Temperature",
-            min_value=0.0,
-            max_value=1.0,
-            tooltip="""Controls randomness: Lowering results in less random\ncompletions. As the temperature approaches zero, the\nmodel will become deterministic and repetitive. Higher\ntemperature nresults in more random completions.""",  # noqa
-        )
-
-    def slider_changed(self, event: ft.ControlEvent):
-        self.text_value.value = str(round(event.control.value, 2))
-        self.update()
-
-
-class MaximumLengthSlider(Slider):
-    def __init__(self):
-        super().__init__(
-            label="Maximum length",
-            min_value=1,
-            max_value=4096,
-            tooltip="""Controls the maximum number of tokens that the\ncompletion may contain. Tokens are roughly equal to\nwords.""",  # noqa
-        )
-
-    def slider_changed(self, event: ft.ControlEvent):
-        self.text_value.value = int(event.control.value)
-        self.update()
+        Returns:
+            ft.Container: The container that holds the files.
+        """
+        return self.container

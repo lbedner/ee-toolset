@@ -1,8 +1,188 @@
 {
-    "Podcasts Ingestion Playbook - iHR Engineering - Confluence.html": {
-        "Type": "Document",
-        "Filepath": "data/vectorstore/knowledge_base/Podcasts Ingestion Playbook - iHR Engineering - Confluence.html",
-        "Size": 1227147,
-        "Loaded": false
+    "kb1": {
+        "ddl.txt": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/kb1/ddl.txt",
+            "Size": 6156,
+            "Loaded": false
+        }
+    },
+    "sql": {
+        "ddl.txt": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/sql/ddl.txt",
+            "Size": 6156,
+            "Loaded": false
+        }
+    },
+    "Catalog Processing": {
+        "ingest_amw_content.pdf": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Catalog Processing/ingest_amw_content.pdf",
+            "Size": 195457,
+            "Loaded": false
+        },
+        "Names_Indexing.pdf": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Catalog Processing/Names_Indexing.pdf",
+            "Size": 203396,
+            "Loaded": false
+        }
+    },
+    "music_cat": {
+        "content-platform-documentation_airflow_README.md at master \u00b7 iheartradio_content-platform-documentation.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/content-platform-documentation_airflow_README.md at master \u00b7 iheartradio_content-platform-documentation.html",
+            "Size": 407353,
+            "Loaded": false
+        },
+        "content-platform-documentation_terraform_README.md at master \u00b7 iheartradio_content-platform-documentation.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/content-platform-documentation_terraform_README.md at master \u00b7 iheartradio_content-platform-documentation.html",
+            "Size": 421545,
+            "Loaded": false
+        },
+        "On call Runbooks \u00b7 iheartradio_content-platform-documentation Wiki.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/On call Runbooks \u00b7 iheartradio_content-platform-documentation Wiki.html",
+            "Size": 407602,
+            "Loaded": false
+        },
+        "Content Platform Team On Call Roles and Responsibilities - iHR Engineering - Confluence.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Content Platform Team On Call Roles and Responsibilities - iHR Engineering - Confluence.html",
+            "Size": 387306,
+            "Loaded": false
+        },
+        "Outage Communication Plan - iHR Engineering - Confluence.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Outage Communication Plan - iHR Engineering - Confluence.html",
+            "Size": 1114792,
+            "Loaded": false
+        },
+        "Profiling Dramatiq Actors in the music-cat Application _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Profiling Dramatiq Actors in the music-cat Application _ Music Catalog.html",
+            "Size": 20040,
+            "Loaded": false
+        },
+        "Retranscode Documentation _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Retranscode Documentation _ Music Catalog.html",
+            "Size": 23614,
+            "Loaded": false
+        },
+        "Release Management _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Release Management _ Music Catalog.html",
+            "Size": 18909,
+            "Loaded": false
+        },
+        "System Administration _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/System Administration _ Music Catalog.html",
+            "Size": 24211,
+            "Loaded": false
+        },
+        "Database _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Database _ Music Catalog.html",
+            "Size": 19649,
+            "Loaded": false
+        },
+        "Developer Manual _ Music Catalog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music_cat/Developer Manual _ Music Catalog.html",
+            "Size": 23421,
+            "Loaded": false
+        }
+    },
+    "podcasts": {
+        "Podcasts Ingestion Playbook - iHR Engineering - Confluence.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/podcasts/Podcasts Ingestion Playbook - iHR Engineering - Confluence.html",
+            "Size": 1227147,
+            "Loaded": false
+        }
+    },
+    "Flet": {
+        "flet completo.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet/flet completo.docx",
+            "Size": 268413,
+            "Loaded": false
+        }
+    },
+    "Rose Of Eternity": {
+        "Rose Of Eternity - Random Notes.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Rose Of Eternity - Random Notes.docx",
+            "Size": 12098,
+            "Loaded": false
+        },
+        "ROE Bible.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/ROE Bible.docx",
+            "Size": 30770,
+            "Loaded": false
+        },
+        "Cast.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Cast.docx",
+            "Size": 15616,
+            "Loaded": false
+        },
+        "Rose of Eternity - Ability Ideas.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Rose of Eternity - Ability Ideas.docx",
+            "Size": 7708,
+            "Loaded": false
+        },
+        "Legacy.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Legacy.docx",
+            "Size": 7795,
+            "Loaded": false
+        },
+        "Random.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Random.docx",
+            "Size": 7770,
+            "Loaded": false
+        },
+        "History.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/History.docx",
+            "Size": 8033,
+            "Loaded": false
+        },
+        "Challseus_ Escape.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Challseus_ Escape.docx",
+            "Size": 7560,
+            "Loaded": false
+        },
+        "Rose of Eternity - Quotes.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Rose of Eternity - Quotes.docx",
+            "Size": 6430,
+            "Loaded": false
+        }
+    },
+    "test one": {
+        "ddl.txt": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/test one/ddl.txt",
+            "Size": 6156,
+            "Loaded": false
+        }
+    },
+    "No More Wiring Up": {
+        "requirements.txt": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/No More Wiring Up/requirements.txt",
+            "Size": 7050,
+            "Loaded": false
+        }
     }
 }
