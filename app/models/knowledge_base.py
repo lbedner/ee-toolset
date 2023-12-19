@@ -1,10 +1,12 @@
 import json
 import os
+import shutil
 
 from pydantic import BaseModel, RootModel, StrictBool, StrictInt, StrictStr
 
 from app.core.config import settings
 from app.core.log import logger
+from app.core.vectorstore import delete_vectorstore
 
 
 class KnowledgeBaseDocument(BaseModel):
@@ -241,6 +243,26 @@ class KnowledgeBaseHelper:
                 knowledge_base_name=knowledge_base_name,
             )
 
+    def get_knowledge_base(
+        self, knowledge_base_name: str
+    ) -> dict[str, KnowledgeBaseDocument]:
+        """
+        Retrieves a specific knowledge base by its name.
+
+        Args:
+            knowledge_base_name (str): The name of the knowledge base to retrieve.
+
+        Returns:
+            dict[str, KnowledgeBaseDocument]: The documents within the specified knowledge base.
+
+        Raises:
+            KeyError: If the knowledge base does not exist.
+        """  # noqa
+        if knowledge_base_name in self.knowledge_base.root:
+            return self.knowledge_base.root[knowledge_base_name]
+        else:
+            raise KeyError(f"Knowledge base '{knowledge_base_name}' does not exist")
+
     def _delete_document_from_disk(self, filepath: str) -> None:
         """
         Deletes a document file from disk.
@@ -259,3 +281,46 @@ class KnowledgeBaseHelper:
                 logger.warning("knowledge.delete_file.no_file", document=filepath)
         except (PermissionError, OSError) as e:
             logger.error("knowledge.exception", document=filepath, exception=e)
+
+    def delete_knowledge_base(self, knowledge_base_name: str) -> None:
+        """
+        Deletes an entire knowledge base given its name.
+
+        Args:
+            knowledge_base_name (str): The name of the knowledge base to delete.
+
+        Raises:
+            KeyError: If the knowledge base does not exist.
+        """
+        if knowledge_base_name in self.knowledge_base.root:
+            document_names = list(self.knowledge_base.root[knowledge_base_name].keys())
+            for document_name in document_names:
+                self.delete_document(knowledge_base_name, document_name)
+
+            # Remove the knowledge base from the root
+            del self.knowledge_base.root[knowledge_base_name]
+
+            # Update the stored file
+            self.knowledge_base.dump()
+
+            # Remove the knowledge base from the document data
+            self.document_data.pop(knowledge_base_name, None)
+
+            # Determine the root directory for the documents
+            document_root_directory = os.path.join(
+                settings.VECTORSTORE_KNOWLEDGE_BASE_DIR,
+                knowledge_base_name,
+            )
+
+            # Remove the root directory of the documents
+            if os.path.exists(document_root_directory):
+                shutil.rmtree(document_root_directory)
+
+            # Remove the vector store from disk
+            delete_vectorstore(knowledge_base_name)
+
+            logger.debug(
+                "knowledge_base.delete.success", knowledge_base_name=knowledge_base_name
+            )
+        else:
+            raise KeyError(f"Knowledge base '{knowledge_base_name}' does not exist")

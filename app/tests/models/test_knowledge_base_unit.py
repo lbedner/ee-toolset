@@ -1,6 +1,8 @@
 import os
 import tempfile
 
+import pytest
+
 from app.models import KnowledgeBase, KnowledgeBaseDocument, KnowledgeBaseHelper
 
 
@@ -170,3 +172,59 @@ def test_knowledge_base_helper_delete_document():
 
     # Ensure the file is deleted from disk
     os.remove(temp_incoming_file_name)
+
+
+def test_knowledge_base_helper_get_knowledge_base():
+    # Initialize a knowledge base with some documents
+    kb = KnowledgeBase(
+        root={
+            "kb1": {
+                "doc1": KnowledgeBaseDocument(
+                    Type="Document", Filepath="/path/to/doc1", Size=1024, Loaded=True
+                ),
+                "doc2": KnowledgeBaseDocument(
+                    Type="Report", Filepath="/path/to/doc2", Size=2048, Loaded=False
+                ),
+            }
+        }
+    )
+    kb_helper = KnowledgeBaseHelper(kb)
+
+    # Test retrieving an existing knowledge base
+    retrieved_kb = kb_helper.get_knowledge_base("kb1")
+    assert "doc1" in retrieved_kb
+    assert "doc2" in retrieved_kb
+    assert retrieved_kb["doc1"].Type == "Document"
+    assert retrieved_kb["doc2"].Type == "Report"
+
+    # Test retrieving a non-existent knowledge base
+    with pytest.raises(KeyError):
+        kb_helper.get_knowledge_base("non_existent_kb")
+
+
+def test_knowledge_base_helper_delete_knowledge_base():
+    # Initialize a knowledge base
+    kb = KnowledgeBase(
+        root={
+            "kb1": {
+                "doc1": KnowledgeBaseDocument(
+                    Type="Document", Filepath="/path/to/doc1", Size=1024, Loaded=True
+                ),
+                "doc2": KnowledgeBaseDocument(
+                    Type="Report", Filepath="/path/to/doc2", Size=2048, Loaded=False
+                ),
+            }
+        }
+    )
+    kb_helper = KnowledgeBaseHelper(kb)
+
+    # Delete the knowledge base
+    kb_helper.delete_knowledge_base("kb1")
+
+    # Assert that the knowledge base is removed
+    assert "kb1" not in kb_helper.knowledge_base.root
+
+    # Optionally, assert that the documents are removed from the document_data
+    # This depends on whether your delete_document method
+    # also removes the data from document_data
+    assert "kb1" not in kb_helper.document_data
