@@ -1,20 +1,4 @@
 {
-    "kb1": {
-        "ddl.txt": {
-            "Type": "Document",
-            "Filepath": "data/vectorstore/knowledge_base/kb1/ddl.txt",
-            "Size": 6156,
-            "Loaded": false
-        }
-    },
-    "sql": {
-        "ddl.txt": {
-            "Type": "Document",
-            "Filepath": "data/vectorstore/knowledge_base/sql/ddl.txt",
-            "Size": 6156,
-            "Loaded": false
-        }
-    },
     "Catalog Processing": {
         "ingest_amw_content.pdf": {
             "Type": "Document",
@@ -166,22 +150,6 @@
             "Type": "Document",
             "Filepath": "data/vectorstore/knowledge_base/Rose Of Eternity/Rose of Eternity - Quotes.docx",
             "Size": 6430,
-            "Loaded": false
-        }
-    },
-    "test one": {
-        "ddl.txt": {
-            "Type": "Document",
-            "Filepath": "data/vectorstore/knowledge_base/test one/ddl.txt",
-            "Size": 6156,
-            "Loaded": false
-        }
-    },
-    "No More Wiring Up": {
-        "requirements.txt": {
-            "Type": "Document",
-            "Filepath": "data/vectorstore/knowledge_base/No More Wiring Up/requirements.txt",
-            "Size": 7050,
             "Loaded": false
         }
     }

@@ -1,5 +1,6 @@
 import app.core.styles as styles
 import flet as ft
+from app.core.log import logger
 
 
 class DropdownControl(ft.UserControl):
@@ -45,6 +46,30 @@ class DropdownControl(ft.UserControl):
         if set_selected:
             self.dropdown.value = option
         self.update()
+
+    def remove_option(self, option: str):
+        # Find the option object in the dropdown options
+        option_to_remove: ft.dropdown.Option = None
+        logger.debug(
+            "dropdown.options",
+            option=option,
+            options=[opt.key for opt in self.dropdown.options],
+        )
+        for opt in self.dropdown.options:
+            if opt.key == option:
+                logger.debug("dropdown.option.found", option=opt.key)
+                option_to_remove = opt
+                break
+
+        # Remove the option if it exists
+        if option_to_remove:
+            logger.debug("dropdown.option.remove", option=option_to_remove)
+            self.dropdown.options.remove(option_to_remove)
+            self.dropdown.value = self.dropdown.options[0].key
+            self.update()
+        else:
+            # Optionally, log or handle the case where the option does not exist
+            logger.warning("dropdown.option.missing", option=option)
 
     def build(self):
         if self.default_value:

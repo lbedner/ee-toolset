@@ -1,3 +1,4 @@
+import shutil
 from os import path
 
 from langchain.schema import Document
@@ -24,6 +25,30 @@ def vectorstore_path_exists(knowledge_base_name: str) -> bool:
         knowledge_base_name=knowledge_base_name,
     )
     return path.exists(persist_directory)
+
+
+def delete_vectorstore(knowledge_base_name: str) -> None:
+    """
+    Deletes the vector store directory and its metadata for a given knowledge base name.
+
+    Args:
+        knowledge_base_name (str): The name of the knowledge base.
+
+    Raises:
+        FileNotFoundError: If the vector store directory does not exist.
+    """
+    formatted_kb_name = format_knowledge_base_name(knowledge_base_name)
+    persist_directory = path.join(settings.VECTORSTORE_CHROMADB_DIR, formatted_kb_name)
+
+    if path.exists(persist_directory):
+        logger.debug(
+            "vectorstore.chroma.delete",
+            persist_directory=persist_directory,
+            knowledge_base_name=knowledge_base_name,
+        )
+        shutil.rmtree(persist_directory)
+    else:
+        logger.warning(f"Vector store directory '{persist_directory}' not found.")
 
 
 def get_vectorstore_retriever(

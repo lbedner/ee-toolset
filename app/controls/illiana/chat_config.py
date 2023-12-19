@@ -1,13 +1,17 @@
 import app.core.styles as styles
 import flet as ft
-from app.controls.attributes.buttons import ElevatedAddButton, ElevatedCancelButton
+from app.controls.attributes.buttons import (
+    ElevatedAddButton,
+    ElevatedCancelButton,
+    ElevatedDeleteButton,
+)
 from app.controls.attributes.snack_bar import SuccessSnackBar
 from app.controls.illiana.chip import FileChip
 from app.controls.illiana.dropdown import DropdownControl
 from app.controls.illiana.file_picker import FilePickerControl
 from app.controls.illiana.slider import MaximumLengthSlider, TemperatureSlider
 from app.core.config import settings
-from app.models import KnowledgeBase, KnowledgeBaseHelper
+from app.models import KnowledgeBase, KnowledgeBaseDocument, KnowledgeBaseHelper
 
 
 class AlertDialogControl(ft.AlertDialog):
@@ -184,6 +188,57 @@ class ChatConfig(ft.UserControl):
         self.update()
         self.files_container_control.update_files_container()
 
+    def on_delete_knowledge_base(self, knowledge_base_name: str):
+        def delete_button_click():
+            self.delete_knowledge_base(knowledge_base_name)
+            self.page.dialog.open = False
+            self.page.update()
+
+        # Retrieve the knowledge base
+        try:
+            knowledge_base: dict[
+                str, KnowledgeBaseDocument
+            ] = self.knowledge_base_helper.get_knowledge_base(knowledge_base_name)
+        except KeyError:
+            # Handle the case where the knowledge base doesn't exist
+            # You can log this error or show a message to the user
+            return
+
+        # Format the document list string
+        document_count = len(knowledge_base.keys())
+        document_list_str = "\n".join(
+            [f"- {doc_name}" for doc_name in knowledge_base.keys()]
+        )
+
+        # Create the confirmation message
+        confirmation_message = ft.Text(
+            f"Are you sure you want to delete {knowledge_base_name} and the following {document_count} document(s):\n\n{document_list_str}",  # noqa
+            **styles.ModalSubtitle().to_dict(),
+        )
+
+        # Set up the alert dialog
+        alert_dialog = AlertDialogControl(
+            title=ft.Text("Delete Knowledge Base", **styles.ModalTitle().to_dict()),
+            content=confirmation_message,
+            actions=[
+                ElevatedCancelButton(self.on_click_close_dialog),
+                ElevatedDeleteButton(delete_button_click),
+            ],
+        )
+        alert_dialog.show(self.page)
+
+    def delete_knowledge_base(self, knowledge_base_name: str):
+        knowledge_base_name = self.knowledge_base_dropdown.dropdown.value
+        self.knowledge_base_helper.delete_knowledge_base(knowledge_base_name)
+        self.knowledge_base_dropdown.remove_option(knowledge_base_name)
+        self.page.snack_bar = SuccessSnackBar(
+            message=f"Successfully deleted knowledge base: {knowledge_base_name}",
+        ).build()
+        self.page.snack_bar.open = True
+        self.page.update()
+        self.update()
+        self.files_container_control.update_files_container()
+
     def build(self):
         self.llm_dropdown = self.get_llm_dropdown()
         return ft.Container(
@@ -206,6 +261,12 @@ class ChatConfig(ft.UserControl):
                             ft.IconButton(
                                 icon=ft.icons.ADD_CIRCLE_OUTLINE_OUTLINED,
                                 on_click=lambda _: self.on_add_new_knowledge_base(),
+                            ),
+                            ft.IconButton(
+                                icon=ft.icons.DELETE_OUTLINE_ROUNDED,
+                                on_click=lambda _: self.on_delete_knowledge_base(
+                                    self.knowledge_base_dropdown.dropdown.value
+                                ),
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
