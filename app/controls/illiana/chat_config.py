@@ -4,12 +4,17 @@ from app.controls.attributes.buttons import (
     ElevatedAddButton,
     ElevatedCancelButton,
     ElevatedDeleteButton,
+    ElevatedRefreshButton,
+    IconAddButton,
+    IconDeleteButton,
+    IconRefreshButton,
 )
 from app.controls.attributes.snack_bar import SuccessSnackBar
 from app.controls.illiana.chip import FileChip
 from app.controls.illiana.dropdown import DropdownControl
 from app.controls.illiana.file_picker import FilePickerControl
 from app.controls.illiana.slider import MaximumLengthSlider, TemperatureSlider
+from app.core.ai import refresh_vectorstore
 from app.core.config import settings
 from app.models import KnowledgeBase, KnowledgeBaseDocument, KnowledgeBaseHelper
 
@@ -21,12 +26,14 @@ class AlertDialogControl(ft.AlertDialog):
         content: ft.Control,
         on_dismiss=None,
         actions: list[ft.Control] = [],
+        modal: bool = True,
     ):
         super().__init__()
         self.title = title
         self.content = content
-        self.on_dismiss = on_dismiss if on_dismiss else lambda e: None
+        self.on_dismiss = on_dismiss if on_dismiss else lambda _: None
         self.actions = actions
+        self.modal = modal
 
     def show(self, page: ft.Page):
         page.show_dialog(self)
@@ -149,6 +156,21 @@ class ChatConfig(ft.UserControl):
         self.page.dialog.open = False
         self.page.update()
 
+    def create_and_show_dialog(
+        self,
+        page: ft.Page,
+        title: ft.Text,
+        content: ft.Control,
+        actions: list[ft.Control],
+    ) -> AlertDialogControl:
+        alert_dialog = AlertDialogControl(
+            title=ft.Text(title, **styles.ModalTitle().to_dict()),
+            content=content,
+            actions=actions,
+        )
+        alert_dialog.show(page)
+        return alert_dialog
+
     def on_add_new_knowledge_base(self):
         knowledge_base_name_field = ft.TextField(
             border_radius=15,
@@ -167,15 +189,15 @@ class ChatConfig(ft.UserControl):
             self.page.dialog.open = False
             self.page.update()
 
-        alert_dialog = AlertDialogControl(
-            title=ft.Text("Add New Knowledge Base", **styles.ModalTitle().to_dict()),
+        self.create_and_show_dialog(
+            page=self.page,
+            title="Add New Knowledge Base",
             content=knowledge_base_name_field,
             actions=[
                 ElevatedCancelButton(self.on_click_close_dialog),
                 ElevatedAddButton(add_button_click),
             ],
         )
-        alert_dialog.show(self.page)
 
     def add_new_knowledge_base(self, knowledge_base_name: str):
         self.knowledge_base_helper.add_new_knowledge_base(knowledge_base_name)
@@ -215,20 +237,18 @@ class ChatConfig(ft.UserControl):
             f"Are you sure you want to delete {knowledge_base_name} and the following {document_count} document(s):\n\n{document_list_str}",  # noqa
             **styles.ModalSubtitle().to_dict(),
         )
-
-        # Set up the alert dialog
-        alert_dialog = AlertDialogControl(
-            title=ft.Text("Delete Knowledge Base", **styles.ModalTitle().to_dict()),
+        self.create_and_show_dialog(
+            page=self.page,
+            title="Delete Knowledge Base",
             content=confirmation_message,
             actions=[
                 ElevatedCancelButton(self.on_click_close_dialog),
                 ElevatedDeleteButton(delete_button_click),
             ],
         )
-        alert_dialog.show(self.page)
 
     def delete_knowledge_base(self, knowledge_base_name: str):
-        knowledge_base_name = self.knowledge_base_dropdown.dropdown.value
+        knowledge_base_name = self.knowledge_base_dropdown.get_dropdown_value()
         self.knowledge_base_helper.delete_knowledge_base(knowledge_base_name)
         self.knowledge_base_dropdown.remove_option(knowledge_base_name)
         self.page.snack_bar = SuccessSnackBar(
@@ -239,10 +259,64 @@ class ChatConfig(ft.UserControl):
         self.update()
         self.files_container_control.update_files_container()
 
+    def on_refresh_knowledge_base(self, knowledge_base_name: str):
+        def refresh_button_click():
+            alert_dialog.actions.clear()
+            alert_dialog.actions.append(ft.ProgressBar(visible=True))
+            alert_dialog.update()
+            self.refresh_knowledge_base(knowledge_base_name)
+            self.page.dialog.open = False
+            self.page.update()
+
+        # Retrieve the knowledge base
+        try:
+            knowledge_base: dict[
+                str, KnowledgeBaseDocument
+            ] = self.knowledge_base_helper.get_knowledge_base(knowledge_base_name)
+        except KeyError:
+            return
+
+        # Format the document list string
+        document_count = len(knowledge_base.keys())
+        document_list_str = "\n".join(
+            [f"- {doc_name}" for doc_name in knowledge_base.keys()]
+        )
+
+        # Create the confirmation message
+        confirmation_message = ft.Text(
+            f"Are you sure you want to refresh {knowledge_base_name} and the following {document_count} document(s):\n\n{document_list_str}",  # noqa
+            **styles.ModalSubtitle().to_dict(),
+        )
+
+        # Set up the alert dialog
+        alert_dialog: AlertDialogControl = self.create_and_show_dialog(
+            page=self.page,
+            title="Refresh Knowledge Base",
+            content=confirmation_message,
+            actions=[
+                ElevatedCancelButton(self.on_click_close_dialog),
+                ElevatedRefreshButton(refresh_button_click),
+            ],
+        )
+
+    def refresh_knowledge_base(self, knowledge_base_name: str):
+        refresh_vectorstore(
+            self.knowledge_base_helper.document_data[knowledge_base_name],
+            self.knowledge_base_dropdown.get_dropdown_value(),
+        )
+        self.page.snack_bar = SuccessSnackBar(
+            message=f"Successfully refreshed knowledge base: {knowledge_base_name}",
+        ).build()
+        self.page.snack_bar.open = True
+        self.page.update()
+        self.update()
+        self.knowledge_base_helper.refesh(knowledge_base_name)
+        self.files_container_control.update_files_container()
+
     def build(self):
         self.llm_dropdown = self.get_llm_dropdown()
         return ft.Container(
-            width=300,
+            width=350,
             height=1000,
             border_radius=15,
             padding=15,
@@ -258,15 +332,16 @@ class ChatConfig(ft.UserControl):
                     ft.Row(
                         controls=[
                             self.knowledge_base_dropdown,
-                            ft.IconButton(
-                                icon=ft.icons.ADD_CIRCLE_OUTLINE_OUTLINED,
-                                on_click=lambda _: self.on_add_new_knowledge_base(),
+                            IconAddButton(
+                                on_click_callable=self.on_add_new_knowledge_base,
                             ),
-                            ft.IconButton(
-                                icon=ft.icons.DELETE_OUTLINE_ROUNDED,
-                                on_click=lambda _: self.on_delete_knowledge_base(
-                                    self.knowledge_base_dropdown.dropdown.value
-                                ),
+                            IconRefreshButton(
+                                on_click_callable=self.on_refresh_knowledge_base,
+                                get_param_callable=self.knowledge_base_dropdown.get_dropdown_value,  # noqa
+                            ),
+                            IconDeleteButton(
+                                on_click_callable=self.on_delete_knowledge_base,
+                                get_param_callable=self.knowledge_base_dropdown.get_dropdown_value,  # noqa
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -333,13 +408,19 @@ class FilesContainerControl(ft.UserControl):
         """
         knowledge_base_name = self.get_knowledge_base_name()
         files_text_widgets: list[FileChip] = []
+
         if knowledge_base_name in self.knowledge_base_helper.document_data:
+            knowledge_base_documents = self.knowledge_base_helper.get_documents(
+                knowledge_base_name,
+            )
+
             files_text_widgets = [
                 FileChip(
                     file_name=file_name,
                     file_bytes=file_bytes,
                     delete_handler=self.delete_file_handler,
                     knowledge_base_name=knowledge_base_name,
+                    loaded=knowledge_base_documents[file_name].Loaded,
                 )
                 for file_name, file_bytes in self.knowledge_base_helper.document_data[
                     knowledge_base_name

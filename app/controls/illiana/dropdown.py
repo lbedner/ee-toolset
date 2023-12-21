@@ -71,6 +71,9 @@ class DropdownControl(ft.UserControl):
             # Optionally, log or handle the case where the option does not exist
             logger.warning("dropdown.option.missing", option=option)
 
+    def get_dropdown_value(self) -> str:
+        return self.dropdown.value
+
     def build(self):
         if self.default_value:
             self.dropdown.value = self.default_value

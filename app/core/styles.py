@@ -24,6 +24,8 @@ class ButtonColors:
     CANCEL_BORDER_HOVERED: str = "#444444"
     UPDATE_DEFAULT: str = ADD_DEFAULT
     UPDATE_BORDER_HOVERED: str = ADD_BORDER_HOVERED
+    REFRESH_DEFAULT: str = "#28A745"
+    REFRESH_BORDER_HOVERED: str = "#52C76E"
 
 
 @dataclass(frozen=True)
@@ -48,6 +50,7 @@ AddButtonTextStyle = ButtonTextStyle()
 UpdateButtonTextStyle = ButtonTextStyle()
 DeleteButtonTextStyle = ButtonTextStyle()
 CancelButtonTextStyle = ButtonTextStyle()
+RefreshButtonTextStyle = ButtonTextStyle()
 
 
 @dataclass(frozen=True)
@@ -153,7 +156,6 @@ ELEVATED_BUTTON_UPDATE_STYLE = create_button_style(
     ButtonColors.UPDATE_BORDER_HOVERED,
 )
 
-
 ELEVATED_BUTTON_DELETE_STYLE = create_button_style(
     ColorPalette.TEXT_PRIMARY_DEFAULT,
     ButtonColors.DELETE_DEFAULT,
@@ -168,11 +170,18 @@ ELEVATED_BUTTON_CANCEL_STYLE = create_button_style(
     ButtonColors.CANCEL_BORDER_HOVERED,
 )
 
+ELEVATED_BUTTON_REFRESH_STYLE = create_button_style(
+    ColorPalette.TEXT_PRIMARY_DEFAULT,
+    ButtonColors.REFRESH_DEFAULT,
+    ButtonColors.REFRESH_DEFAULT,
+    ButtonColors.REFRESH_BORDER_HOVERED,
+)
+
 
 @dataclass(frozen=True)
 class ChatWindowStyle(Style):
-    width: int = 1150
-    height: int = 750
+    width: int = 1125
+    height: int = 850
     bgcolor: str = "#141518"
     border_radius: int = 10
     padding: int = 15
@@ -180,7 +189,7 @@ class ChatWindowStyle(Style):
 
 @dataclass(frozen=True)
 class ChatMessageInputStyle(Style):
-    width: int = 1050
+    width: int = 1025
     height: int = 540
     border_color: str = "white"
     content_padding: int = 10

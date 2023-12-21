@@ -148,6 +148,18 @@ class KnowledgeBaseHelper:
                     logger.error(f"Error loading document '{document_name}': {str(e)}")
         return document_data
 
+    def get_document_data(self, knowledge_base_name: str) -> dict[str, bytes]:
+        """
+        Retrieves the document data for a given knowledge base.
+
+        Args:
+            knowledge_base_name (str): The name of the knowledge base.
+
+        Returns:
+            dict[str, bytes]: The document data.
+        """
+        return self.document_data[knowledge_base_name]
+
     def add_new_knowledge_base(self, knowledge_base_name: str) -> None:
         """
         Adds a new knowledge base.
@@ -324,3 +336,33 @@ class KnowledgeBaseHelper:
             )
         else:
             raise KeyError(f"Knowledge base '{knowledge_base_name}' does not exist")
+
+    def refesh(self, knowledge_base_name: str) -> None:
+        """
+        Refreshes the knowledge base.
+
+        Args:
+            knowledge_base_name (str): The name of the knowledge base to refresh.
+
+        Returns:
+            None
+        """
+        if knowledge_base_name in self.knowledge_base.root:
+            documents = self.knowledge_base.root[knowledge_base_name]
+            for document in documents.values():
+                document.Loaded = True
+        self.knowledge_base.dump()
+
+    def get_documents(
+        self, knowledge_base_name: str
+    ) -> dict[str, KnowledgeBaseDocument]:
+        """
+        Retrieves the documents within a knowledge base.
+
+        Args:
+            knowledge_base_name (str): The name of the knowledge base.
+
+        Returns:
+            dict[str, KnowledgeBaseDocument]: The documents within the specified knowledge base.
+        """  # noqa
+        return self.knowledge_base.root[knowledge_base_name]

@@ -1,3 +1,4 @@
+import app.core.styles as styles
 import flet as ft
 from app.controls.illiana.chat import ChatView, UserInputBar, UserInputField
 from app.controls.illiana.chat_config import ChatConfig
@@ -14,19 +15,14 @@ class IllianaView(BaseView):
         user_input_field = UserInputField(chat_view=self.chat_view)
         divider = ft.Divider(height=0.2, color="transparent")
         super().__init__(
-            page,
-            ILLIANA_ROUTE,
-            ft.Row(
-                alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+            page=page,
+            route=ILLIANA_ROUTE,
+            main_control=ft.Row(
+                vertical_alignment=ft.CrossAxisAlignment.START,
+                spacing=15,
                 controls=[
                     ft.Column(
                         controls=[
-                            ft.Text(
-                                "Illiana",
-                                size=24,
-                                weight="w800",
-                                font_family="Roboto",
-                            ),
                             ft.Text(
                                 "Illiana is a chatbot that uses the OpenAI API to generate responses to your messages. "  # noqa
                                 "This is a work in progress.",
@@ -53,16 +49,18 @@ class IllianaView(BaseView):
                                     alignment=ft.MainAxisAlignment.CENTER,
                                 ),
                                 alignment=ft.alignment.center,
-                                width=1200,
+                                width=styles.ChatWindowStyle.width,
                             ),
                         ],
                         spacing=15,
-                        alignment=ft.alignment.top_center,
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
                     ),
-                    self.chat_config,
+                    ft.Column(
+                        controls=[
+                            self.chat_config,
+                        ],
+                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                    ),
                 ],
-                spacing=0,
             ),
-            scroll_mode="auto",
         )
-        # user_input.focus()

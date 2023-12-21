@@ -228,3 +228,43 @@ def test_knowledge_base_helper_delete_knowledge_base():
     # This depends on whether your delete_document method
     # also removes the data from document_data
     assert "kb1" not in kb_helper.document_data
+
+
+@pytest.mark.skip(reason="Skipping this until I can sort out the file paths")
+def test_knowledge_base_helper_get_document_data():
+    # Initialize a knowledge base
+    kb = KnowledgeBase(root={})
+    kb_helper = KnowledgeBaseHelper(kb)
+
+    # Create temporary files and add them to the knowledge base
+    document_data = {}
+    for i in range(2):
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file_name = temp_file.name
+            content = f"Test content {i}".encode()
+            temp_file.write(content)
+
+            # Add document to the knowledge base
+            doc_name = f"doc{i}"
+            kb_helper.add_document(
+                "kb1",
+                doc_name,
+                incoming_filename=temp_file_name,
+                outgoing_filename=temp_file_name,
+            )
+            document_data[doc_name] = content
+
+    # Retrieve the document data using get_document_data
+    retrieved_data = kb_helper.get_document_data("kb1")
+
+    # Assert that the retrieved data matches the added data
+    assert len(retrieved_data) == len(document_data)
+    for doc_name, content in document_data.items():
+        assert doc_name in retrieved_data
+        assert retrieved_data[doc_name] == content
+
+    # Clean up
+    for temp_file_name in [
+        doc.Filepath for doc in kb_helper.knowledge_base.root["kb1"].values()
+    ]:
+        os.remove(temp_file_name)

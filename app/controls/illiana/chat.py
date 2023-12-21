@@ -65,7 +65,7 @@ class ChatMessage(ft.Column):
 class ChatView(ft.Container):
     def __init__(self, chat_config: ChatConfig, page: ft.Page) -> None:
         super().__init__(**styles.ChatWindowStyle().to_dict())
-        self.chat = ft.ListView(expand=True, height=200, spacing=15)
+        self.chat = ft.ListView(expand=True, height=200, spacing=10)
         self.content = self.chat
         self.chat_config = chat_config
         self.page = page
@@ -95,6 +95,37 @@ class MessageHandler:
         )
         self.chat_view.add_chat_line(chat_message)
 
+    def display_sources(self, response: dict, chat_view: ChatView) -> None:
+        if response.get("sources"):
+            chat_view.chat.controls.append(ft.Markdown("Sources:"))
+
+            seen = set()
+            sources: list[str] = []
+            for source in response["sources"]:
+                source_key = source.metadata["source"]
+                if source_key not in seen:
+                    seen.add(source_key)
+                    sources.append(source_key)
+            source_controls: list[ft.Markdown] = []
+
+            for source in sources:
+                source_control = ft.Markdown(
+                    auto_follow_links=True,
+                    code_style=ft.TextStyle(
+                        size=16,
+                        font_family="Roboto Mono",
+                        weight=ft.FontWeight.W_500,
+                    ),
+                    code_theme="atom-one-dark",
+                    extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
+                    selectable=True,
+                    value=f"- [{source}](https://www.google.com)",
+                )
+                source_controls.append(source_control)
+            chat_view.chat.controls.append(
+                ft.Container(content=ft.Column(source_controls, spacing=4))
+            )
+
     def handle_bot_response(self, user_input: str):
         # Display progress ring while waiting for a response
         progress_ring = ft.Row(
@@ -114,7 +145,7 @@ class MessageHandler:
         knowledge_base_name = (
             self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
         )
-        response = ai.chat_with_llm(
+        response, refreshed_vectorstore = ai.chat_with_llm(
             user_input=user_input,
             document_data=self.chat_view.chat_config.knowledge_base_helper.document_data[
                 knowledge_base_name
@@ -136,27 +167,13 @@ class MessageHandler:
         self.chat_view.type_chat_line(chat_message)
 
         # Display sources
-        if response.get("sources"):
-            self.chat_view.chat.controls.append(ft.Markdown("Sources:"))
-            sources = []
-            for source in response["sources"]:
-                source_control = ft.Markdown(
-                    auto_follow_links=True,
-                    code_style=ft.TextStyle(
-                        size=16,
-                        font_family="Roboto Mono",
-                        weight=ft.FontWeight.W_500,
-                    ),
-                    code_theme="atom-one-dark",
-                    extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
-                    selectable=True,
-                    value=f"- [{source.metadata['source']}](https://www.google.com)",
-                )
-                sources.append(source_control)
-            self.chat_view.chat.controls.append(
-                ft.Container(content=ft.Column(sources, spacing=4))
-            )
+        self.display_sources(response, self.chat_view)
+
         self.chat_view.chat.update()
+
+        if refreshed_vectorstore:
+            self.chat_view.chat_config.knowledge_base_helper.refesh(knowledge_base_name)
+            self.chat_view.chat_config.files_container_control.update_files_container()
 
 
 class UserInputField(ft.TextField):
@@ -186,7 +203,6 @@ class UserInputField(ft.TextField):
         self.handle_input(event.control.value)
 
     def handle_input(self, input: str) -> None:
-        ic(f"Handling input: {input}")
         message = self.sanitize_input(input)
         if message:
             # Disable input

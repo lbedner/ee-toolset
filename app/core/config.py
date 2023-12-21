@@ -10,10 +10,11 @@ class Settings(BaseSettings):
     CHAT_TEXT_ANIMATION_SPEED: float = 0.008
 
     SUPPORTED_DOCUMENTS: list[str] = [
+        "csv",
         "txt",
         "pdf",
         "docx",
-        "doct",
+        "doc",
         "html",
         "htm",
     ]

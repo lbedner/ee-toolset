@@ -1,6 +1,5 @@
 import flet as ft
 from app.controls import SideBarControl
-from app.core.log import ic
 
 
 class BaseView(ft.UserControl):
@@ -18,7 +17,6 @@ class BaseView(ft.UserControl):
         self.scroll_mode = scroll_mode
 
     def create_view(self):
-        ic(self.scroll_mode)
         return ft.View(
             scroll=self.scroll_mode,
             auto_scroll=False,
@@ -41,6 +39,4 @@ class BaseView(ft.UserControl):
                     ),
                 ),
             ],
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            vertical_alignment=ft.MainAxisAlignment.CENTER,
         )
