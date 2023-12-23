@@ -6,13 +6,19 @@ import flet as ft
 
 class FileChip(ft.UserControl):
     def __init__(
-        self, file_name, file_bytes: bytes, delete_handler, knowledge_base_name: str
+        self,
+        file_name,
+        file_bytes: bytes,
+        delete_handler,
+        knowledge_base_name: str,
+        loaded: bool = False,
     ):
         super().__init__()
         self.file_name = file_name
         self.file_bytes = file_bytes
         self.delete_handler = delete_handler
         self.knowledge_base_name = knowledge_base_name
+        self.loaded = loaded
 
     def build(self):
         file_info = self.truncate_file_name(self.file_name)
@@ -30,10 +36,12 @@ class FileChip(ft.UserControl):
             leading=ft.Row(
                 controls=[
                     ft.Icon(
-                        ft.icons.INSERT_DRIVE_FILE_OUTLINED,
-                        color=styles.ColorPalette.TEXT_SECONDARY_DEFAULT,
+                        ft.icons.CHECK_OUTLINED,
+                        color=styles.ColorPalette.ACCENT_SUCCESS
+                        if self.loaded
+                        else styles.ColorPalette.TEXT_SECONDARY_DEFAULT,  # noqa
                         size=16,
-                    )
+                    ),
                 ]
             ),
             on_delete=lambda e: self.delete_handler(
@@ -48,7 +56,7 @@ class FileChip(ft.UserControl):
             num_bytes /= 1024.0
         return f"{num_bytes:.1f} YB"
 
-    def truncate_file_name(self, file_name: str, max_length: int = 25) -> str:
+    def truncate_file_name(self, file_name: str, max_length: int = 40) -> str:
         # get base name of file
         file_name = os.path.basename(file_name)
         return (

@@ -45,21 +45,13 @@ def determine_loader_and_load(file_name, file_bytes):
             file_bytes, UnstructuredWordDocumentLoader, ext, file_name
         )
     else:
-        logger.debug(f"Unsupported file type: {file_name}")
+        logger.error(f"Unsupported file type: {file_name}")
         return []
 
 
-def load_documents(files_dict: dict[str, bytes]) -> list[Document]:
+def load_documents(document_data: dict[str, bytes]) -> list[Document]:
     documents: list[Document] = []
-    for file_name, file_bytes in files_dict.items():
-        logger.debug(f"Loading file[{file_name}]...")
+    for file_name, file_bytes in document_data.items():
+        logger.debug("loader.load_documents", file_name=file_name)
         documents.extend(determine_loader_and_load(file_name, file_bytes))
     return documents
-
-    # logger.debug("Loading GitHub repo...")
-    # documents = GitLoader(
-    #     branch="illiana",
-    #     # repo_path="/Users/James/Workspace/Ingestion/music-cat",
-    #     repo_path="/Users/James/Workspace/Poc/ee-toolset",
-    #     file_filter=lambda file_path: file_path.endswith(".py"),
-    # ).load()

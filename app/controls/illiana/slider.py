@@ -14,7 +14,7 @@ class Slider(ft.UserControl):
             max=max_value,
             divisions=max_value - min_value,
             height=50,
-            width=300,
+            width=350,
             thumb_color=styles.ColorPalette.ACCENT,
             on_change=lambda event: self.slider_changed(event),
             tooltip=tooltip,

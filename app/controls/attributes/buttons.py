@@ -69,3 +69,79 @@ class ElevatedCancelButton(BaseElevatedButton):
             text="Cancel",
             text_style=styles.CancelButtonTextStyle,
         )
+
+
+class ElevatedRefreshButton(BaseElevatedButton):
+    def __init__(self, on_click_callable: Callable):
+        super().__init__(
+            on_click_callable,
+            style=styles.ELEVATED_BUTTON_REFRESH_STYLE,
+            text="Refresh",
+            text_style=styles.RefreshButtonTextStyle,
+        )
+
+
+class BaseIconButton(ft.UserControl):
+    def __init__(
+        self,
+        on_click_callable: Callable,
+        icon: str,
+        color: str = None,
+        get_param_callable: Callable = None,
+        tooltip: str = None,
+        *args,
+        **kwargs
+    ):
+        super().__init__(*args, **kwargs)
+        self.on_click_callable = on_click_callable
+        self.get_param_callable = get_param_callable
+        self.icon = icon
+        self.color = color
+        self.tooltip = tooltip
+
+    def build(self) -> ft.IconButton:
+        return ft.IconButton(
+            icon=self.icon,
+            icon_color=self.color,
+            on_click=lambda _: self.on_click(),
+            tooltip=self.tooltip,
+        )
+
+    def on_click(self):
+        param = self.get_param_callable() if self.get_param_callable else None
+        if param:
+            self.on_click_callable(param)
+        else:
+            self.on_click_callable()
+
+
+class IconAddButton(BaseIconButton):
+    def __init__(self, on_click_callable: Callable):
+        super().__init__(
+            on_click_callable,
+            icon=ft.icons.ADD_OUTLINED,
+            # color=styles.ColorPalette.ACCENT,
+            tooltip="Add knowledge base.",
+        )
+
+
+class IconRefreshButton(BaseIconButton):
+    def __init__(self, on_click_callable: Callable, get_param_callable: Callable):
+        super().__init__(
+            on_click_callable,
+            icon=ft.icons.REFRESH_SHARP,
+            # color=styles.ColorPalette.ACCENT_SUCCESS,
+            get_param_callable=get_param_callable,
+            tooltip="Refresh selected knowledge base.",
+        )
+
+
+class IconDeleteButton(BaseIconButton):
+    def __init__(self, on_click_callable: Callable, get_param_callable: Callable):
+        super().__init__(
+            on_click_callable,
+            icon=ft.icons.DELETE_OUTLINED,
+            # color=styles.ColorPalette.ACCENT_STOP,
+            get_param_callable=get_param_callable,
+            tooltip="Delete selected knowledge base.",
+        )

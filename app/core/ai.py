@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from langchain.callbacks import get_openai_callback
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.chains.base import Chain
@@ -16,7 +18,12 @@ from app.core.config import settings
 from app.core.loader import load_documents
 from app.core.log import ic, logger
 from app.core.splitter import get_document_chunks
-from app.core.vectorstore import get_vectorstore_retriever, vectorstore_path_exists
+from app.core.vectorstore import (
+    create_vectorstore,
+    delete_vectorstore,
+    get_vectorstore_retriever,
+    vectorstore_exists,
+)
 
 CHAT_HISTORY = "chat_history"
 
@@ -38,7 +45,7 @@ def chat_with_llm(
     model: str = "gpt-3.5-turbo-1106",
     temperature: float = 0.0,
     document_data: dict[str, bytes] = {},
-) -> dict:
+) -> Tuple[dict, bool]:
     logger.debug(
         "llm.chat",
         user_input=user_input,
@@ -73,13 +80,15 @@ def chat_with_llm(
         )
     prompt = conversation_prompts[knowledge_base_name]
 
+    refreshed_vectorstore: bool = False
     if knowledge_base_name and document_data:
         chunked_documents: list[Document] = []
         # Check for the existence of the vectorstore
-        if not vectorstore_path_exists(knowledge_base_name):
+        if not vectorstore_exists(knowledge_base_name):
             documents: list[Document] = load_documents(document_data)
             if documents:
                 chunked_documents = get_document_chunks(documents=documents)
+                refreshed_vectorstore = True
 
         retriever = get_vectorstore_retriever(
             documents=chunked_documents,
@@ -127,7 +136,7 @@ def chat_with_llm(
 
     sources = llm_response.get("sources", [])
     process_sources(sources)  # Process the sources as needed
-    return llm_response
+    return llm_response, refreshed_vectorstore
 
 
 def get_response(
@@ -153,3 +162,22 @@ def get_response(
     if return_sources and "source_documents" in llm_response:
         result["sources"] = llm_response["source_documents"]
     return result
+
+
+def refresh_vectorstore(
+    document_data: dict[str, bytes], knowledge_base_name: str
+) -> None:
+    """
+    Recreates the ChromaDB vector store for a given knowledge base.
+
+    Args:
+        document_data (dict[str, bytes]): A dictionary containing document data, where the keys are document filenames
+            and the values are the document contents in bytes.
+        knowledge_base_name (str): The name of the knowledge base.
+    """  # noqa
+    delete_vectorstore(knowledge_base_name)
+    create_vectorstore(
+        documents=get_document_chunks(load_documents(document_data)),
+        embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
+        knowledge_base_name=knowledge_base_name,
+    )
