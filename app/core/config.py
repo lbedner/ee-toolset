@@ -66,6 +66,7 @@ class Settings(BaseSettings):
         },
     }
 
+    VECTORSTORE_MAX_DOCUMENTS: int = 10
     VECTORSTORE_ROOT_DIR: str = "data/vectorstore"
     VECTORSTORE_KNOWLEDGE_BASE_DIR: str = f"{VECTORSTORE_ROOT_DIR}/knowledge_base"
     VECTORSTORE_CHROMADB_DIR: str = f"{VECTORSTORE_ROOT_DIR}/chromadb"

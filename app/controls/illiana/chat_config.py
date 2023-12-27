@@ -101,6 +101,11 @@ class ChatConfig(ft.UserControl):
             file_picker_control=self.file_picker_control,
             delete_file_handler=self.delete_file,
         )
+        self.use_knowledge_base_checkbox = ft.Checkbox(
+            check_color="#FFFFFF",
+            fill_color=styles.ColorPalette.ACCENT,
+            value=True,
+        )
 
     def on_llm_selection_change(self, event: ft.ControlEvent):
         selected_llm = event.control.value
@@ -123,7 +128,7 @@ class ChatConfig(ft.UserControl):
         llm_names = list(settings.LLMS.keys())
         return DropdownControl(
             options=llm_names,
-            label="LLM Selection",
+            label="LLM",
             width=260,
             on_change=lambda event: self.on_llm_selection_change(event),
             default_value="gpt-3.5-turbo-1106",
@@ -345,6 +350,16 @@ class ChatConfig(ft.UserControl):
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    ),
+                    ft.Row(
+                        controls=[
+                            self.use_knowledge_base_checkbox,
+                            ft.Text(
+                                "Use Knowledge Base",
+                                **styles.SecondaryTextStyle().to_dict(),
+                            ),
+                        ],
+                        alignment=ft.MainAxisAlignment.START,
                     ),
                     self.loading_indicator,
                     ft.Divider(),
