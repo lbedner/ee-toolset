@@ -366,3 +366,12 @@ class KnowledgeBaseHelper:
             dict[str, KnowledgeBaseDocument]: The documents within the specified knowledge base.
         """  # noqa
         return self.knowledge_base.root[knowledge_base_name]
+
+    def get_knowledge_base_names(self) -> list[str]:
+        """
+        Retrieves the knowledge base names.
+
+        Returns:
+            list[str]: The knowledge base names.
+        """
+        return list(self.knowledge_base.root.keys())

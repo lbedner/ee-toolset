@@ -268,3 +268,34 @@ def test_knowledge_base_helper_get_document_data():
         doc.Filepath for doc in kb_helper.knowledge_base.root["kb1"].values()
     ]:
         os.remove(temp_file_name)
+
+
+def test_knowledge_base_helper_get_knowledge_base_names():
+    # Initialize a knowledge base with some named knowledge bases
+    kb = KnowledgeBase(
+        root={
+            "kb1": {
+                "doc1": KnowledgeBaseDocument(
+                    Type="Document", Filepath="/path/to/doc1", Size=1024, Loaded=True
+                )
+            },
+            "kb2": {
+                "doc2": KnowledgeBaseDocument(
+                    Type="Document", Filepath="/path/to/doc2", Size=2048, Loaded=False
+                )
+            },
+        }
+    )
+    kb_helper = KnowledgeBaseHelper(kb)
+
+    # Retrieve the knowledge base names using get_knowledge_base_names
+    kb_names = kb_helper.get_knowledge_base_names()
+
+    # Assert that the retrieved knowledge base names are correct
+    assert set(kb_names) == {"kb1", "kb2"}
+
+    # Optionally, test with an empty knowledge base
+    kb_empty = KnowledgeBase(root={})
+    kb_helper_empty = KnowledgeBaseHelper(kb_empty)
+    kb_names_empty = kb_helper_empty.get_knowledge_base_names()
+    assert kb_names_empty == []

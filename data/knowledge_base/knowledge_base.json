@@ -166,5 +166,13 @@
         }
     },
     "Upwork": {},
-    "Test": {}
+    "Boutique": {
+        "faq.txt": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Boutique/faq.txt",
+            "Size": 1785,
+            "Loaded": true
+        }
+    },
+    "music-cat": {}
 }
