@@ -149,7 +149,7 @@ def get_vectorstore_retriever(
     documents: list[Document],
     embeddings: Embeddings,
     knowledge_base_name: str,
-    max_documents: int = 10,
+    max_documents: int = settings.VECTORSTORE_MAX_DOCUMENTS,
     persist_directory_root: str = settings.VECTORSTORE_CHROMADB_DIR,
 ) -> VectorStoreRetriever:
     """

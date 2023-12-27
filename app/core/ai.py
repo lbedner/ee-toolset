@@ -45,6 +45,7 @@ def chat_with_llm(
     model: str = "gpt-3.5-turbo-1106",
     temperature: float = 0.0,
     document_data: dict[str, bytes] = {},
+    use_knowledge_base: bool = False,
 ) -> Tuple[dict, bool]:
     logger.debug(
         "llm.chat",
@@ -53,6 +54,7 @@ def chat_with_llm(
         temperature=temperature,
         context_window=context_window,
         files=document_data.keys(),
+        use_knowledge_base=use_knowledge_base,
     )
 
     llm = ChatOpenAI(
@@ -81,7 +83,7 @@ def chat_with_llm(
     prompt = conversation_prompts[knowledge_base_name]
 
     refreshed_vectorstore: bool = False
-    if knowledge_base_name and document_data:
+    if use_knowledge_base and knowledge_base_name and document_data:
         chunked_documents: list[Document] = []
         # Check for the existence of the vectorstore
         if not vectorstore_exists(knowledge_base_name):

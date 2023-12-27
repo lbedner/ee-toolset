@@ -65,7 +65,7 @@ class ChatMessage(ft.Column):
 class ChatView(ft.Container):
     def __init__(self, chat_config: ChatConfig, page: ft.Page) -> None:
         super().__init__(**styles.ChatWindowStyle().to_dict())
-        self.chat = ft.ListView(expand=True, height=200, spacing=10)
+        self.chat = ft.ListView(expand=True, height=200, spacing=15)
         self.content = self.chat
         self.chat_config = chat_config
         self.page = page
@@ -147,12 +147,13 @@ class MessageHandler:
         )
         response, refreshed_vectorstore = ai.chat_with_llm(
             user_input=user_input,
-            document_data=self.chat_view.chat_config.knowledge_base_helper.document_data[
-                knowledge_base_name
-            ],
+            document_data=self.chat_view.chat_config.knowledge_base_helper.document_data.get(  # noqa
+                knowledge_base_name, {}
+            ),
             model=self.chat_view.chat_config.llm_dropdown.dropdown.value,
             context_window=self.chat_view.chat_config.llm_context_window.value,
             knowledge_base_name=knowledge_base_name,
+            use_knowledge_base=self.chat_view.chat_config.use_knowledge_base_checkbox.value,  # noqa
         )
 
         # Remove progress ring
