@@ -99,8 +99,8 @@ def chat_with_llm(
         )
 
         # Create conversational retrieval chain
-        logger.debug("Creating conversational retrieval chain...")
         memory.output_key = "answer"
+        logger.debug("qa.create_retrieval_chain", memory_key=memory.output_key)
         conversational_retrieval_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,
             retriever=retriever,

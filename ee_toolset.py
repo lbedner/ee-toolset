@@ -10,7 +10,7 @@ from app.views import BaseView
 
 
 def main(page: ft.Page):
-    logger.info("Starting up EE Toolset...", page=page)
+    logger.info("ee.toolset.starting", page=page)
     page.window_height = constants.PAGE_WINDOW_HEIGHT
     page.window_width = constants.PAGE_WINDOW_WIDTH
     page.bgcolor = styles.ColorPalette.BG_PRIMARY
@@ -25,19 +25,19 @@ def main(page: ft.Page):
     cached_views = {}
 
     def route_change(route_change_event: ft.RouteChangeEvent):
-        logger.debug(f"route_change: {route_change_event}")
+        logger.debug("route.change", route_change_event=route_change_event)
         route = route_change_event.route
         cached_view: Optional[BaseView] = None
         if route not in cached_views:
-            logger.debug(f"route_change: {route} not cached. Caching now...")
+            logger.debug("route.change.cache.miss", route=route)
             view_class = ROUTE_TO_VIEW.get(route)
             if view_class:
                 cached_view = view_class(page=page).create_view()
                 cached_views[route] = cached_view
             else:
-                logger.error(f"route_change: {route} not found in ROUTE_TO_VIEW")
+                logger.error("route.change.view.missing", route=route)
         else:
-            logger.debug(f"route_change: {route} already cached")
+            logger.debug("route.change.cache.hit", route=route)
             cached_view = cached_views[route]
 
         page.views.clear()
@@ -54,7 +54,7 @@ def main(page: ft.Page):
     page.go(constants.ILLIANA_ROUTE)
 
     page.update()
-    logger.info("EE Toolset started!", page=page)
+    logger.info("ee.toolset.started", page=page)
 
 
 ft.app(target=main)

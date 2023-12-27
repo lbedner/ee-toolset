@@ -27,6 +27,7 @@ def load_file_from_bytes(
         # Since we're loading from a temp file,
         # we want to make sure we have the original filename
         loaded_data[0].metadata["source"] = filename
+        loaded_data[0].metadata["size"] = len(file_bytes)
         return loaded_data
 
 
