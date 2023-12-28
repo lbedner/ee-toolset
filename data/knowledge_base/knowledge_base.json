@@ -1,1 +1,304 @@
-{}
+{
+    "Rose of Eternity": {
+        "Rose Of Eternity - Random Notes.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Rose Of Eternity - Random Notes.docx",
+            "Size": 12098,
+            "Loaded": true,
+            "Uri": null
+        },
+        "ROE Bible.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/ROE Bible.docx",
+            "Size": 30770,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Cast.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Cast.docx",
+            "Size": 15616,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Rose of Eternity - Ability Ideas.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Rose of Eternity - Ability Ideas.docx",
+            "Size": 7708,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Legacy.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Legacy.docx",
+            "Size": 7795,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Random.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Random.docx",
+            "Size": 7770,
+            "Loaded": true,
+            "Uri": null
+        },
+        "History.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/History.docx",
+            "Size": 8033,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Challseus_ Escape.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Challseus_ Escape.docx",
+            "Size": 7560,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Rose of Eternity - Quotes.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Rose of Eternity/Rose of Eternity - Quotes.docx",
+            "Size": 6430,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "Abilities - Elyse": {
+        "elyse.pdf": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Abilities - Elyse/elyse.pdf",
+            "Size": 284620,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "Daily Journal - 2000s": {
+        "june_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/june_2007.htm",
+            "Size": 55324,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/june_2007.htm"
+        },
+        "may_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/may_2007.htm",
+            "Size": 43540,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/may_2007.htm"
+        },
+        "april_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/april_2007.htm",
+            "Size": 65351,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/april_2007.htm"
+        },
+        "march_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/march_2007.htm",
+            "Size": 103958,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/march_2007.htm"
+        },
+        "february_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/february_2007.htm",
+            "Size": 53390,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/february_2007.htm"
+        },
+        "january_2007.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/january_2007.htm",
+            "Size": 122134,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/january_2007.htm"
+        },
+        "october_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/october_2006.htm",
+            "Size": 227107,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/october_2006.htm"
+        },
+        "november_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/november_2006.htm",
+            "Size": 116316,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/november_2006.htm"
+        },
+        "may_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/may_2006.htm",
+            "Size": 131672,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/may_2006.htm"
+        },
+        "march_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/march_2006.htm",
+            "Size": 137849,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/march_2006.htm"
+        },
+        "june_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/june_2006.htm",
+            "Size": 104808,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/june_2006.htm"
+        },
+        "january_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/january_2006.htm",
+            "Size": 130443,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/january_2006.htm"
+        },
+        "february_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/february_2006.htm",
+            "Size": 106720,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/february_2006.htm"
+        },
+        "december_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/december_2006.htm",
+            "Size": 109381,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/december_2006.htm"
+        },
+        "april_2006.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/april_2006.htm",
+            "Size": 119170,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/april_2006.htm"
+        },
+        "september_2005.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/september_2005.htm",
+            "Size": 116298,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/september_2005.htm"
+        },
+        "october_2005.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/october_2005.htm",
+            "Size": 109916,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/october_2005.htm"
+        },
+        "november_2005.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/november_2005.htm",
+            "Size": 122433,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/november_2005.htm"
+        },
+        "december_2005.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/december_2005.htm",
+            "Size": 157664,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/december_2005.htm"
+        },
+        "august_2005.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2000s/august_2005.htm",
+            "Size": 63331,
+            "Loaded": true,
+            "Uri": "http://www.roseofeternity.com/journal/august_2005.htm"
+        }
+    },
+    "Daily Journal - 2010s": {
+        "october_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/october_2010.htm",
+            "Size": 141441,
+            "Loaded": true,
+            "Uri": null
+        },
+        "december_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/december_2010.htm",
+            "Size": 120733,
+            "Loaded": true,
+            "Uri": null
+        },
+        "november_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/november_2010.htm",
+            "Size": 133534,
+            "Loaded": true,
+            "Uri": null
+        },
+        "september_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/september_2010.htm",
+            "Size": 148731,
+            "Loaded": true,
+            "Uri": null
+        },
+        "august_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/august_2010.htm",
+            "Size": 133489,
+            "Loaded": true,
+            "Uri": null
+        },
+        "july_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/july_2010.htm",
+            "Size": 149062,
+            "Loaded": true,
+            "Uri": null
+        },
+        "june_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/june_2010.htm",
+            "Size": 190447,
+            "Loaded": true,
+            "Uri": null
+        },
+        "may_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/may_2010.htm",
+            "Size": 140474,
+            "Loaded": true,
+            "Uri": null
+        },
+        "april_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/april_2010.htm",
+            "Size": 119568,
+            "Loaded": true,
+            "Uri": null
+        },
+        "march_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/march_2010.htm",
+            "Size": 98367,
+            "Loaded": true,
+            "Uri": null
+        },
+        "february_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/february_2010.htm",
+            "Size": 84437,
+            "Loaded": true,
+            "Uri": null
+        },
+        "january_2010.htm": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Daily Journal - 2010s/january_2010.htm",
+            "Size": 82464,
+            "Loaded": true,
+            "Uri": null
+        }
+    }
+}

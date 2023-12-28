@@ -7,15 +7,15 @@ import flet as ft
 class FileChip(ft.UserControl):
     def __init__(
         self,
-        file_name,
-        file_bytes: bytes,
+        file_name: str,
+        file_size: int,
         delete_handler,
         knowledge_base_name: str,
         loaded: bool = False,
     ):
         super().__init__()
         self.file_name = file_name
-        self.file_bytes = file_bytes
+        self.file_bytes = file_size
         self.delete_handler = delete_handler
         self.knowledge_base_name = knowledge_base_name
         self.loaded = loaded
@@ -24,7 +24,7 @@ class FileChip(ft.UserControl):
         file_info = self.truncate_file_name(self.file_name)
         file_text_widget = ft.Text(
             file_info,
-            tooltip=f"{self.file_name} (Size: {self.bytes_to_human_readable(len(self.file_bytes))} bytes)",  # noqa
+            tooltip=f"{self.file_name} (Size: {self.bytes_to_human_readable(self.file_bytes)} bytes)",  # noqa
             **styles.FilePickerFileStyle().to_dict(),
         )
 

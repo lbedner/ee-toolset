@@ -7,14 +7,18 @@ from app.models import KnowledgeBase, KnowledgeBaseDocument, KnowledgeBaseHelper
 
 
 def test_knowledge_base_document_creation():
-    # Test creating a KnowledgeBaseDocument
     doc = KnowledgeBaseDocument(
-        Type="Document", Filepath="/path/to/doc", Size=1024, Loaded=True
+        Type="Document",
+        Filepath="/path/to/doc",
+        Size=1024,
+        Loaded=True,
+        Uri="http://example.com/doc",
     )
     assert doc.Type == "Document"
     assert doc.Filepath == "/path/to/doc"
     assert doc.Size == 1024
     assert doc.Loaded is True
+    assert doc.Uri == "http://example.com/doc"
 
 
 def test_knowledge_base_load():
@@ -29,75 +33,97 @@ def test_knowledge_base_load():
 
     kb_1 = kb.root["kb1"]
 
-    # Assert that the knowledge base has specific documents
+    # Assert that the knowledge base has specific documents with Uri
     assert "doc1" in kb_1
     assert "doc2" in kb_1
 
-    # Assert details of the documents
+    # Assert details of the documents including Uri
     assert kb_1["doc1"].Type == "Document"
     assert kb_1["doc1"].Filepath == "/path/to/doc1"
     assert kb_1["doc1"].Size == 1024
     assert kb_1["doc1"].Loaded is True
+    assert kb_1["doc1"].Uri == "http://example.com/kb1/doc1"
 
     assert kb_1["doc2"].Type == "Report"
     assert kb_1["doc2"].Filepath == "/path/to/doc2"
     assert kb_1["doc2"].Size == 2048
     assert kb_1["doc2"].Loaded is False
+    assert kb_1["doc2"].Uri == "http://example.com/kb1/doc2"
 
     kb_2 = kb.root["kb2"]
 
-    # Assert that the knowledge base has specific documents
+    # Assert that the knowledge base has specific documents with Uri
     assert "doc3" in kb_2
     assert "doc4" in kb_2
 
-    # Assert details of the documents
+    # Assert details of the documents including Uri
     assert kb_2["doc3"].Type == "Document"
     assert kb_2["doc3"].Filepath == "/path/to/doc3"
     assert kb_2["doc3"].Size == 1024
     assert kb_2["doc3"].Loaded is True
+    assert kb_2["doc3"].Uri == "http://example.com/kb2/doc3"
 
     assert kb_2["doc4"].Type == "Report"
     assert kb_2["doc4"].Filepath == "/path/to/doc4"
     assert kb_2["doc4"].Size == 2048
     assert kb_2["doc4"].Loaded is False
+    assert kb_2["doc4"].Uri == "http://example.com/kb2/doc4"
 
 
 def test_knowledge_base_add():
-    # Test adding a document to the knowledge base
+    # Test adding a document with Uri to the knowledge base
     kb = KnowledgeBase(root={})
     doc = KnowledgeBaseDocument(
-        Type="Document", Filepath="/new/doc", Size=2048, Loaded=False
+        Type="Document",
+        Filepath="/new/doc",
+        Size=2048,
+        Loaded=False,
+        Uri="http://example.com/newdoc",
     )
     kb.add("kb1", "new_doc", doc)
     assert "new_doc" in kb.root["kb1"]
     assert kb.root["kb1"]["new_doc"].Filepath == "/new/doc"
+    assert kb.root["kb1"]["new_doc"].Uri == "http://example.com/newdoc"
 
 
 def test_knowledge_base_update():
-    # Initialize a knowledge base and add a document
+    # Initialize a knowledge base and add a document with Uri
     kb = KnowledgeBase(root={})
     doc = KnowledgeBaseDocument(
-        Type="Document", Filepath="/path/to/doc", Size=1024, Loaded=True
+        Type="Document",
+        Filepath="/path/to/doc",
+        Size=1024,
+        Loaded=True,
+        Uri="http://example.com/doc",
     )
     kb.add("kb1", "doc1", doc)
 
-    # Update the document
+    # Update the document including Uri
     updated_doc = KnowledgeBaseDocument(
-        Type="Document", Filepath="/new/path/doc", Size=2048, Loaded=False
+        Type="Document",
+        Filepath="/new/path/doc",
+        Size=2048,
+        Loaded=False,
+        Uri="http://example.com/updateddoc",
     )
     kb.update("kb1", "doc1", updated_doc)
 
-    # Assert that the document was updated
+    # Assert that the document was updated including Uri
     assert kb.root["kb1"]["doc1"].Filepath == "/new/path/doc"
     assert kb.root["kb1"]["doc1"].Size == 2048
     assert kb.root["kb1"]["doc1"].Loaded is False
+    assert kb.root["kb1"]["doc1"].Uri == "http://example.com/updateddoc"
 
 
 def test_knowledge_base_remove():
-    # Initialize a knowledge base and add a document
+    # Initialize a knowledge base and add a document with Uri
     kb = KnowledgeBase(root={})
     doc = KnowledgeBaseDocument(
-        Type="Document", Filepath="/path/to/doc", Size=1024, Loaded=True
+        Type="Document",
+        Filepath="/path/to/doc",
+        Size=1024,
+        Loaded=True,
+        Uri="http://example.com/doc",
     )
     kb.add("kb1", "doc1", doc)
 
@@ -128,11 +154,14 @@ def test_knowledge_base_helper_add_document():
         outgoing_filename=temp_outgoing_file_name,
     )
 
-    # Assert that the document was added and data is loaded
+    # Assert that the document was added and data is loaded including Uri
     assert "temp_doc" in kb.root["kb1"]
     assert kb.root["kb1"]["temp_doc"].Filepath == temp_outgoing_file_name
     assert kb.root["kb1"]["temp_doc"].Size == len("Test content")
     assert kb.root["kb1"]["temp_doc"].Loaded is False
+    assert (
+        kb.root["kb1"]["temp_doc"].Uri is None
+    )  # Assuming Uri is not set in this context
     assert kb_helper.document_data["kb1"]["temp_doc"] == b"Test content"
 
     # Clean up
@@ -208,10 +237,18 @@ def test_knowledge_base_helper_delete_knowledge_base():
         root={
             "kb1": {
                 "doc1": KnowledgeBaseDocument(
-                    Type="Document", Filepath="/path/to/doc1", Size=1024, Loaded=True
+                    Type="Document",
+                    Filepath="/path/to/doc1",
+                    Size=1024,
+                    Loaded=True,
+                    Uri="http://example.com/doc1",
                 ),
                 "doc2": KnowledgeBaseDocument(
-                    Type="Report", Filepath="/path/to/doc2", Size=2048, Loaded=False
+                    Type="Report",
+                    Filepath="/path/to/doc2",
+                    Size=2048,
+                    Loaded=False,
+                    Uri="http://example.com/doc2",
                 ),
             }
         }
@@ -276,12 +313,20 @@ def test_knowledge_base_helper_get_knowledge_base_names():
         root={
             "kb1": {
                 "doc1": KnowledgeBaseDocument(
-                    Type="Document", Filepath="/path/to/doc1", Size=1024, Loaded=True
+                    Type="Document",
+                    Filepath="/path/to/doc1",
+                    Size=1024,
+                    Loaded=True,
+                    Uri="http://example.com/doc1",
                 )
             },
             "kb2": {
                 "doc2": KnowledgeBaseDocument(
-                    Type="Document", Filepath="/path/to/doc2", Size=2048, Loaded=False
+                    Type="Document",
+                    Filepath="/path/to/doc2",
+                    Size=2048,
+                    Loaded=False,
+                    Uri="http://example.com/doc2",
                 )
             },
         }

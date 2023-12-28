@@ -13,7 +13,12 @@ def get_document_chunks(
     context_window: int = 16385,
 ) -> list[Document]:
     # Return documents if no chunking is needed
-    total_size = sum([doc.metadata["size"] for doc in documents])
+    total_size = sum(
+        [
+            doc.metadata["size"] if doc.metadata.get("size", None) else 0
+            for doc in documents
+        ]
+    )
 
     # Estimate max characters per chunk considering the token limit
     max_characters = context_window * AVE_TOKEN_LENGTH

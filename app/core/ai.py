@@ -24,6 +24,7 @@ from app.core.vectorstore import (
     get_vectorstore_retriever,
     vectorstore_exists,
 )
+from app.models import KnowledgeBaseDocument
 
 CHAT_HISTORY = "chat_history"
 
@@ -32,7 +33,7 @@ conversation_memories: dict[str, ConversationBufferMemory] = {}
 conversation_prompts: dict[str, ChatPromptTemplate] = {}
 
 
-def process_sources(sources):
+def process_sources(sources: list):
     logger.info("\n\nSources:")
     for source in sources:
         logger.info(source.metadata["source"])
@@ -44,7 +45,7 @@ def chat_with_llm(
     context_window: int = 16385,
     model: str = "gpt-3.5-turbo-1106",
     temperature: float = 0.0,
-    document_data: dict[str, bytes] = {},
+    knowledge_base_documents: dict[str, KnowledgeBaseDocument] = {},
     use_knowledge_base: bool = False,
 ) -> Tuple[dict, bool]:
     logger.debug(
@@ -53,7 +54,7 @@ def chat_with_llm(
         model=model,
         temperature=temperature,
         context_window=context_window,
-        files=document_data.keys(),
+        files=knowledge_base_documents.keys(),
         use_knowledge_base=use_knowledge_base,
     )
 
@@ -83,11 +84,11 @@ def chat_with_llm(
     prompt = conversation_prompts[knowledge_base_name]
 
     refreshed_vectorstore: bool = False
-    if use_knowledge_base and knowledge_base_name and document_data:
+    if use_knowledge_base and knowledge_base_name and knowledge_base_documents:
         chunked_documents: list[Document] = []
         # Check for the existence of the vectorstore
         if not vectorstore_exists(knowledge_base_name):
-            documents: list[Document] = load_documents(document_data)
+            documents: list[Document] = load_documents(knowledge_base_documents)
             if documents:
                 chunked_documents = get_document_chunks(documents=documents)
                 refreshed_vectorstore = True
@@ -167,7 +168,7 @@ def get_response(
 
 
 def refresh_vectorstore(
-    document_data: dict[str, bytes], knowledge_base_name: str
+    knowledge_base_documents: dict[str, KnowledgeBaseDocument], knowledge_base_name: str
 ) -> None:
     """
     Recreates the ChromaDB vector store for a given knowledge base.
@@ -179,7 +180,7 @@ def refresh_vectorstore(
     """  # noqa
     delete_vectorstore(knowledge_base_name)
     create_vectorstore(
-        documents=get_document_chunks(load_documents(document_data)),
+        documents=get_document_chunks(load_documents(knowledge_base_documents)),
         embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
         knowledge_base_name=knowledge_base_name,
     )

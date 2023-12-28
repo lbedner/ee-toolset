@@ -310,7 +310,7 @@ class ChatConfig(ft.UserControl):
 
     def refresh_knowledge_base(self, knowledge_base_name: str):
         refresh_vectorstore(
-            self.knowledge_base_helper.document_data[knowledge_base_name],
+            self.knowledge_base_helper.get_documents(knowledge_base_name),
             self.knowledge_base_dropdown.get_dropdown_value(),
         )
         self.page.snack_bar = SuccessSnackBar(
