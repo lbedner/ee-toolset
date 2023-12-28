@@ -1,3 +1,4 @@
+import os
 import time
 
 import app.core.ai as ai
@@ -109,6 +110,11 @@ class MessageHandler:
             source_controls: list[ft.Markdown] = []
 
             for source in sources:
+                value = (
+                    f"[{os.path.basename(source)}]({source})"
+                    if source.startswith("http")
+                    else source
+                )
                 source_control = ft.Markdown(
                     auto_follow_links=True,
                     code_style=ft.TextStyle(
@@ -119,7 +125,7 @@ class MessageHandler:
                     code_theme="atom-one-dark",
                     extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
                     selectable=True,
-                    value=f"- [{source}](https://www.google.com)",
+                    value=f"- {value}",
                 )
                 source_controls.append(source_control)
             chat_view.chat.controls.append(
@@ -147,8 +153,8 @@ class MessageHandler:
         )
         response, refreshed_vectorstore = ai.chat_with_llm(
             user_input=user_input,
-            document_data=self.chat_view.chat_config.knowledge_base_helper.document_data.get(  # noqa
-                knowledge_base_name, {}
+            knowledge_base_documents=self.chat_view.chat_config.knowledge_base_helper.get_documents(  # noqa
+                knowledge_base_name
             ),
             model=self.chat_view.chat_config.llm_dropdown.dropdown.value,
             context_window=self.chat_view.chat_config.llm_context_window.value,

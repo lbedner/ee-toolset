@@ -4,13 +4,15 @@
             "Type": "Document",
             "Filepath": "/path/to/doc1",
             "Size": 1024,
-            "Loaded": true
+            "Loaded": true,
+            "Uri": "http://example.com/kb1/doc1"
         },
         "doc2": {
             "Type": "Report",
             "Filepath": "/path/to/doc2",
             "Size": 2048,
-            "Loaded": false
+            "Loaded": false,
+            "Uri": "http://example.com/kb1/doc2"
         }
     },
     "kb2": {
@@ -18,13 +20,15 @@
             "Type": "Document",
             "Filepath": "/path/to/doc3",
             "Size": 1024,
-            "Loaded": true
+            "Loaded": true,
+            "Uri": "http://example.com/kb2/doc3"
         },
         "doc4": {
             "Type": "Report",
             "Filepath": "/path/to/doc4",
             "Size": 2048,
-            "Loaded": false
+            "Loaded": false,
+            "Uri": "http://example.com/kb2/doc4"
         }
     }
 }

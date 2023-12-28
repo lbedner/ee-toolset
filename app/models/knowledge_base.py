@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+from typing import Optional
 
 from pydantic import BaseModel, RootModel, StrictBool, StrictInt, StrictStr
 
@@ -14,6 +15,7 @@ class KnowledgeBaseDocument(BaseModel):
     Filepath: StrictStr
     Size: StrictInt
     Loaded: StrictBool
+    Uri: Optional[StrictStr] = None
 
 
 class KnowledgeBase(RootModel):
