@@ -12,6 +12,7 @@ class ColorPalette:
     ACCENT: str = "#4A90E2"
     ACCENT_SUCCESS: str = "#52D869"
     ACCENT_STOP: str = "#E94E77"
+    ERROR: str = "#8B0000"
 
 
 @dataclass(frozen=True)
@@ -91,6 +92,12 @@ class ModalTitle(PrimaryTextStyle):
 @dataclass(frozen=True)
 class ModalSubtitle(SecondaryTextStyle):
     weight: str = ft.FontWeight.W_400
+
+
+@dataclass(frozen=True)
+class ErrorTextStyle(SecondaryTextStyle):
+    color: str = ColorPalette.ERROR
+    weight: str = ft.FontWeight.W_700
 
 
 @dataclass(frozen=True)
