@@ -1,12 +1,14 @@
 import os
 import time
+import traceback
 
 import app.core.ai as ai
 import app.core.styles as styles
 import flet as ft
 from app.controls.illiana.chat_config import ChatConfig
+from app.controls.illiana.text import ErrorText
 from app.core.config import settings
-from app.core.log import ic
+from app.core.log import ic, logger
 
 
 # ChatMessage class
@@ -71,15 +73,21 @@ class ChatView(ft.Container):
         self.chat_config = chat_config
         self.page = page
 
+    def add_line(self, control: ft.Control):
+        self.chat.controls.append(control)
+        self.chat.update()
+
+    def remove_line(self, control: ft.Control):
+        self.chat.controls.remove(control)
+        self.chat.update()
+
     def add_chat_line(self, chat_message: ChatMessage):
         chat_message.message_display = chat_message.message
-        self.chat.controls.append(chat_message)
-        self.chat.update()
+        self.add_line(chat_message)
 
     def type_chat_line(self, chat_message: ChatMessage):
         chat_message.message_display.value = ""
-        self.chat.controls.append(chat_message)
-        self.chat.update()
+        self.add_line(chat_message)
 
         chat_message.animate_message(chat_message.message)
 
@@ -98,7 +106,7 @@ class MessageHandler:
 
     def display_sources(self, response: dict, chat_view: ChatView) -> None:
         if response.get("sources"):
-            chat_view.chat.controls.append(ft.Markdown("Sources:"))
+            chat_view.add_line(ft.Markdown("Sources:"))
 
             seen = set()
             sources: list[str] = []
@@ -128,7 +136,7 @@ class MessageHandler:
                     value=f"- {value}",
                 )
                 source_controls.append(source_control)
-            chat_view.chat.controls.append(
+            chat_view.add_line(
                 ft.Container(content=ft.Column(source_controls, spacing=4))
             )
 
@@ -144,43 +152,50 @@ class MessageHandler:
             ],
             spacing=4,
         )
-        self.chat_view.chat.controls.append(progress_ring)
-        self.chat_view.chat.update()
+        self.chat_view.add_line(progress_ring)
 
         # Get response from AI
-        knowledge_base_name = (
-            self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
-        )
-        response, refreshed_vectorstore = ai.chat_with_llm(
-            user_input=user_input,
-            knowledge_base_documents=self.chat_view.chat_config.knowledge_base_helper.get_documents(  # noqa
-                knowledge_base_name
-            ),
-            model=self.chat_view.chat_config.llm_dropdown.dropdown.value,
-            context_window=self.chat_view.chat_config.llm_context_window.value,
-            knowledge_base_name=knowledge_base_name,
-            use_knowledge_base=self.chat_view.chat_config.use_knowledge_base_checkbox.value,  # noqa
-        )
+        # TODO: Add real exception handling
+        try:
+            knowledge_base_name = (
+                self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
+            )
+            response, refreshed_vectorstore = ai.chat_with_llm(
+                user_input=user_input,
+                knowledge_base_documents=self.chat_view.chat_config.knowledge_base_helper.get_documents(  # noqa
+                    knowledge_base_name
+                ),
+                model=self.chat_view.chat_config.llm_dropdown.dropdown.value,
+                context_window=self.chat_view.chat_config.llm_context_window.value,
+                knowledge_base_name=knowledge_base_name,
+                use_knowledge_base=self.chat_view.chat_config.use_knowledge_base_checkbox.value,  # noqa
+            )
 
-        # Remove progress ring
-        self.chat_view.chat.controls.remove(progress_ring)
-        self.chat_view.chat.update()
+            # Remove progress ring
+            self.chat_view.remove_line(progress_ring)
 
-        # Display animated AI response
-        chat_message = ChatMessage(
-            username=settings.CHAT_BOTNAME,
-            message=response["response"],
-        )
-        self.chat_view.type_chat_line(chat_message)
+            # Display animated AI response
+            chat_message = ChatMessage(
+                username=settings.CHAT_BOTNAME,
+                message=response["response"],
+            )
+            self.chat_view.type_chat_line(chat_message)
 
-        # Display sources
-        self.display_sources(response, self.chat_view)
+            # Display sources
+            self.display_sources(response, self.chat_view)
 
-        self.chat_view.chat.update()
+            self.chat_view.chat.update()
 
-        if refreshed_vectorstore:
-            self.chat_view.chat_config.knowledge_base_helper.refesh(knowledge_base_name)
-            self.chat_view.chat_config.files_container_control.update_files_container()
+            if refreshed_vectorstore:
+                self.chat_view.chat_config.knowledge_base_helper.refesh(
+                    knowledge_base_name
+                )
+                self.chat_view.chat_config.files_container_control.update_files_container()  # noqa
+        except Exception:
+            exception: str = traceback.format_exc(limit=10, chain=True)
+            logger.error("chat.handle_bot_response.error", exception=exception)
+            self.chat_view.add_line(ErrorText(text=exception))
+            self.chat_view.remove_line(progress_ring)
 
 
 class UserInputField(ft.TextField):
