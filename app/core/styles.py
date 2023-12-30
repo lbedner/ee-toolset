@@ -95,12 +95,6 @@ class ModalSubtitle(SecondaryTextStyle):
 
 
 @dataclass(frozen=True)
-class ErrorTextStyle(SecondaryTextStyle):
-    color: str = ColorPalette.ERROR
-    weight: str = ft.FontWeight.W_700
-
-
-@dataclass(frozen=True)
 class SidebarLabelHeadingStyle(SecondaryTextStyle):
     size: int = FontConfig.HEADING_SIZE
     weight: str = ft.FontWeight.W_700

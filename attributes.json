@@ -134,5 +134,485 @@
         "ToolTip": "Area of Effect Range of action.",
         "MinimumValue": 0.0,
         "MaximumValue": 100.0
+    },
+    "STEALTH": {
+        "Type": "STEALTH",
+        "Name": "Stealth",
+        "ShortName": "STL",
+        "ToolTip": "Ability to remain undetected by enemies.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "INTELLIGENCE": {
+        "Type": "INTELLIGENCE",
+        "Name": "Intelligence",
+        "ShortName": "INT",
+        "ToolTip": "Affects magic efficiency and puzzle-solving capabilities.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "CHARISMA": {
+        "Type": "CHARISMA",
+        "Name": "Charisma",
+        "ShortName": "CHA",
+        "ToolTip": "Influences interactions with NPCs and party morale.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "LUCK": {
+        "Type": "LUCK",
+        "Name": "Luck",
+        "ShortName": "LUK",
+        "ToolTip": "Affects the probability of rare events and critical successes.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "RESILIENCE": {
+        "Type": "RESILIENCE",
+        "Name": "Resilience",
+        "ShortName": "RES",
+        "ToolTip": "Ability to resist status effects and environmental hazards.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "AGILITY": {
+        "Type": "AGILITY",
+        "Name": "Agility",
+        "ShortName": "AGI",
+        "ToolTip": "Determines turn order and evasion rate.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "WISDOM": {
+        "Type": "WISDOM",
+        "Name": "Wisdom",
+        "ShortName": "WIS",
+        "ToolTip": "Impacts magical defense and skill learning rate.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ENDURANCE": {
+        "Type": "ENDURANCE",
+        "Name": "Endurance",
+        "ShortName": "END",
+        "ToolTip": "Affects stamina and resistance to fatigue.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "FOCUS": {
+        "Type": "FOCUS",
+        "Name": "Focus",
+        "ShortName": "FOC",
+        "ToolTip": "Improves concentration and accuracy in attacks.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "PERCEPTION": {
+        "Type": "PERCEPTION",
+        "Name": "Perception",
+        "ShortName": "PER",
+        "ToolTip": "Enhances awareness and detection of hidden items or traps.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "WILLPOWER": {
+        "Type": "WILLPOWER",
+        "Name": "Willpower",
+        "ShortName": "WIL",
+        "ToolTip": "Determines resistance to mind control and morale loss.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "FAITH": {
+        "Type": "FAITH",
+        "Name": "Faith",
+        "ShortName": "FTH",
+        "ToolTip": "Influences the effectiveness of divine magic and miracles.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "MANA": {
+        "Type": "MANA",
+        "Name": "Mana",
+        "ShortName": "MP",
+        "ToolTip": "Resource for casting spells.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 1000.0
+    },
+    "SANITY": {
+        "Type": "SANITY",
+        "Name": "Sanity",
+        "ShortName": "SAN",
+        "ToolTip": "Affects mental health and resistance to psychological effects.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "INFLUENCE": {
+        "Type": "INFLUENCE",
+        "Name": "Influence",
+        "ShortName": "INF",
+        "ToolTip": "Determines the character's ability to sway others' decisions.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ALCHEMICAL_AFFINITY": {
+        "Type": "ALCHEMICAL_AFFINITY",
+        "Name": "Alchemical Affinity",
+        "ShortName": "ALC",
+        "ToolTip": "Enhances crafting and effectiveness of potions.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "CRAFTING_SKILL": {
+        "Type": "CRAFTING_SKILL",
+        "Name": "Crafting Skill",
+        "ShortName": "CFT",
+        "ToolTip": "Determines ability to create and repair items.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "LEADERSHIP": {
+        "Type": "LEADERSHIP",
+        "Name": "Leadership",
+        "ShortName": "LDR",
+        "ToolTip": "Boosts team morale and effectiveness in group battles.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SURVIVAL": {
+        "Type": "SURVIVAL",
+        "Name": "Survival",
+        "ShortName": "SVL",
+        "ToolTip": "Enhances ability to endure harsh environments and forage.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "STEALTH_DETECTION": {
+        "Type": "STEALTH_DETECTION",
+        "Name": "Stealth Detection",
+        "ShortName": "SDT",
+        "ToolTip": "Ability to detect hidden or stealthy enemies.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ELEMENTAL_RESISTANCE": {
+        "Type": "ELEMENTAL_RESISTANCE",
+        "Name": "Elemental Resistance",
+        "ShortName": "ELR",
+        "ToolTip": "Reduces damage from elemental attacks.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "POISON_RESISTANCE": {
+        "Type": "POISON_RESISTANCE",
+        "Name": "Poison Resistance",
+        "ShortName": "PSR",
+        "ToolTip": "Decreases damage and effect duration from poisons.",
+        "MinimumValue": 0.0,
+        "MaximumValue": 100.0
+    },
+    "ARCANE_MASTERY": {
+        "Type": "ARCANE_MASTERY",
+        "Name": "Arcane Mastery",
+        "ShortName": "ARC",
+        "ToolTip": "Improves effectiveness of arcane spells and skills.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "TACTICAL_AWARENESS": {
+        "Type": "TACTICAL_AWARENESS",
+        "Name": "Tactical Awareness",
+        "ShortName": "TAC",
+        "ToolTip": "Enhances strategic decision making in battle.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "BEAST_TAMING": {
+        "Type": "BEAST_TAMING",
+        "Name": "Beast Taming",
+        "ShortName": "BST",
+        "ToolTip": "Ability to tame and command creatures.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ALCHEMY": {
+        "Type": "ALCHEMY",
+        "Name": "Alchemy",
+        "ShortName": "ALC",
+        "ToolTip": "Skill in creating potions and elixirs.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ENCHANTMENT": {
+        "Type": "ENCHANTMENT",
+        "Name": "Enchantment",
+        "ShortName": "ENC",
+        "ToolTip": "Ability to imbue items with magical properties.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "BARTERING": {
+        "Type": "BARTERING",
+        "Name": "Bartering",
+        "ShortName": "BAR",
+        "ToolTip": "Improves trading skills and reduces item costs.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "MEDITATION": {
+        "Type": "MEDITATION",
+        "Name": "Meditation",
+        "ShortName": "MED",
+        "ToolTip": "Accelerates mana regeneration and mental recovery.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SMITHING": {
+        "Type": "SMITHING",
+        "Name": "Smithing",
+        "ShortName": "SMI",
+        "ToolTip": "Skill in forging and repairing weapons and armor.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "LORE_KNOWLEDGE": {
+        "Type": "LORE_KNOWLEDGE",
+        "Name": "Lore Knowledge",
+        "ShortName": "LOR",
+        "ToolTip": "Understanding of history and ancient texts.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "TRAP_MASTERY": {
+        "Type": "TRAP_MASTERY",
+        "Name": "Trap Mastery",
+        "ShortName": "TRP",
+        "ToolTip": "Skill in setting and disarming traps.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "NAVIGATION": {
+        "Type": "NAVIGATION",
+        "Name": "Navigation",
+        "ShortName": "NAV",
+        "ToolTip": "Ability to orient and move efficiently in various terrains.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "LINGUISTICS": {
+        "Type": "LINGUISTICS",
+        "Name": "Linguistics",
+        "ShortName": "LNG",
+        "ToolTip": "Proficiency in different languages and dialects.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "RITUALISM": {
+        "Type": "RITUALISM",
+        "Name": "Ritualism",
+        "ShortName": "RIT",
+        "ToolTip": "Skill in performing magical and religious rituals.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SIEGE_WARFARE": {
+        "Type": "SIEGE_WARFARE",
+        "Name": "Siege Warfare",
+        "ShortName": "SIE",
+        "ToolTip": "Effectiveness in siege tactics and using siege weapons.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "DIPLOMACY": {
+        "Type": "DIPLOMACY",
+        "Name": "Diplomacy",
+        "ShortName": "DIP",
+        "ToolTip": "Skill in negotiating and managing alliances.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "HUNTING": {
+        "Type": "HUNTING",
+        "Name": "Hunting",
+        "ShortName": "HNT",
+        "ToolTip": "Proficiency in tracking and hunting wildlife.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SAILING": {
+        "Type": "SAILING",
+        "Name": "Sailing",
+        "ShortName": "SAL",
+        "ToolTip": "Skill in navigating and handling boats and ships.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "HERBALISM": {
+        "Type": "HERBALISM",
+        "Name": "Herbalism",
+        "ShortName": "HRB",
+        "ToolTip": "Knowledge of plants and herbs for medicinal and magical uses.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ENGINEERING": {
+        "Type": "ENGINEERING",
+        "Name": "Engineering",
+        "ShortName": "ENG",
+        "ToolTip": "Skill in constructing and understanding complex machinery and structures.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "BOTANY": {
+        "Type": "BOTANY",
+        "Name": "Botany",
+        "ShortName": "BTN",
+        "ToolTip": "Knowledge about plant species and their practical uses.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ASTRONOMY": {
+        "Type": "ASTRONOMY",
+        "Name": "Astronomy",
+        "ShortName": "AST",
+        "ToolTip": "Understanding of celestial bodies and events.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "CRYPTOGRAPHY": {
+        "Type": "CRYPTOGRAPHY",
+        "Name": "Cryptography",
+        "ShortName": "CRP",
+        "ToolTip": "Ability to decode and encode secret messages.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ELEMENTAL_CONTROL": {
+        "Type": "ELEMENTAL_CONTROL",
+        "Name": "Elemental Control",
+        "ShortName": "ELC",
+        "ToolTip": "Mastery over elemental forces.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "BEAST_KNOWLEDGE": {
+        "Type": "BEAST_KNOWLEDGE",
+        "Name": "Beast Knowledge",
+        "ShortName": "BSK",
+        "ToolTip": "Understanding of creatures' habits and weaknesses.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "DIVINATION": {
+        "Type": "DIVINATION",
+        "Name": "Divination",
+        "ShortName": "DIV",
+        "ToolTip": "Ability to foresee events and gather insights.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ILLUSIONISM": {
+        "Type": "ILLUSIONISM",
+        "Name": "Illusionism",
+        "ShortName": "ILL",
+        "ToolTip": "Skill in creating and dispelling illusions.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "NECROMANCY": {
+        "Type": "NECROMANCY",
+        "Name": "Necromancy",
+        "ShortName": "NEC",
+        "ToolTip": "Control over the dead and the dark arts.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SUMMONING": {
+        "Type": "SUMMONING",
+        "Name": "Summoning",
+        "ShortName": "SUM",
+        "ToolTip": "Ability to call forth creatures and entities to aid.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "PHARMACOLOGY": {
+        "Type": "PHARMACOLOGY",
+        "Name": "Pharmacology",
+        "ShortName": "PHM",
+        "ToolTip": "Knowledge of drugs and their effects on the body.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "GEOMANCY": {
+        "Type": "GEOMANCY",
+        "Name": "Geomancy",
+        "ShortName": "GEO",
+        "ToolTip": "Ability to manipulate earth and stone.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "CLIMATOLOGY": {
+        "Type": "CLIMATOLOGY",
+        "Name": "Climatology",
+        "ShortName": "CLM",
+        "ToolTip": "Understanding of weather patterns and their effects.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "PSYCHOKINESIS": {
+        "Type": "PSYCHOKINESIS",
+        "Name": "Psychokinesis",
+        "ShortName": "PSY",
+        "ToolTip": "Ability to move objects with one's mind.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "TELEPATHY": {
+        "Type": "TELEPATHY",
+        "Name": "Telepathy",
+        "ShortName": "TEL",
+        "ToolTip": "Ability to read thoughts and communicate mentally.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "WARDING": {
+        "Type": "WARDING",
+        "Name": "Warding",
+        "ShortName": "WRD",
+        "ToolTip": "Skill in creating protective barriers and seals.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "SHAMANISM": {
+        "Type": "SHAMANISM",
+        "Name": "Shamanism",
+        "ShortName": "SHA",
+        "ToolTip": "Connection with spirits and the natural world.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "MYSTICISM": {
+        "Type": "MYSTICISM",
+        "Name": "Mysticism",
+        "ShortName": "MYS",
+        "ToolTip": "Understanding and harnessing of mysterious forces.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "ELEMENTAL_AFFINITY": {
+        "Type": "ELEMENTAL_AFFINITY",
+        "Name": "Elemental Affinity",
+        "ShortName": "EAF",
+        "ToolTip": "Natural alignment with a specific element, enhancing related abilities.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
+    },
+    "AURA_READING": {
+        "Type": "AURA_READING",
+        "Name": "Aura Reading",
+        "ShortName": "AUR",
+        "ToolTip": "Ability to perceive and interpret the energy of living beings.",
+        "MinimumValue": 1.0,
+        "MaximumValue": 100.0
     }
 }
