@@ -300,5 +300,14 @@
             "Loaded": true,
             "Uri": null
         }
+    },
+    "Flet - Single File": {
+        "flet completo.docx": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Single File/flet completo.docx",
+            "Size": 268413,
+            "Loaded": true,
+            "Uri": null
+        }
     }
 }

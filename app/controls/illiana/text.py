@@ -6,7 +6,7 @@ class ErrorText(ft.UserControl):
     def __init__(self, text, style=None):
         super().__init__()
         self.text = text
-        self.style = style if style else styles.ErrorTextStyle().to_dict()
+        self.style = style if style else styles.SecondaryTextStyle().to_dict()
 
     def build(self):
         error_text = ft.Text(value=self.text, **self.style)
