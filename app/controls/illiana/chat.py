@@ -2,6 +2,8 @@ import os
 import time
 import traceback
 
+from langchain.callbacks.base import BaseCallbackHandler
+
 import app.core.ai as ai
 import app.core.styles as styles
 import flet as ft
@@ -14,18 +16,19 @@ from app.core.log import ic, logger
 # ChatMessage class
 class ChatMessage(ft.Column):
     def __init__(self, username: str, message: str = ""):
-        self.username = username
-        self.message = message
-        self.message_display = ft.Markdown(
+        self.username: str = username
+        self.message: str = message
+        self.message_display: ft.Markdown = ft.Markdown(
             self.message,
             selectable=True,
             extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
-            code_theme="atom-one-dark",
+            code_theme="ir-black",
             code_style=ft.TextStyle(
                 size=16,
                 font_family="Roboto Mono",
                 weight=ft.FontWeight.W_500,
             ),
+            auto_follow_links=True,
         )
         super().__init__(spacing=4)
         avatar_color: str = styles.ColorPalette.ACCENT
@@ -75,14 +78,17 @@ class ChatView(ft.Container):
 
     def add_line(self, control: ft.Control):
         self.chat.controls.append(control)
+        self.chat.scroll_to(offset=-1)
         self.chat.update()
 
     def remove_line(self, control: ft.Control):
-        self.chat.controls.remove(control)
-        self.chat.update()
+        if control in self.chat.controls:
+            self.chat.controls.remove(control)
+            self.chat.scroll_to(offset=-1)
+            self.chat.update()
 
     def add_chat_line(self, chat_message: ChatMessage):
-        chat_message.message_display = chat_message.message
+        chat_message.message_display.value = chat_message.message
         self.add_line(chat_message)
 
     def type_chat_line(self, chat_message: ChatMessage):
@@ -90,6 +96,52 @@ class ChatView(ft.Container):
         self.add_line(chat_message)
 
         chat_message.animate_message(chat_message.message)
+
+
+class ChatResponseGenerator:
+    def __init__(
+        self, progress_ring: ft.Row, chat_view: ChatView, chat_message: ChatMessage
+    ):
+        self.generator = self._create_generator()
+        self.progress_ring = progress_ring
+        self.chat_view = chat_view
+        self.chat_message = chat_message
+        next(self.generator)
+
+    def _create_generator(self):
+        try:
+            removed_progress_ring: bool = False
+            iter_count: int = 0
+            token_count: int = 0
+            while True:
+                iter_count += 1
+                token = yield
+                if token:
+                    if not removed_progress_ring:
+                        # self.chat_view.remove_line(self.progress_ring)
+                        removed_progress_ring = True
+                    self.chat_message.message_display.value += token
+                    self.chat_message.message_display.update()
+                    token_count += 1
+                    self.chat_view.chat.scroll_to(offset=-1)
+                    self.chat_view.chat.update()
+        except GeneratorExit:
+            ic(token_count, iter_count)
+
+    def send(self, token: str):
+        self.generator.send(token)
+
+    def close(self):
+        logger.debug("chat_response_generator.close")
+        self.generator.close()
+
+
+class StreamingCallbackHandler(BaseCallbackHandler):
+    def __init__(self, response_generator: ChatResponseGenerator):
+        self.response_generator = response_generator
+
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        self.response_generator.send(token)
 
 
 # MessageHandler class
@@ -139,28 +191,40 @@ class MessageHandler:
             chat_view.add_line(
                 ft.Container(content=ft.Column(source_controls, spacing=4))
             )
+            chat_view.chat.update()
 
-    def handle_bot_response(self, user_input: str):
-        # Display progress ring while waiting for a response
-        progress_ring = ft.Row(
-            controls=[
-                ft.ProgressRing(width=16, height=16),
-                ft.Text(
-                    value="Thinking...",
-                    **styles.ModalSubtitle().to_dict(),
-                ),
-            ],
-            spacing=4,
-        )
-        self.chat_view.add_line(progress_ring)
-
+    def handle_bot_response(self, user_input: str, stream_response: bool = True):
         # Get response from AI
         # TODO: Add real exception handling
         try:
+            # Display animated AI response
+            initial_chat_message = ChatMessage(username=settings.CHAT_BOTNAME)
+            self.chat_view.add_chat_line(initial_chat_message)
+
+            # Display progress ring while waiting for a response
+            progress_ring = ft.Row(
+                controls=[
+                    ft.ProgressRing(width=16, height=16),
+                ],
+            )
+            self.chat_view.add_line(progress_ring)
+
+            # Create streaming callback handler
+            streaming_callback_handler = None
+            if stream_response:
+                response_generator = ChatResponseGenerator(
+                    progress_ring=progress_ring,
+                    chat_view=self.chat_view,
+                    chat_message=initial_chat_message,
+                )
+                streaming_callback_handler = StreamingCallbackHandler(
+                    response_generator
+                )
+
             knowledge_base_name = (
                 self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
             )
-            response, refreshed_vectorstore = ai.chat_with_llm(
+            response, refreshed_vectorstore = ai.stream_chat_with_llm(
                 user_input=user_input,
                 knowledge_base_documents=self.chat_view.chat_config.knowledge_base_helper.get_documents(  # noqa
                     knowledge_base_name
@@ -169,22 +233,32 @@ class MessageHandler:
                 context_window=self.chat_view.chat_config.llm_context_window.value,
                 knowledge_base_name=knowledge_base_name,
                 use_knowledge_base=self.chat_view.chat_config.use_knowledge_base_checkbox.value,  # noqa
+                streaming_callback_handler=streaming_callback_handler,
             )
 
-            # Remove progress ring
-            self.chat_view.remove_line(progress_ring)
+            if stream_response:
+                if streaming_callback_handler:
+                    streaming_callback_handler.response_generator.close()
+                ic(response["response"])
+                self.chat_view.remove_line(progress_ring)
+            else:
+                # Remove progress ring
+                self.chat_view.remove_line(progress_ring)
 
-            # Display animated AI response
-            chat_message = ChatMessage(
-                username=settings.CHAT_BOTNAME,
-                message=response["response"],
-            )
-            self.chat_view.type_chat_line(chat_message)
+                # TODO: Fix this hack which is only here because
+                # `type_chat_line()` does some things create
+                # a new `ChatMessage` instance.
+                self.chat_view.remove_line(initial_chat_message)
+
+                # Display animated AI response
+                initial_chat_message = ChatMessage(
+                    username=settings.CHAT_BOTNAME,
+                    message=response["response"],
+                )
+                self.chat_view.type_chat_line(initial_chat_message)
 
             # Display sources
             self.display_sources(response, self.chat_view)
-
-            self.chat_view.chat.update()
 
             if refreshed_vectorstore:
                 self.chat_view.chat_config.knowledge_base_helper.refesh(

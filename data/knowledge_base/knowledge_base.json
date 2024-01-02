@@ -309,5 +309,231 @@
             "Loaded": true,
             "Uri": null
         }
+    },
+    "Flet - Multiple Files": {
+        "Page _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Page _ Flet.html",
+            "Size": 364086,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Logging _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Logging _ Flet.html",
+            "Size": 134890,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Self Hosting _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Self Hosting _ Flet.html",
+            "Size": 153073,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Replit _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Replit _ Flet.html",
+            "Size": 133169,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Fly.io _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Fly.io _ Flet.html",
+            "Size": 155213,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Progressive web apps (PWA) _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Progressive web apps (PWA) _ Flet.html",
+            "Size": 134106,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Running Flet with FastAPI _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Running Flet with FastAPI _ Flet.html",
+            "Size": 195432,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Customizing web app _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Customizing web app _ Flet.html",
+            "Size": 133367,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Publishing a static website with Pyodide _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Publishing a static website with Pyodide _ Flet.html",
+            "Size": 153696,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Packaging desktop app _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Packaging desktop app _ Flet.html",
+            "Size": 141531,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Hot reload _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Hot reload _ Flet.html",
+            "Size": 122029,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Testing Flet app on Android _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Testing Flet app on Android _ Flet.html",
+            "Size": 130368,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Testing Flet app on iOS _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Testing Flet app on iOS _ Flet.html",
+            "Size": 130499,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Async apps _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Async apps _ Flet.html",
+            "Size": 159787,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Accessibility _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Accessibility _ Flet.html",
+            "Size": 137074,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Control Refs _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Control Refs _ Flet.html",
+            "Size": 156209,
+            "Loaded": true,
+            "Uri": null
+        },
+        "User controls _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/User controls _ Flet.html",
+            "Size": 177369,
+            "Loaded": true,
+            "Uri": null
+        },
+        "PubSub _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/PubSub _ Flet.html",
+            "Size": 131009,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Encrypting sensitive data _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Encrypting sensitive data _ Flet.html",
+            "Size": 121964,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Session storage _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Session storage _ Flet.html",
+            "Size": 122143,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Client storage _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Client storage _ Flet.html",
+            "Size": 125431,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Authentication _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Authentication _ Flet.html",
+            "Size": 220592,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Animations _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Animations _ Flet.html",
+            "Size": 201711,
+            "Loaded": true,
+            "Uri": null
+        },
+        "File picker and uploads _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/File picker and uploads _ Flet.html",
+            "Size": 141713,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Navigation and routing _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Navigation and routing _ Flet.html",
+            "Size": 155005,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Drag and drop _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Drag and drop _ Flet.html",
+            "Size": 156524,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Large lists _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Large lists _ Flet.html",
+            "Size": 143580,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Colors _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Colors _ Flet.html",
+            "Size": 114218,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Keyboard shortcuts _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Keyboard shortcuts _ Flet.html",
+            "Size": 91982,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Getting user input _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Getting user input _ Flet.html",
+            "Size": 122321,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Introduction _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Introduction _ Flet.html",
+            "Size": 58444,
+            "Loaded": true,
+            "Uri": null
+        },
+        "Creating Flet apps in Python _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Flet - Multiple Files/Creating Flet apps in Python _ Flet.html",
+            "Size": 181488,
+            "Loaded": true,
+            "Uri": null
+        }
     }
 }

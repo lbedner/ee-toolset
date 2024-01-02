@@ -1,6 +1,8 @@
-from typing import Tuple
+from typing import Optional, Tuple
 
 from langchain.callbacks import get_openai_callback
+from langchain.callbacks.base import BaseCallbackHandler
+from langchain.callbacks.manager import CallbackManager
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.chains.base import Chain
 from langchain.chat_models import ChatOpenAI
@@ -39,29 +41,7 @@ def process_sources(sources: list):
         logger.info(source.metadata["source"])
 
 
-def chat_with_llm(
-    user_input: str,
-    knowledge_base_name: str,
-    context_window: int = 16385,
-    model: str = "gpt-3.5-turbo-1106",
-    temperature: float = 0.0,
-    knowledge_base_documents: dict[str, KnowledgeBaseDocument] = {},
-    use_knowledge_base: bool = False,
-) -> Tuple[dict, bool]:
-    logger.debug(
-        "llm.chat",
-        user_input=user_input,
-        model=model,
-        temperature=temperature,
-        context_window=context_window,
-        files=knowledge_base_documents.keys(),
-        use_knowledge_base=use_knowledge_base,
-    )
-
-    llm = ChatOpenAI(
-        api_key=settings.OPENAI_API_KEY, temperature=temperature, model=model
-    )
-
+def _get_memory(knowledge_base_name: str) -> ConversationBufferMemory:
     # Get or create the conversation memory for the given conversation ID
     if knowledge_base_name not in conversation_memories:
         conversation_memories[knowledge_base_name] = ConversationBufferMemory(
@@ -71,7 +51,10 @@ def chat_with_llm(
             output_key="answer",
         )
     memory = conversation_memories[knowledge_base_name]
+    return memory
 
+
+def _get_prompt(knowledge_base_name: str) -> ChatPromptTemplate:
     # Get or create the conversation prompt for the given conversation ID
     if knowledge_base_name not in conversation_prompts:
         conversation_prompts[knowledge_base_name] = ChatPromptTemplate(
@@ -82,63 +65,55 @@ def chat_with_llm(
             ]
         )
     prompt = conversation_prompts[knowledge_base_name]
+    return prompt
 
-    refreshed_vectorstore: bool = False
-    if use_knowledge_base and knowledge_base_name and knowledge_base_documents:
-        chunked_documents: list[Document] = []
-        # Check for the existence of the vectorstore
-        if not vectorstore_exists(knowledge_base_name):
-            documents: list[Document] = load_documents(knowledge_base_documents)
-            if documents:
-                chunked_documents = get_document_chunks(documents=documents)
-                refreshed_vectorstore = True
 
-        retriever = get_vectorstore_retriever(
-            documents=chunked_documents,
-            embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
-            knowledge_base_name=knowledge_base_name,
-        )
+def stream_chat_with_llm(
+    user_input: str,
+    knowledge_base_name: str,
+    context_window: int = 16385,
+    model: str = "gpt-3.5-turbo-1106",
+    temperature: float = 0.0,
+    knowledge_base_documents: dict[str, KnowledgeBaseDocument] = {},
+    use_knowledge_base: bool = False,
+    streaming_callback_handler: Optional[BaseCallbackHandler] = None,
+) -> Tuple[dict, bool]:
+    logger.debug(
+        "llm.chat",
+        user_input=user_input,
+        model=model,
+        temperature=temperature,
+        context_window=context_window,
+        files=knowledge_base_documents.keys(),
+        use_knowledge_base=use_knowledge_base,
+        streaming_callback_handler=streaming_callback_handler,
+    )
 
-        # Create conversational retrieval chain
-        memory.output_key = "answer"
-        logger.debug("qa.create_retrieval_chain", memory_key=memory.output_key)
-        conversational_retrieval_chain = ConversationalRetrievalChain.from_llm(
-            llm=llm,
-            retriever=retriever,
-            memory=memory,
-            verbose=False,
-            return_source_documents=True,
-        )
+    llm = create_llm(model, temperature, streaming_callback_handler)
+    memory, prompt = get_conversation_components(knowledge_base_name)
+    chain, response_key, refreshed_vectorstore = configure_chain(
+        llm,
+        memory,
+        prompt,
+        use_knowledge_base,
+        knowledge_base_name,
+        knowledge_base_documents,
+    )
 
-        llm_response = get_response(
-            chain=conversational_retrieval_chain,
-            qa={"question": user_input},
-            model=model,
-            user_input=user_input,
-            response_key="answer",
-            return_sources=True,
-        )
-    else:
-        # Get a response from the model
-        logger.debug("ai.send_request", model=model, user_input=user_input)
-        memory.output_key = "text"
-        conversation_chain = LLMChain(
-            llm=llm,
-            prompt=prompt,
-            verbose=True,
-            memory=memory,
-        )
-
-        llm_response = get_response(
-            chain=conversation_chain,
-            qa={"user_input": user_input, "question": user_input},
-            model=model,
-            user_input=user_input,
-            response_key="text",
-        )
+    logger.debug("ai.send_request", model=model, user_input=user_input)
+    llm_response = get_response(
+        chain=chain,
+        qa={"question": user_input}
+        if use_knowledge_base
+        else {"user_input": user_input, "question": user_input},
+        model=model,
+        user_input=user_input,
+        response_key=response_key,
+        return_sources=True if use_knowledge_base else False,
+    )
 
     sources = llm_response.get("sources", [])
-    process_sources(sources)  # Process the sources as needed
+    process_sources(sources)
     return llm_response, refreshed_vectorstore
 
 
@@ -158,7 +133,6 @@ def get_response(
             "ai.get_response",
             usage=cb,
             model=model,
-            # response=llm_response,
         )
 
     result = {"response": llm_response[response_key]}
@@ -184,3 +158,72 @@ def refresh_vectorstore(
         embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
         knowledge_base_name=knowledge_base_name,
     )
+
+
+def create_llm(
+    model, temperature: float, streaming_callback_handler: Optional[BaseCallbackHandler]
+):
+    return ChatOpenAI(
+        api_key=settings.OPENAI_API_KEY,
+        temperature=temperature,
+        model=model,
+        streaming=True if streaming_callback_handler else False,
+        verbose=True if streaming_callback_handler else False,
+        callback_manager=(
+            CallbackManager([streaming_callback_handler])
+            if streaming_callback_handler
+            else None
+        ),
+    )
+
+
+def get_conversation_components(knowledge_base_name: str):
+    memory: ConversationBufferMemory = _get_memory(knowledge_base_name)
+    prompt: ChatPromptTemplate = _get_prompt(knowledge_base_name)
+    return memory, prompt
+
+
+def configure_chain(
+    llm,
+    memory: ConversationBufferMemory,
+    prompt: ChatPromptTemplate,
+    use_knowledge_base: bool,
+    knowledge_base_name: str,
+    knowledge_base_documents: dict[str, KnowledgeBaseDocument],
+):
+    refreshed_vectorstore = False
+    if use_knowledge_base and knowledge_base_name and knowledge_base_documents:
+        chunked_documents, refreshed_vectorstore = prepare_documents(
+            knowledge_base_name, knowledge_base_documents
+        )
+        retriever = get_vectorstore_retriever(
+            documents=chunked_documents,
+            embeddings=OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY),
+            knowledge_base_name=knowledge_base_name,
+        )
+        memory.output_key = "answer"
+        chain = ConversationalRetrievalChain.from_llm(
+            llm=llm,
+            retriever=retriever,
+            memory=memory,
+            return_source_documents=True,
+        )
+        response_key = "answer"
+    else:
+        memory.output_key = "text"
+        chain = LLMChain(llm=llm, prompt=prompt, memory=memory)
+        response_key = "text"
+    return chain, response_key, refreshed_vectorstore
+
+
+def prepare_documents(
+    knowledge_base_name: str, knowledge_base_documents: dict[str, KnowledgeBaseDocument]
+) -> Tuple[list[Document], bool]:
+    refreshed_vectorstore = False
+    chunked_documents: list[Document] = []
+    if not vectorstore_exists(knowledge_base_name):
+        documents = load_documents(knowledge_base_documents)
+        if documents:
+            chunked_documents = get_document_chunks(documents=documents)
+            refreshed_vectorstore = True
+    return chunked_documents, refreshed_vectorstore
