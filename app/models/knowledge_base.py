@@ -376,4 +376,4 @@ class KnowledgeBaseHelper:
         Returns:
             list[str]: The knowledge base names.
         """
-        return list(self.knowledge_base.root.keys())
+        return sorted(list(self.knowledge_base.root.keys()))
