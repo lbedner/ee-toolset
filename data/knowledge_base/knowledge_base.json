@@ -553,5 +553,627 @@
             "Loaded": true,
             "Uri": null
         }
+    },
+    "EE Toolset": {
+        "ee_toolset.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/ee_toolset.py",
+            "Size": 1979,
+            "Loaded": true,
+            "Uri": null
+        },
+        "loader.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/loader.py",
+            "Size": 2473,
+            "Loaded": true,
+            "Uri": null
+        },
+        "config.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/config.py",
+            "Size": 3043,
+            "Loaded": true,
+            "Uri": null
+        },
+        "styles.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/styles.py",
+            "Size": 4968,
+            "Loaded": true,
+            "Uri": null
+        },
+        "ai.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/ai.py",
+            "Size": 7830,
+            "Loaded": true,
+            "Uri": null
+        },
+        "splitter.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/splitter.py",
+            "Size": 1521,
+            "Loaded": true,
+            "Uri": null
+        },
+        "vectorstore.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/vectorstore.py",
+            "Size": 6491,
+            "Loaded": true,
+            "Uri": null
+        },
+        "routing.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/routing.py",
+            "Size": 318,
+            "Loaded": true,
+            "Uri": null
+        },
+        "log.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/log.py",
+            "Size": 2514,
+            "Loaded": true,
+            "Uri": null
+        },
+        "constants.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/constants.py",
+            "Size": 385,
+            "Loaded": true,
+            "Uri": null
+        },
+        "view.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/view.py",
+            "Size": 1272,
+            "Loaded": true,
+            "Uri": null
+        },
+        "illiana.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/illiana.py",
+            "Size": 2840,
+            "Loaded": true,
+            "Uri": null
+        },
+        "index.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/index.py",
+            "Size": 308,
+            "Loaded": true,
+            "Uri": null
+        },
+        "attributes.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/attributes.py",
+            "Size": 1201,
+            "Loaded": true,
+            "Uri": null
+        },
+        "thumbs_button.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/thumbs_button.py",
+            "Size": 2045,
+            "Loaded": true,
+            "Uri": null
+        },
+        "copy_button.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/copy_button.py",
+            "Size": 1909,
+            "Loaded": true,
+            "Uri": null
+        },
+        "unit_data.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/unit_data.py",
+            "Size": 2601,
+            "Loaded": true,
+            "Uri": null
+        },
+        "side_bar.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/side_bar.py",
+            "Size": 3621,
+            "Loaded": true,
+            "Uri": null
+        },
+        "game_data.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/game_data.py",
+            "Size": 1238,
+            "Loaded": true,
+            "Uri": null
+        },
+        "app_bar.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/app_bar.py",
+            "Size": 1595,
+            "Loaded": true,
+            "Uri": null
+        },
+        "file_picker.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/file_picker.py",
+            "Size": 2620,
+            "Loaded": true,
+            "Uri": null
+        },
+        "chat_config.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/chat_config.py",
+            "Size": 17904,
+            "Loaded": true,
+            "Uri": null
+        },
+        "chat.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/chat.py",
+            "Size": 14966,
+            "Loaded": true,
+            "Uri": null
+        },
+        "text.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/text.py",
+            "Size": 573,
+            "Loaded": true,
+            "Uri": null
+        },
+        "files_container.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/files_container.py",
+            "Size": 4851,
+            "Loaded": true,
+            "Uri": null
+        },
+        "chip.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/chip.py",
+            "Size": 2208,
+            "Loaded": true,
+            "Uri": null
+        },
+        "slider.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/slider.py",
+            "Size": 2244,
+            "Loaded": true,
+            "Uri": null
+        },
+        "dropdown.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/dropdown.py",
+            "Size": 2705,
+            "Loaded": true,
+            "Uri": null
+        },
+        "conversation_starters.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/conversation_starters.py",
+            "Size": 2298,
+            "Loaded": true,
+            "Uri": null
+        },
+        "snack_bar.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/snack_bar.py",
+            "Size": 1107,
+            "Loaded": true,
+            "Uri": null
+        },
+        "buttons.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/buttons.py",
+            "Size": 4341,
+            "Loaded": true,
+            "Uri": null
+        },
+        "attribute_table.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/attribute_table.py",
+            "Size": 23828,
+            "Loaded": true,
+            "Uri": null
+        },
+        "knowledge_base.py": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/EE Toolset/knowledge_base.py",
+            "Size": 13708,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "JSON Test": {
+        "attributes.json": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/JSON Test/attributes.json",
+            "Size": 18582,
+            "Loaded": true,
+            "Uri": null
+        },
+        "units.json": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/JSON Test/units.json",
+            "Size": 3969,
+            "Loaded": true,
+            "Uri": null
+        },
+        "items.json": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/JSON Test/items.json",
+            "Size": 10567,
+            "Loaded": true,
+            "Uri": null
+        },
+        "abilities.json": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/JSON Test/abilities.json",
+            "Size": 3523,
+            "Loaded": true,
+            "Uri": null
+        },
+        "roe.json": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/JSON Test/roe.json",
+            "Size": 4094,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "SQL": {
+        "resolve_name_merge.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/resolve_name_merge.sql",
+            "Size": 3361,
+            "Loaded": true,
+            "Uri": null
+        },
+        "process_embargo_products.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/process_embargo_products.sql",
+            "Size": 2331,
+            "Loaded": true,
+            "Uri": null
+        },
+        "various_scratch.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/various_scratch.sql",
+            "Size": 1086,
+            "Loaded": true,
+            "Uri": null
+        },
+        "update_usage_rules.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/update_usage_rules.sql",
+            "Size": 400,
+            "Loaded": true,
+            "Uri": null
+        },
+        "update_attribute_map.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/update_attribute_map.sql",
+            "Size": 2068,
+            "Loaded": true,
+            "Uri": null
+        },
+        "unresolved_names_inital.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/unresolved_names_inital.sql",
+            "Size": 1054,
+            "Loaded": true,
+            "Uri": null
+        },
+        "try_merge.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/try_merge.sql",
+            "Size": 3212,
+            "Loaded": true,
+            "Uri": null
+        },
+        "tools_test.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/tools_test.sql",
+            "Size": 299,
+            "Loaded": true,
+            "Uri": null
+        },
+        "tier_redux.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/tier_redux.sql",
+            "Size": 4029,
+            "Loaded": true,
+            "Uri": null
+        },
+        "test_vm_migration.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/test_vm_migration.sql",
+            "Size": 1557,
+            "Loaded": true,
+            "Uri": null
+        },
+        "test_sp_migration.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/test_sp_migration.sql",
+            "Size": 72,
+            "Loaded": true,
+            "Uri": null
+        },
+        "test_ingestion.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/test_ingestion.sql",
+            "Size": 739,
+            "Loaded": true,
+            "Uri": null
+        },
+        "status_id_deploy.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/status_id_deploy.sql",
+            "Size": 1010,
+            "Loaded": true,
+            "Uri": null
+        },
+        "start_rovi_name_ingestion.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/start_rovi_name_ingestion.sql",
+            "Size": 1693,
+            "Loaded": true,
+            "Uri": null
+        },
+        "sp_merge_names.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/sp_merge_names.sql",
+            "Size": 1313,
+            "Loaded": true,
+            "Uri": null
+        },
+        "rhapsody_look.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/rhapsody_look.sql",
+            "Size": 839,
+            "Loaded": true,
+            "Uri": null
+        },
+        "resolved_names.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/resolved_names.sql",
+            "Size": 5404,
+            "Loaded": true,
+            "Uri": null
+        },
+        "reindex_names_post.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/reindex_names_post.sql",
+            "Size": 301,
+            "Loaded": true,
+            "Uri": null
+        },
+        "reindex_20131106.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/reindex_20131106.sql",
+            "Size": 671,
+            "Loaded": true,
+            "Uri": null
+        },
+        "qa_name_catalog_compare.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/qa_name_catalog_compare.sql",
+            "Size": 1493,
+            "Loaded": true,
+            "Uri": null
+        },
+        "post_name_diffs.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/post_name_diffs.sql",
+            "Size": 750,
+            "Loaded": true,
+            "Uri": null
+        },
+        "post_link_gather_insert_new_names.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/post_link_gather_insert_new_names.sql",
+            "Size": 4783,
+            "Loaded": true,
+            "Uri": null
+        },
+        "new_track_index_rovi.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/new_track_index_rovi.sql",
+            "Size": 1221,
+            "Loaded": true,
+            "Uri": null
+        },
+        "new_tb_ingestion.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/new_tb_ingestion.sql",
+            "Size": 1511,
+            "Loaded": true,
+            "Uri": null
+        },
+        "new_rank_tier.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/new_rank_tier.sql",
+            "Size": 4942,
+            "Loaded": true,
+            "Uri": null
+        },
+        "new_name_dupe_missing_assoc.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/new_name_dupe_missing_assoc.sql",
+            "Size": 1313,
+            "Loaded": true,
+            "Uri": null
+        },
+        "new_name_diff.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/new_name_diff.sql",
+            "Size": 438,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_search_queue_mgt.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_search_queue_mgt.sql",
+            "Size": 974,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_reindex_update.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_reindex_update.sql",
+            "Size": 438,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_reindex.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_reindex.sql",
+            "Size": 600,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_merge_support.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_merge_support.sql",
+            "Size": 2570,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_merge_name_diff_test.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_merge_name_diff_test.sql",
+            "Size": 1271,
+            "Loaded": true,
+            "Uri": null
+        },
+        "name_merge.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/name_merge.sql",
+            "Size": 4702,
+            "Loaded": true,
+            "Uri": null
+        },
+        "mr_confusion.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/mr_confusion.sql",
+            "Size": 1479,
+            "Loaded": true,
+            "Uri": null
+        },
+        "mness.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/mness.sql",
+            "Size": 3129,
+            "Loaded": true,
+            "Uri": null
+        },
+        "init_qa_look.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/init_qa_look.sql",
+            "Size": 510,
+            "Loaded": true,
+            "Uri": null
+        },
+        "ingestion_testing_update_compare.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/ingestion_testing_update_compare.sql",
+            "Size": 1936,
+            "Loaded": true,
+            "Uri": null
+        },
+        "index_regen_20131119.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/index_regen_20131119.sql",
+            "Size": 767,
+            "Loaded": true,
+            "Uri": null
+        },
+        "genre_queries.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/genre_queries.sql",
+            "Size": 1904,
+            "Loaded": true,
+            "Uri": null
+        },
+        "genre_heirarchy_view.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/genre_heirarchy_view.sql",
+            "Size": 3394,
+            "Loaded": true,
+            "Uri": null
+        },
+        "genre_counts.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/genre_counts.sql",
+            "Size": 1335,
+            "Loaded": true,
+            "Uri": null
+        },
+        "fix_index_dev.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/fix_index_dev.sql",
+            "Size": 459,
+            "Loaded": true,
+            "Uri": null
+        },
+        "example_queries.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/example_queries.sql",
+            "Size": 3198,
+            "Loaded": true,
+            "Uri": null
+        },
+        "django.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/django.sql",
+            "Size": 596,
+            "Loaded": true,
+            "Uri": null
+        },
+        "defferentiator.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/defferentiator.sql",
+            "Size": 1108,
+            "Loaded": true,
+            "Uri": null
+        },
+        "create_exclusions.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/create_exclusions.sql",
+            "Size": 1658,
+            "Loaded": true,
+            "Uri": null
+        },
+        "collab_study.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/collab_study.sql",
+            "Size": 484,
+            "Loaded": true,
+            "Uri": null
+        },
+        "clean_up_work_schema.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/clean_up_work_schema.sql",
+            "Size": 29043,
+            "Loaded": true,
+            "Uri": null
+        },
+        "autolink_exact.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/autolink_exact.sql",
+            "Size": 4059,
+            "Loaded": true,
+            "Uri": null
+        },
+        "20131114.sql": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/SQL/20131114.sql",
+            "Size": 2212,
+            "Loaded": true,
+            "Uri": null
+        }
     }
 }

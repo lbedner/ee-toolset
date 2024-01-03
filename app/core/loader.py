@@ -2,6 +2,7 @@ import os
 
 from langchain.document_loaders import (
     PDFPlumberLoader,
+    PythonLoader,
     TextLoader,
     UnstructuredHTMLLoader,
     UnstructuredRTFLoader,
@@ -48,6 +49,9 @@ def determine_loader_and_load(
         ".text": TextLoader,
         ".doc": UnstructuredWordDocumentLoader,
         ".docx": UnstructuredWordDocumentLoader,
+        ".py": PythonLoader,
+        ".json": TextLoader,
+        ".sql": TextLoader,
     }
 
     loader_class = loader_map.get(ext)
