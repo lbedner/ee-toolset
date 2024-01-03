@@ -1,12 +1,14 @@
 import os
 import time
 import traceback
+from typing import Optional
 
 from langchain.callbacks.base import BaseCallbackHandler
 
 import app.core.ai as ai
 import app.core.styles as styles
 import flet as ft
+from app.controls import CopyButton, ThumbsUpDownButtons
 from app.controls.illiana.chat_config import ChatConfig
 from app.controls.illiana.text import ErrorText
 from app.core.config import settings
@@ -155,6 +157,9 @@ class MessageHandler:
             message=message,
         )
         self.chat_view.add_chat_line(chat_message)
+        self.chat_view.add_line(
+            ft.Row(controls=[CopyButton(self.chat_view.page, message)])
+        )
 
     def display_sources(self, response: dict, chat_view: ChatView) -> None:
         if response.get("sources"):
@@ -193,6 +198,45 @@ class MessageHandler:
             )
             chat_view.chat.update()
 
+    def create_streaming_callback_handler(
+        self,
+        progress_ring: ft.Row,
+        initial_chat_message: ChatMessage,
+        stream_response=True,
+    ) -> Optional[StreamingCallbackHandler]:
+        if stream_response:
+            response_generator = ChatResponseGenerator(
+                progress_ring=progress_ring,
+                chat_view=self.chat_view,
+                chat_message=initial_chat_message,
+            )
+            streaming_callback_handler = StreamingCallbackHandler(response_generator)
+            return streaming_callback_handler
+        return None
+
+    def add_post_footer(self, response: dict) -> ft.Container:
+        def create_icon_button(icon: str, tooltip: str, on_click=None) -> ft.IconButton:
+            return ft.IconButton(
+                icon=icon,
+                icon_size=16,
+                tooltip=tooltip,
+                on_click=on_click,
+            )
+
+        self.chat_view.add_line(
+            ft.Row(
+                spacing=0,
+                controls=[
+                    CopyButton(self.chat_view.page, response["response"]),
+                    ThumbsUpDownButtons(self.chat_view.page),
+                    create_icon_button(
+                        icon=ft.icons.REFRESH_OUTLINED,
+                        tooltip="Retry prompt",
+                    ),
+                ],
+            )
+        )
+
     def handle_bot_response(self, user_input: str, stream_response: bool = True):
         # Get response from AI
         # TODO: Add real exception handling
@@ -202,24 +246,22 @@ class MessageHandler:
             self.chat_view.add_chat_line(initial_chat_message)
 
             # Display progress ring while waiting for a response
-            progress_ring = ft.Row(
-                controls=[
-                    ft.ProgressRing(width=16, height=16),
-                ],
+            progress_ring = ft.Container(
+                content=ft.Row(
+                    controls=[
+                        ft.ProgressRing(width=16, height=16),
+                    ],
+                ),
+                padding=5,
             )
             self.chat_view.add_line(progress_ring)
 
             # Create streaming callback handler
-            streaming_callback_handler = None
-            if stream_response:
-                response_generator = ChatResponseGenerator(
-                    progress_ring=progress_ring,
-                    chat_view=self.chat_view,
-                    chat_message=initial_chat_message,
-                )
-                streaming_callback_handler = StreamingCallbackHandler(
-                    response_generator
-                )
+            streaming_callback_handler = self.create_streaming_callback_handler(
+                progress_ring=progress_ring,
+                initial_chat_message=initial_chat_message,
+                stream_response=stream_response,
+            )
 
             knowledge_base_name = (
                 self.chat_view.chat_config.knowledge_base_dropdown.dropdown.value
@@ -239,7 +281,6 @@ class MessageHandler:
             if stream_response:
                 if streaming_callback_handler:
                     streaming_callback_handler.response_generator.close()
-                ic(response["response"])
                 self.chat_view.remove_line(progress_ring)
             else:
                 # Remove progress ring
@@ -256,6 +297,9 @@ class MessageHandler:
                     message=response["response"],
                 )
                 self.chat_view.type_chat_line(initial_chat_message)
+
+            # Show copy/refresh post icon buttons
+            self.add_post_footer(response)
 
             # Display sources
             self.display_sources(response, self.chat_view)

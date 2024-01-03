@@ -59,15 +59,12 @@ class FilePickerControl(ft.UserControl):
                 self.on_files_processed(self.knowledge_base_helper.document_data)
 
             self.loading_indicator.visible = False
-            self.page.snack_bar = SuccessSnackBar(
+            SuccessSnackBar(
                 message=self.on_success_message,
-            ).build()
-            self.page.snack_bar.open = True
-            self.page.update()
+                page=self.page,
+            ).open()
 
-            self.update()
-        else:
-            self.update()
+        self.update()
 
     def build(self):
         return ft.Column([self.loading_indicator, self.pick_files_dialog])

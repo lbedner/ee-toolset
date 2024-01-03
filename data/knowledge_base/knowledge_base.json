@@ -535,5 +535,23 @@
             "Loaded": true,
             "Uri": null
         }
+    },
+    "Abilities - Wolves": {
+        "grey_wolf_1.pdf": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Abilities - Wolves/grey_wolf_1.pdf",
+            "Size": 386107,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "Abilities - Linard": {
+        "linard_janson.pdf": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Abilities - Linard/linard_janson.pdf",
+            "Size": 319321,
+            "Loaded": true,
+            "Uri": null
+        }
     }
 }
