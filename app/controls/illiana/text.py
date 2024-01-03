@@ -9,7 +9,7 @@ class ErrorText(ft.UserControl):
         self.style = style if style else styles.SecondaryTextStyle().to_dict()
 
     def build(self):
-        error_text = ft.Text(value=self.text, **self.style)
+        error_text = ft.Text(value=self.text, **self.style, selectable=True)
         return ft.Container(
             content=error_text,
             padding=10,

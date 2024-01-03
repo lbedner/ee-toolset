@@ -17,6 +17,9 @@ class Settings(BaseSettings):
         "doc",
         "html",
         "htm",
+        "py",
+        "json",
+        "sql",
     ]
 
     OPENAI_API_KEY: str = "OPEN_AI_API_KEY"

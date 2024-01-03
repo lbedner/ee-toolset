@@ -33,13 +33,6 @@ def get_document_chunks(
 
     if total_size < chunk_size:
         return documents
-        # chunk_size = int(total_size * 0.33)
-        # chunk_overlap = 0
-        # logger.debug(
-        #     "splitter.size.reduced",
-        #     chunk_size=chunk_size,
-        #     chunk_overlap=chunk_overlap,
-        # )
 
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size, chunk_overlap=chunk_overlap
