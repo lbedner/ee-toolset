@@ -1,7 +1,8 @@
 import traceback
 
-import app.core.styles as styles
 import flet as ft
+
+import app.core.styles as styles
 from app.controls.attributes.buttons import (
     ElevatedAddButton,
     ElevatedCancelButton,
@@ -425,6 +426,33 @@ class ChatConfig(ft.UserControl):
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.START,
+                    ),
+                    ft.SegmentedButton(
+                        segments=[
+                            ft.Segment(
+                                value=0,
+                                label=ft.Text(
+                                    "Knowledge Base",
+                                    **styles.SecondaryTextStyle().to_dict(),
+                                ),
+                            ),
+                            ft.Segment(
+                                value=1,
+                                label=ft.Text(
+                                    "Normal",
+                                    **styles.SecondaryTextStyle().to_dict(),
+                                ),
+                            ),
+                            ft.Segment(
+                                value=2,
+                                label=ft.Text(
+                                    "Both",
+                                    **styles.SecondaryTextStyle().to_dict(),
+                                ),
+                            ),
+                        ],
+                        on_change=lambda e: self.files_container_control.update_files_container(),  # noqa
+                        allow_empty_selection=True,
                     ),
                     self.loading_indicator,
                     ft.Divider(),

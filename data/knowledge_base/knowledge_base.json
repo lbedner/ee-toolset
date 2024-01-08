@@ -1175,5 +1175,1082 @@
             "Loaded": true,
             "Uri": null
         }
+    },
+    "FletGPT": {
+        "getting-started.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/getting-started.html",
+            "Size": 181488,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/getting-started"
+        },
+        "keyboard-shortcuts.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/keyboard-shortcuts.html",
+            "Size": 91982,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/keyboard-shortcuts"
+        },
+        "getting-user-input.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/getting-user-input.html",
+            "Size": 122321,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/getting-user-input"
+        },
+        "view.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/view.html",
+            "Size": 185328,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/view"
+        },
+        "verticaldivider.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/verticaldivider.html",
+            "Size": 182617,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/verticaldivider"
+        },
+        "tabs.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/tabs.html",
+            "Size": 189697,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/tabs"
+        },
+        "stack.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/stack.html",
+            "Size": 210397,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/stack"
+        },
+        "safearea.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/safearea.html",
+            "Size": 180174,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/safearea"
+        },
+        "row.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/row.html",
+            "Size": 259365,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/row"
+        },
+        "responsiverow.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/responsiverow.html",
+            "Size": 208403,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/resppnserow"
+        },
+        "page.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/page.html",
+            "Size": 364086,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/page"
+        },
+        "listview.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/listview.html",
+            "Size": 182793,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/listview"
+        },
+        "listtile.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/listtile.html",
+            "Size": 202426,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/listtile"
+        },
+        "gridview.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/gridview.html",
+            "Size": 184561,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/gridview"
+        },
+        "expansiontile.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/expansiontile.html",
+            "Size": 209069,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/expansiontile"
+        },
+        "expansionpanel.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/expansionpanel.html",
+            "Size": 194538,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/expansionpanel"
+        },
+        "divider.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/divider.html",
+            "Size": 179340,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/divider"
+        },
+        "dismissable.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/dismissable.html",
+            "Size": 191072,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/dismissable"
+        },
+        "datatable.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/datatable.html",
+            "Size": 240270,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/datatable"
+        },
+        "container.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/container.html",
+            "Size": 328487,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/container"
+        },
+        "column.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/column.html",
+            "Size": 338048,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/column"
+        },
+        "card.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/card.html",
+            "Size": 179811,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/card"
+        },
+        "controls.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/controls.html",
+            "Size": 179889,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/"
+        },
+        "introduction.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/introduction.html",
+            "Size": 58444,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/"
+        },
+        "logging.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/logging.html",
+            "Size": 134890,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/logging"
+        },
+        "self-hosting.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/self-hosting.html",
+            "Size": 153073,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/hosting-providers/self-hosting"
+        },
+        "replit.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/replit.html",
+            "Size": 133169,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/hosting-providers/replit"
+        },
+        "fly-io.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/fly-io.html",
+            "Size": 155213,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/hosting-providers/fly-io"
+        },
+        "progressive-web-apps.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/progressive-web-apps.html",
+            "Size": 134106,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/progressive-web-apps"
+        },
+        "running-flet-with-fastapi.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/running-flet-with-fastapi.html",
+            "Size": 195432,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/running-flet-with-fastapi"
+        },
+        "customizing-web-app.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/customizing-web-app.html",
+            "Size": 133367,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/deploying-web-app/customizing-web-app"
+        },
+        "publishing-static-website.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/publishing-static-website.html",
+            "Size": 153696,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/publishing-static-website"
+        },
+        "packaging-desktop-app.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/packaging-desktop-app.html",
+            "Size": 141531,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/packaging-desktop-app"
+        },
+        "Packaging app for distribution _ Flet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/Packaging app for distribution _ Flet.html",
+            "Size": 167618,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/packaging-desktop-app"
+        },
+        "hot-reload.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/hot-reload.html",
+            "Size": 122029,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/hot-reload"
+        },
+        "testing-on-android.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/testing-on-android.html",
+            "Size": 130368,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/testing-on-android"
+        },
+        "testing-on-ios.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/testing-on-ios.html",
+            "Size": 130499,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/testing-on-ios"
+        },
+        "async-apps.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/async-apps.html",
+            "Size": 159787,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/async-apps"
+        },
+        "accessibility.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/accessibility.html",
+            "Size": 137074,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/accessibility"
+        },
+        "control-refs.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/control-refs.html",
+            "Size": 156209,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/control-refs"
+        },
+        "user-controls.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/user-controls.html",
+            "Size": 177369,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/user-controls"
+        },
+        "pub-sub.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/pub-sub.html",
+            "Size": 131009,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/pub-sub"
+        },
+        "encrypting-sensitive-data.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/encrypting-sensitive-data.html",
+            "Size": 121964,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/encrypting-sensitive-data"
+        },
+        "session-storage.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/session-storage.html",
+            "Size": 122143,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/session-storage"
+        },
+        "client-storage.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/client-storage.html",
+            "Size": 125431,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/client-storage"
+        },
+        "authentication.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/authentication.html",
+            "Size": 220592,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/authentication"
+        },
+        "animations.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/animations.html",
+            "Size": 201711,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/animations"
+        },
+        "file-picker-and-uploads.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/file-picker-and-uploads.html",
+            "Size": 141713,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/file-picker-and-uploads"
+        },
+        "navigation-and-routing.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/navigation-and-routing.html",
+            "Size": 155005,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/navigation-and-routing"
+        },
+        "drag-and-drop.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/drag-and-drop.html",
+            "Size": 156524,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/drag-and-drop"
+        },
+        "large-lists.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/large-lists.html",
+            "Size": 143580,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/large-lists"
+        },
+        "colors.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/colors.html",
+            "Size": 114218,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/guides/python/colors"
+        },
+        "elevatedbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/elevatedbutton.html",
+            "Size": 169477,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/elevatedbutton"
+        },
+        "webview.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/webview.html",
+            "Size": 202275,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/webview"
+        },
+        "progressring.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/progressring.html",
+            "Size": 206799,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/progressring"
+        },
+        "progressbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/progressbar.html",
+            "Size": 205117,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/progressbar"
+        },
+        "text.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/text.html",
+            "Size": 360145,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/text"
+        },
+        "markdown.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/markdown.html",
+            "Size": 233973,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/markdown"
+        },
+        "image.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/image.html",
+            "Size": 228893,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/image"
+        },
+        "icon.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/icon.html",
+            "Size": 202794,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/icon"
+        },
+        "circleavatar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/circleavatar.html",
+            "Size": 213761,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/circleavatar"
+        },
+        "canvas.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/canvas.html",
+            "Size": 398115,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/canvas"
+        },
+        "badge.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/badge.html",
+            "Size": 212068,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/badge"
+        },
+        "navigationrail.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/navigationrail.html",
+            "Size": 212318,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/navigationrail"
+        },
+        "navigationdrawer.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/navigationdrawer.html",
+            "Size": 215299,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/navigationdrawer"
+        },
+        "navigationbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/navigationbar.html",
+            "Size": 197383,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/navigationbar"
+        },
+        "menubar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/menubar.html",
+            "Size": 239393,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/menubar"
+        },
+        "cupertinonavigationbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinonavigationbar.html",
+            "Size": 194543,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinonavigationbar"
+        },
+        "cupertinoappbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinoappbar.html",
+            "Size": 189963,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinoappbar"
+        },
+        "bottomappbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/bottomappbar.html",
+            "Size": 198976,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/bottomappbar"
+        },
+        "appbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/appbar.html",
+            "Size": 197042,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/appbar"
+        },
+        "segmentedbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/segmentedbutton.html",
+            "Size": 99757,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/segmentedbutton"
+        },
+        "popupmenubutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/popupmenubutton.html",
+            "Size": 92535,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/popupmenubutton"
+        },
+        "outlinedbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/outlinedbutton.html",
+            "Size": 119581,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/outlinedbutton"
+        },
+        "menuitembutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/menuitembutton.html",
+            "Size": 111061,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/menuitembutton"
+        },
+        "iconbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/iconbutton.html",
+            "Size": 108710,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/iconbutton"
+        },
+        "floatingactionbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/floatingactionbutton.html",
+            "Size": 106490,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/floatingactionbutton"
+        },
+        "filledtonalbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/filledtonalbutton.html",
+            "Size": 85031,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/filledtonalbutton"
+        },
+        "filledbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/filledbutton.html",
+            "Size": 84286,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/filledbutton"
+        },
+        "textbutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/textbutton.html",
+            "Size": 121267,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/textbutton"
+        },
+        "submenubutton.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/submenubutton.html",
+            "Size": 118760,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/submenubutton"
+        },
+        "cli.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cli.html",
+            "Size": 140364,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/cli"
+        },
+        "pack.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/pack.html",
+            "Size": 147067,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/pack"
+        },
+        "publish.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/publish.html",
+            "Size": 145878,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/publish"
+        },
+        "run.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/run.html",
+            "Size": 144909,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/run"
+        },
+        "create.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/create.html",
+            "Size": 143954,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/create"
+        },
+        "windowdragarea.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/windowdragarea.html",
+            "Size": 147080,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/windowdragarea"
+        },
+        "transparentpointer.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/transparentpointer.html",
+            "Size": 147483,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/transparentpointer"
+        },
+        "tooltip.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/tooltip.html",
+            "Size": 158865,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/tooltip"
+        },
+        "shakedetector.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/shakedetector.html",
+            "Size": 145999,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/shakedetector"
+        },
+        "shadermask.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/shadermask.html",
+            "Size": 162209,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/shadermask"
+        },
+        "semantics.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/semantics.html",
+            "Size": 135098,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/semantics"
+        },
+        "selectionarea.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/selectionarea.html",
+            "Size": 142423,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/selectionarea"
+        },
+        "hapticfeedback.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/hapticfeedback.html",
+            "Size": 147022,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/hapticfeedback"
+        },
+        "gesturedetector.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/gesturedetector.html",
+            "Size": 186616,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/gesturedetector"
+        },
+        "fletapp.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/fletapp.html",
+            "Size": 136364,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/fletapp"
+        },
+        "filepicker.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/filepicker.html",
+            "Size": 166680,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/filepicker"
+        },
+        "dragtarget.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/dragtarget.html",
+            "Size": 171512,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/dragtarget"
+        },
+        "draggable.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/draggable.html",
+            "Size": 171517,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/draggable"
+        },
+        "audio.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/audio.html",
+            "Size": 190884,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/audio"
+        },
+        "animatedswitcher.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/animatedswitcher.html",
+            "Size": 134473,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/animatedswitcher"
+        },
+        "plotlychart.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/plotlychart.html",
+            "Size": 162731,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/plotlychart"
+        },
+        "piechart.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/piechart.html",
+            "Size": 204209,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/piechart"
+        },
+        "matplotlibchart.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/matplotlibchart.html",
+            "Size": 156799,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/matplotlibchart"
+        },
+        "linechart.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/linechart.html",
+            "Size": 308494,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/linechart"
+        },
+        "barchart.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/barchart.html",
+            "Size": 226596,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/barchart"
+        },
+        "timepicker.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/timepicker.html",
+            "Size": 124714,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/timepicker"
+        },
+        "snackbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/snackbar.html",
+            "Size": 124325,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/snackbar"
+        },
+        "datepicker.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/datepicker.html",
+            "Size": 130394,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/datepicker"
+        },
+        "bottomsheet.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/bottomsheet.html",
+            "Size": 123665,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/bottomsheet"
+        },
+        "banner.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/banner.html",
+            "Size": 123525,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/banner"
+        },
+        "alertdialog.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/alertdialog.html",
+            "Size": 132083,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/alertdialog"
+        },
+        "textfield.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/textfield.html",
+            "Size": 192148,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/textfield"
+        },
+        "switch.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/switch.html",
+            "Size": 137978,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/switch"
+        },
+        "slider.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/slider.html",
+            "Size": 123858,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/slider"
+        },
+        "searchbar.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/searchbar.html",
+            "Size": 129240,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/searchbar"
+        },
+        "rangeslider.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/rangeslider.html",
+            "Size": 134866,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/rangeslider"
+        },
+        "radio.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/radio.html",
+            "Size": 128316,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/radio"
+        },
+        "dropdown.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/dropdown.html",
+            "Size": 164179,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/dropdown"
+        },
+        "cupertinoswitch.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinoswitch.html",
+            "Size": 112689,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinoswitch"
+        },
+        "cupertinoslider.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinoslider.html",
+            "Size": 114780,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinoslider"
+        },
+        "cupertinoradio.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinoradio.html",
+            "Size": 115287,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinoradio"
+        },
+        "cupertinocheckbox.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/cupertinocheckbox.html",
+            "Size": 108623,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/cupertinocheckbox"
+        },
+        "chip.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/chip.html",
+            "Size": 137364,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/chip"
+        },
+        "checkbox.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/checkbox.html",
+            "Size": 128150,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/controls/checkbox"
+        },
+        "python-realtime-chat.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/python-realtime-chat.html",
+            "Size": 335253,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/tutorials/python-realtime-chat"
+        },
+        "python-solitaire.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/python-solitaire.html",
+            "Size": 620764,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/tutorials/python-solitaire"
+        },
+        "trello-clone.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/trello-clone.html",
+            "Size": 484701,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/tutorials/trello-clone"
+        },
+        "python-calculator.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/python-calculator.html",
+            "Size": 251466,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/tutorials/python-calculator"
+        },
+        "python-todo.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/FletGPT/python-todo.html",
+            "Size": 346568,
+            "Loaded": true,
+            "Uri": "https://flet.dev/docs/tutorials/python-todo"
+        }
+    },
+    "music-cat Docs": {
+        "developers.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/developers.html",
+            "Size": 23377,
+            "Loaded": true,
+            "Uri": null
+        },
+        "database.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/database.html",
+            "Size": 19617,
+            "Loaded": true,
+            "Uri": null
+        },
+        "dms_refresh.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/dms_refresh.html",
+            "Size": 22547,
+            "Loaded": true,
+            "Uri": null
+        },
+        "images.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/images.html",
+            "Size": 19097,
+            "Loaded": true,
+            "Uri": null
+        },
+        "artist_image.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/artist_image.html",
+            "Size": 24951,
+            "Loaded": true,
+            "Uri": null
+        },
+        "vw_genre_tree_tier_flat.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/vw_genre_tree_tier_flat.html",
+            "Size": 22905,
+            "Loaded": true,
+            "Uri": null
+        },
+        "vw_genre_tree.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/vw_genre_tree.html",
+            "Size": 24353,
+            "Loaded": true,
+            "Uri": null
+        },
+        "attribute_association.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/attribute_association.html",
+            "Size": 23186,
+            "Loaded": true,
+            "Uri": null
+        },
+        "attribute.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/attribute.html",
+            "Size": 22395,
+            "Loaded": true,
+            "Uri": null
+        },
+        "artist_genre.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/artist_genre.html",
+            "Size": 22095,
+            "Loaded": true,
+            "Uri": null
+        },
+        "artist_bio.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/artist_bio.html",
+            "Size": 28449,
+            "Loaded": true,
+            "Uri": null
+        },
+        "bios.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/bios.html",
+            "Size": 18157,
+            "Loaded": true,
+            "Uri": null
+        },
+        "genres.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/genres.html",
+            "Size": 22892,
+            "Loaded": true,
+            "Uri": null
+        },
+        "rabbitmq.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/rabbitmq.html",
+            "Size": 21836,
+            "Loaded": true,
+            "Uri": null
+        },
+        "postgres.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/postgres.html",
+            "Size": 23029,
+            "Loaded": true,
+            "Uri": null
+        },
+        "opensearch.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/opensearch.html",
+            "Size": 16652,
+            "Loaded": true,
+            "Uri": null
+        },
+        "profiling.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/profiling.html",
+            "Size": 19796,
+            "Loaded": true,
+            "Uri": null
+        },
+        "artist_management.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/artist_management.html",
+            "Size": 30971,
+            "Loaded": true,
+            "Uri": null
+        },
+        "retranscode.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/retranscode.html",
+            "Size": 23524,
+            "Loaded": true,
+            "Uri": null
+        },
+        "release_management.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/release_management.html",
+            "Size": 18877,
+            "Loaded": true,
+            "Uri": null
+        },
+        "system_admin.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/system_admin.html",
+            "Size": 24136,
+            "Loaded": true,
+            "Uri": null
+        },
+        "sqs.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/music-cat Docs/sqs.html",
+            "Size": 17630,
+            "Loaded": true,
+            "Uri": null
+        }
+    },
+    "Prompting": {
+        "prompt-engineering.html": {
+            "Type": "Document",
+            "Filepath": "data/vectorstore/knowledge_base/Prompting/prompt-engineering.html",
+            "Size": 145088,
+            "Loaded": true,
+            "Uri": null
+        }
     }
 }

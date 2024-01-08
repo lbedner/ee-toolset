@@ -13,6 +13,7 @@ from langchain.prompts import (
     HumanMessagePromptTemplate,
     MessagesPlaceholder,
 )
+from langchain.prompts.prompt import PromptTemplate
 from langchain.schema import Document
 from langchain.schema.messages import SystemMessage
 
@@ -30,9 +31,35 @@ from app.models import KnowledgeBaseDocument
 
 CHAT_HISTORY = "chat_history"
 
+SYSTEM_MESSAGE: str = """
+Instructions
+You are an artificial intelligence assistant specialized in providing detailed information and guidance on Flet,
+a framework for developing real-time web applications with Python. It is based on integrated documentation and
+code examples provided by the user, covering a wide range of topics including Flet controls, design, navigation,
+and various types of buttons, charts, and advanced themes. This includes details about controls like PopupMenuButton,
+input and selection controls, dialogs, alerts, panels, and more. It also covers utility controls like Audio, Draggable,
+DragTarget, FilePicker, GestureDetector, TransparentPointer, HapticFeedback, Semantics, ShaderMask, ShakeDetector,
+Tooltip, WindowDragArea, FletApp, along with command line interface commands.
+
+Please include code snippets to demonstrate your answers.
+
+At the end of every interaction, please response with four clear, concise follow-up questions that you would ask based
+on your answer and the context of the conversation.
+"""  # noqa
+
 
 conversation_memories: dict[str, ConversationBufferMemory] = {}
 conversation_prompts: dict[str, ChatPromptTemplate] = {}
+
+prompt_template = """Use the following pieces of context, combined with your general knowledge, to answer the question at the end. If the answer is not clear from the context or your general knowledge, just say that you don't know. Do not make up an answer based on speculation.
+
+{context}
+
+Question: {question}
+Helpful Answer:"""  # noqa
+QA_PROMPT = PromptTemplate(
+    template=prompt_template, input_variables=["context", "question"]
+)
 
 
 def process_sources(sources: list):
@@ -60,6 +87,7 @@ def _get_prompt(knowledge_base_name: str) -> ChatPromptTemplate:
         conversation_prompts[knowledge_base_name] = ChatPromptTemplate(
             messages=[
                 SystemMessage(content="You are a helpful assistant."),
+                # SystemMessage(content=SYSTEM_MESSAGE),
                 MessagesPlaceholder(variable_name=f"{CHAT_HISTORY}"),
                 HumanMessagePromptTemplate.from_template("{user_input}"),
             ]
@@ -98,6 +126,7 @@ def stream_chat_with_llm(
         use_knowledge_base,
         knowledge_base_name,
         knowledge_base_documents,
+        model,
     )
 
     logger.debug("ai.send_request", model=model, user_input=user_input)
@@ -161,7 +190,9 @@ def refresh_vectorstore(
 
 
 def create_llm(
-    model, temperature: float, streaming_callback_handler: Optional[BaseCallbackHandler]
+    model,
+    temperature: float = 0.0,
+    streaming_callback_handler: Optional[BaseCallbackHandler] = None,
 ):
     return ChatOpenAI(
         api_key=settings.OPENAI_API_KEY,
@@ -190,6 +221,7 @@ def configure_chain(
     use_knowledge_base: bool,
     knowledge_base_name: str,
     knowledge_base_documents: dict[str, KnowledgeBaseDocument],
+    model: str,
 ):
     refreshed_vectorstore = False
     if use_knowledge_base and knowledge_base_name and knowledge_base_documents:
@@ -207,6 +239,8 @@ def configure_chain(
             retriever=retriever,
             memory=memory,
             return_source_documents=True,
+            combine_docs_chain_kwargs={"prompt": QA_PROMPT},
+            condense_question_llm=create_llm(model),
         )
         response_key = "answer"
     else:

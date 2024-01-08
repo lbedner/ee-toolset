@@ -3,11 +3,11 @@ import time
 import traceback
 from typing import Optional
 
+import flet as ft
 from langchain.callbacks.base import BaseCallbackHandler
 
 import app.core.ai as ai
 import app.core.styles as styles
-import flet as ft
 from app.controls import CopyButton, ThumbsUpDownButtons
 from app.controls.illiana.chat_config import ChatConfig
 from app.controls.illiana.text import ErrorText
@@ -176,7 +176,7 @@ class MessageHandler:
 
             for source in sources:
                 value = (
-                    f"[{os.path.basename(source)}]({source})"
+                    f"[{os.path.basename(source.rstrip('/'))}]({source})"
                     if source.startswith("http")
                     else source
                 )
